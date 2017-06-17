@@ -1,9 +1,6 @@
 #Author: Brian McGinnis
 #Date: June 16 2017
-#Rev: 1.0
-#Notes: implement a way to automatically create the folder and output.wav
-#Must be placed in a folder with a directory called resources
-#recources needs to have the file output.wav
+#Rev: 1.1
 
 from watson_developer_cloud import TextToSpeechV1
 import json
@@ -18,7 +15,13 @@ class TextToSpeech:
 		self.pas = password
 		self.text_to_speech = TextToSpeechV1(username=username, password=password, x_watson_learning_opt_out=True)
   
+
 	def speak(self, message):
+		#IF the directory does not exist create it
+		if not os.path.exists('resoucres/'):
+			os.makedirs(path)
+		  f= open("resources/output.wav","w+")
+
 		with open(join(dirname(__file__), 'resources/output.wav'), 'wb') as audio_file:
 			audio_file.write(self.text_to_speech.synthesize(message, accept='audio/wav', voice="en-US_AllisonVoice"))
 		#define stream chunk   
