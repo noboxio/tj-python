@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
+# TODO: implement mp3
+
 import pyaudio
 import wave
 
 CHUNK = 1024
 
-
+# play_WAV: does what the function name says
 def play_WAV(filename):
 
     # open wav file of choice
@@ -14,10 +16,10 @@ def play_WAV(filename):
     # Start a stream
     p = pyaudio.PyAudio()
     stream = p.open(
-        format=p.get_format_from_width(wf.getsampwidth()),
-        channels=wf.getnchannels(),
-        rate=wf.getframerate(),
-        output=True
+        format = p.get_format_from_width(wf.getsampwidth()),
+        channels = wf.getnchannels(),
+        rate = wf.getframerate(),
+        output = True
     )
 
     # Start playing the sound.
@@ -28,7 +30,7 @@ def play_WAV(filename):
         stream.write(this_chunk)
         this_chunk = wf.readframes(CHUNK)
 
-    # cleanup stuff.
+    # cleanup.
     stream.close()
     p.terminate()
 
