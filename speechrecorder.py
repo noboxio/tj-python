@@ -68,7 +68,7 @@ def get_phrase(threshold=THRESHOLD, framerate=RATE):
     )
 
     if __debug__:
-        print "Mic is up and listening."
+        print("Mic is up and listening.")
 
     # list to hold all of the frames of user's speech.
     speech = []
@@ -101,7 +101,7 @@ def get_phrase(threshold=THRESHOLD, framerate=RATE):
             # if we haven't started already, end the listening phase
             if not started:
                 if __debug__:
-                    print "Threshold passed. Recording started."
+                    print("Threshold passed. Recording started.")
                 started = True
 
             # Append this chunk to the speech list.
@@ -112,7 +112,7 @@ def get_phrase(threshold=THRESHOLD, framerate=RATE):
         elif started is True:
 
             if __debug__:
-                print "Maximum silence reached."
+                print("Maximum silence reached.")
 
             # generate a filename for temporary speech file
             filename = 'temp_' + str(int(time.time())) + '.wav'
@@ -135,7 +135,7 @@ def get_phrase(threshold=THRESHOLD, framerate=RATE):
             init_padding.append(this_chunk)
 
     if __debug__:
-        print "Done.  Closing stream."
+        print("Done.  Closing stream.")
     stream.close()
     p.terminate()
 
