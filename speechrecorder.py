@@ -11,12 +11,6 @@ passed without another sound greater than the threshold, at which
 point we assume that the user has stopped talking and it is safe to
 stop recording.
 
-TODO: Add a method to automatically set threshold.  Different
-      microphones might pick up different sound intensities, and some
-      environments might just have a louder average sound intensity
-      than others.  With a preset threshold, this code might only work
-      well on certain microphones.
-
 Author: Brandon Gong
 """
 
