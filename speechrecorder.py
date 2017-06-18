@@ -48,10 +48,54 @@ THRESHOLD = 2500
 # threshold in seconds.
 SILENCE_LIMIT = 2
 
+
+# automatically calculate threshold.
+# Parameters:
+#   samples: number of chunks to read from microphone.
+#   avgintensities: the top x% of the highest intensites read to be averaged.
+#                   By default, the top 20% of the highest intensities will be
+#                   averaged together.
+#   padding: how far above the average intensity the voice should be.
+# TODO: check to make sure this is actually beneficial to performance.
+def auto_threshold(samples=50, avgintensities=0.2, padding=100):
+    if __debug__:
+        print("Auto-thresholding...")
+
+    # start a stream.
+    #
+    # TODO: if we are to wrap these functions in a class, maybe
+    # we should just create one pyaudio stream and open it in the
+    # constructor.
+    p = pyaudio.PyAudio()
+    stream = p.open(
+        format=FORMAT,
+        channels=CHANNELS,
+        rate=RATE,
+        input=True,
+        frames_per_buffer=CHUNK
+    )
+
+    # Get a number of chunks from the stream as determined by the samples arg,
+    # and calculate intensity.
+    intensities = [math.sqrt(abs(audioop.avg(stream.read(CHUNK), 4)))
+                   for x in range(samples)]
+
+    # sort the list from greatest to least.
+    intensities = sorted(intensities, reverse=True)
+
+    # get the first avgintensities percent values from the list.
+    THRESHOLD = sum( intensities[:int(samples * avgintensities)] ) / int(samples * avgintensities) + padding
+
+    # clean up
+    stream.close()
+    p.terminate()
+
+    if __debug__:
+        print("Threshold: ", THRESHOLD)
+
+
 # Gets the phrase from the user.
 # Returns the filename of the .wav file.
-
-
 def get_phrase(threshold=THRESHOLD, framerate=RATE):
 
     # name of output file.
@@ -141,11 +185,14 @@ def get_phrase(threshold=THRESHOLD, framerate=RATE):
 
     return filename
 
+# process the phrase, as hinted by the name of the function
+# Possibly call Watson STT here.
+
 
 def process_phrase(f):
     pass  # process code here
 
 
 if __name__ == '__main__':
-    # process_phrase(get_phrase())
+    auto_threshold()
     get_phrase()
