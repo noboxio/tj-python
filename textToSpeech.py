@@ -6,6 +6,7 @@ from watson_developer_cloud import TextToSpeechV1
 import json
 import wave
 import pyaudio
+import os.path
 from os.path import join, dirname
 
 class TextToSpeech:
@@ -19,8 +20,8 @@ class TextToSpeech:
 	def speak(self, message):
 		#IF the directory does not exist create it
 		if not os.path.exists('resoucres/'):
-			os.makedirs(path)
-		  f= open("resources/output.wav","w+")
+			os.makedirs('resoucres/')
+			f= open("resources/output.wav","w+")
 
 		with open(join(dirname(__file__), 'resources/output.wav'), 'wb') as audio_file:
 			audio_file.write(self.text_to_speech.synthesize(message, accept='audio/wav', voice="en-US_AllisonVoice"))
@@ -44,3 +45,4 @@ class TextToSpeech:
 		stream.close()  
 			#close PyAudio  
 		p.terminate()
+
