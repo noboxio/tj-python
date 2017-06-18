@@ -24,8 +24,3 @@ class SpeechToText:
             jsn = json.loads(json.dumps(self.speech_to_text.recognize( audio_file, content_type='audio/wav', timestamps=True, word_confidence=True), indent=2))
             #print(jsn['results'][0]['alternatives'][0]['transcript'])
             return jsn['results'][0]['alternatives'][0]['transcript']
-
-
-sst = SpeechToText('1f900d96-d3fa-40f0-ab53-9a600f931796', 'GAyuVqI1EEMv')
-print(sst.s2t())
-
