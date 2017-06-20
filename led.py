@@ -14,7 +14,7 @@ class led:
     def __init__(self):
             # LED strip configuration:
         LED_COUNT      = 1      # Number of LED pixels.
-        LED_PIN        = 18      # GPIO pin connected to the pixels (18 uses PWM!).
+        LED_PIN        = 10      # GPIO pin connected to the pixels (18 uses PWM!).
         #LED_PIN        = 10      # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
         LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
         LED_DMA        = 5       # DMA channel to use for generating signal (try 5)
@@ -48,5 +48,10 @@ class led:
 		pos -= 170
 		return Color(0, pos * 3, 255 - pos * 3)
 
+    def customColor(self):
+        self.strip.setPixelColorRGB(0,255,0,0)
+
 l = led()
-l.strobe()
+#l.strobe()
+l.customColor()
+
