@@ -8,6 +8,7 @@ import led
 import servo
 import textToSpeech
 
+
 #print('ILY')
 def main():
     con = conversation.conversation('154b5b29-d1ca-4ff2-be09-c33c5e1d9e20' , 'pmNftYlpvMS8','9ef80568-2a3b-4790-a8e0-363c0bc7d237')
@@ -16,7 +17,9 @@ def main():
     tts.speak(con.sendMessage('Turn Wipers off'))
     tts.speak("Hello, I am alive")
     l = led.led()
+    s = servo.servo()
     l.customColor(255,0,0)
+    s.wave(2)
     
     
 
