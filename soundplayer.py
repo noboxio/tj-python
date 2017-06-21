@@ -5,39 +5,44 @@
 import pyaudio
 import wave
 
-CHUNK = 1024
+class SoundPlayer:
 
-# play_WAV: does what the function name says
-def play_WAV(filename):
+    CHUNK = 1024
 
-    # open wav file of choice
-    wf = wave.open(filename, 'rb')
+    def __init__(self, chunk=1024):
+        self.CHUNK = chunk
 
-    # Start a stream
-    p = pyaudio.PyAudio()
-    stream = p.open(
-        format = p.get_format_from_width(wf.getsampwidth()),
-        channels = wf.getnchannels(),
-        rate = wf.getframerate(),
-        output = True
-    )
+    # play_WAV: does what the function name says
+    def play_WAV(self, filename):
 
-    # Start playing the sound.
-    # Read CHUNK amound of frames into a variable, then write that variable
-    # to the stream aka play the sound.
-    this_chunk = wf.readframes(CHUNK)
-    while this_chunk:
-        stream.write(this_chunk)
-        this_chunk = wf.readframes(CHUNK)
+        # open wav file of choice
+        wf = wave.open(filename, 'rb')
 
-    # cleanup.
-    stream.close()
-    p.terminate()
+        # Start a stream
+        p = pyaudio.PyAudio()
+        stream = p.open(
+            format = p.get_format_from_width(wf.getsampwidth()),
+            channels = wf.getnchannels(),
+            rate = wf.getframerate(),
+            output = True
+        )
+
+        # Start playing the sound.
+        # Read CHUNK amound of frames into a variable, then write that variable
+        # to the stream aka play the sound.
+        this_chunk = wf.readframes(self.CHUNK)
+        while this_chunk:
+            stream.write(this_chunk)
+            this_chunk = wf.readframes(self.CHUNK)
+
+        # cleanup.
+        stream.close()
+        p.terminate()
 
 
-def play_MP3(filename):
-    pass
+    def play_MP3(self, filename):
+        pass
 
 
 if __name__ == '__main__':
-    play_WAV("asdfasdf.wav")
+    SoundPlayer().play_WAV("asdfasdf.wav")
