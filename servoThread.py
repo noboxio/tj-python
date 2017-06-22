@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Author: Brian McGinnis
+Author: Brian McGinnis and Patrick McGinnis
 
 Notes: The Servo is acting up a bit. May need to change to another library.
 Need to suppress the warnings that the GPIO library is giving for a cleaner GUI
@@ -14,15 +14,23 @@ It warns that the Channel is already in use because it has been serup before.
 
 import RPi.GPIO as GPIO
 import time
+import threading
 
-class Servo:
+class ServoThread(threading.Thread):
         pwm = None
 
         def __init__(self):
+                threading.Thread.__init__(self)
                 GPIO.setwarnings(False)
                 GPIO.setmode(GPIO.BOARD)
                 GPIO.setup(26, GPIO.OUT)
                 self.pwm=GPIO.PWM(26,50)
+                
+                
+        def run(self):
+                while True:
+                        #print("ledThread running - " + self.name)
+                        time.sleep(.5)
                 
         def wave(self, times):
                 self.pwm.start(5)
