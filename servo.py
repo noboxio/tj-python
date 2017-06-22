@@ -15,7 +15,7 @@ It warns that the Channel is already in use because it has been serup before.
 import RPi.GPIO as GPIO
 import time
 
-class servo:
+class Servo:
         pwm = None
 
         def __init__(self):

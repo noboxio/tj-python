@@ -5,7 +5,7 @@ Author: Brian McGinnis
 import time
 from neopixel import *
 
-class led:
+class Led:
 
     def __init__(self):
         LED_COUNT = 16

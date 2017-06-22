@@ -17,7 +17,7 @@ class SpeechToText:
         self.speech_to_text = SpeechToTextV1(username=username, password=password, x_watson_learning_opt_out=True)
 
 
-    def s2t(self):
+    def transcribe(self):
         if not os.path.exists('resources/speech.wav'):
             return 'I hear nothing'
         with open(join(dirname(__file__), 'resources/speech.wav'), 'rb') as audio_file:
