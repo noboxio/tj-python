@@ -24,7 +24,7 @@ class StreamingSTT:
     # It is necessary to keep CHANNELS at 1. Streaming STT does not handle the
     # extra data well and returns unwanted hums.
     CHANNELS = 1
-    RATE = 44100
+    RATE = 48000
 
     # RECSEC: how long to record speech.
     # TODO: integrate some speechrecorder.py code over here and get rid of this
@@ -39,6 +39,7 @@ class StreamingSTT:
     TIMEOUT = None
 
     # the actual websocket
+
     WS = None
 
     # Constructor.  Basically all you really need is StreamingSTT(<username>,
@@ -48,10 +49,10 @@ class StreamingSTT:
             username,
             password,
             timeout=5,
-            chunk=1024,
+            chunk=16384,
             format=pyaudio.paInt16,
             channels=1,
-            rate=44100,
+            rate=48000,
             recsec=5
         ):
         self.userpass = ":".join((username, password))

@@ -28,20 +28,20 @@ class Servo:
                 self.pwm.start(5)
                 while (times > 0):
                         self.pwm.ChangeDutyCycle(10)
-                        time.sleep(.5)
+                        time.sleep(1)
                         self.pwm.ChangeDutyCycle(5)
-                        time.sleep(.5)
+                        time.sleep(1)
                         times = times - 1
                 self.pwm.stop()
 
         def armUp(self):
                 self.pwm.start(5)
-                time.sleep(.5)
+                time.sleep(2)
                 self.pwm.stop()
                 
         def armDown(self):
                 self.pwm.start(10)
-                time.sleep(.5)
+                time.sleep(2)
                 self.pwm.stop()
 #s = servo()
 #s.wave(2)
