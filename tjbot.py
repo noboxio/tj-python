@@ -19,7 +19,7 @@ def main():
     convo = conversation.Conversation('1063c5aa-1366-4792-ab2f-e17019a1fed8', 'aM04boXKsMPz', 'e4228507-443b-40be-bc8e-9c30a5d64d08')
     #servo.daemon = True
     #servo.start()
-    l = led.Led()
+    """l = led.Led()
     le = ledProcess.LedProcess(l)
     print('sleeping')
     time.sleep(3)
@@ -30,8 +30,9 @@ def main():
     time.sleep(3)
     print('kill in 2')
     time.sleep(2)
+    le.customColor(255,0,0)
     #le.stop()
-    print('dead')
+    print('dead') """
     
     tts.speak('Hello I am ' + name + ' ask me something')
 
@@ -39,18 +40,34 @@ def main():
         phrase = stt.get_phrase()
         if name in phrase:
             response = convo.sendMessage(phrase)
-            """if '~' in response:
+            respone.upper()
+            if '~' in response:
                 if '~RED' in response:
-                    le.Red()
+                    le.red()
                     response.replace('~RED', '', 1)
-                if '~BLUE' in response:
-                    le.Blue()
-                    response.replace('~BLUE', '', 1)
+                if '~ORANGE' in response:
+                    le.orange()
+                    response.replace('~ORANGE', '', 1)
+                if '~YELLOW' in response:
+                    le.yellow()
+                    response.replace('~YELLOW', '', 1)
                 if '~GREEN' in response:
+                    le.green()
                     response.replace('~GREEN', '', 1)
-                if '~WAVE' in response:
-                    response.replace('~WAVE', '', 1)
-            """  
+                if '~BLUE' in response:
+                    le.blue()
+                    response.replace('~BLUE', '', 1)
+                if '~PURPLE' in response:
+                    le.purple()
+                    response.replace('~PURPLE', '', 1)
+                if '~PINK' in response:
+                    le.pink()
+                    response.replace('~PINK', '', 1)
+                if '~WHITE' in response:
+                    le.white()
+                    response.replace('~WHITE', '', 1)
+                """if '~WAVE' in response:
+                    response.replace('~WAVE', '', 1) """
             tts.speak(response)
     
 
