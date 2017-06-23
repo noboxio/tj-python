@@ -14,24 +14,17 @@ It warns that the Channel is already in use because it has been serup before.
 
 import RPi.GPIO as GPIO
 import time
-import threading
-import servo
 
-class ServoThread:
+class Servo:
         pwm = None
 
-        def __init__(self, servo):
-                self.servo = servo
+        def __init__(self):
+
                 GPIO.setwarnings(False)
                 GPIO.setmode(GPIO.BOARD)
                 GPIO.setup(26, GPIO.OUT)
                 self.pwm=GPIO.PWM(26,50)
                 
-                
-        def run(self):
-                while True:
-                        #print("ledThread running - " + self.name)
-                        time.sleep(.5)
                 
         def wave(self, times):
                 self.pwm.start(5)

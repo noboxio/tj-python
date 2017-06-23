@@ -23,12 +23,13 @@ class Led:
         wait_ms = 50
 
         for j in range(256):
-            for i in range(0, self.strip.numPixels(), 3):
-                self.strip.setPixelCOlor(i+q, self.wheel((i+j) % 255))
-            self.strip.show()
-            time.sleep(wait_ms/1000.0)
-            for i in range(0, self.strip.numPixels(), 3):
-                self.strip.setPixelColor(i+q, 0)
+            for q in range(3):
+                for i in range(0, self.strip.numPixels(), 3):
+                    self.strip.setPixelColor(i+q, self.wheel((i+j) % 255))
+                self.strip.show()
+                time.sleep(wait_ms/1000.0)
+                for i in range(0, self.strip.numPixels(), 3):
+                    self.strip.setPixelColor(i+q, 0)
 
     def wheel(self,pos):
         if pos < 85:
