@@ -26,25 +26,26 @@ def main():
     musicP = musicProcess.MusicProcess(music_obj)
     
     tts = textToSpeech.TextToSpeech('2cb70eda-ccc5-40d7-adee-91c9aa249841', 'zyzBtEqo73D7')
-    convo = conversation.Conversation('1063c5aa-1366-4792-ab2f-e17019a1fed8', 'aM04boXKsMPz', 'e4228507-443b-40be-bc8e-9c30a5d64d08')
+    convo = conversation.Conversation('154b5b29-d1ca-4ff2-be09-c33c5e1d9e20', 'pmNftYlpvMS8', 'b4485bab-1776-4681-ad6b-44657d41385f')
 
-    print('armup')
-    servoP.armUp()
 
-    time.sleep(.5)
-    print('armdown')
-    servoP.armDown()
-    time.sleep(.5)
-    print('armangle')
-    servoP.angle(45)
     time.sleep(1)
-    print('armwave')
-    servoP.wave(5)
+    ledP.red()
+    time.sleep(1)
+    ledP.green()
+    time.sleep(1)
+    ledP.blue()
     time.sleep(1)
 
-    ledP.strobe()
-    print('led waiting')
-    time.sleep(3)
+    ledP.rainbowCycle(.0001, 99999999999999)
+
+    #tts.speak("Hello, just a moment while I boot up")
+    servoP.wave(3)
+
+
+    
+
+    
 
     
     """l = led.Led()
@@ -68,8 +69,9 @@ def main():
         phrase = stt.get_phrase()
         if name in phrase:
             response = convo.sendMessage(phrase)
-            response.upper()
+            response = response.upper()
             if '~' in response:
+                print('Command Found')
                 if '~RED' in response:
                     ledP.red()
                     response = response.replace('~RED', '', 1)
@@ -83,6 +85,7 @@ def main():
                     ledP.green()
                     response = response.replace('~GREEN', '', 1)
                 if '~BLUE' in response:
+                    print('Its Blue')
                     ledP.blue()
                     response = response.replace('~BLUE', '', 1)
                 if '~PURPLE' in response:
@@ -123,7 +126,7 @@ def main():
                     response = response.replace('~ARMWAVE', '', 1)
                 if '~DANCE' in response:
                     servoP.wave(10)
-                    ledP.rainbowCycle()
+                    ledP.rainbowCycle(1, 50)
                     response = response.replace('~DANCE', '', 1)
                 if '~ARMANGLE' in response:
                     response = response.replace('~ARMANGLE', '', 1)
@@ -135,6 +138,8 @@ def main():
                     param = int(response.split("~",1)[0])
                     response = response.split("~",1)[1]
                     servoP.wave(param)
+                if response == '':
+                    response = 'akward silence'
             tts.speak(response)
     
 

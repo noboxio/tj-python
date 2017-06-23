@@ -22,14 +22,14 @@ class LedProcess():
         self.process = Process(target = self.led.strobe)
         self.process.start()
 
-    def rainbow(self):
+    def rainbow(self, wait_ms, iterations):
         self.__clearProcess__()
-        self.process = Process(target = self.led.rainbow)
+        self.process = Process(target = self.led.rainbow, kwargs={'wait_ms':wait_ms, 'iterations':iterations})
         self.process.start()
 
-    def rainbowCycle(self):
+    def rainbowCycle(self, wait_ms, iterations):
         self.__clearProcess__()
-        self.process = Process(target = self.led.rainbowCycle)
+        self.process = Process(target = self.led.rainbowCycle, kwargs={'wait_ms':wait_ms, 'iterations':iterations})
         self.process.start()
                 
     def wheel(self,pos):
@@ -57,7 +57,7 @@ class LedProcess():
         self.customColor(0, 255, 0)
         
     def blue(self):
-        self.customColor(0, 255, 0)
+        self.customColor(0, 0, 255)
     
     def purple(self):
         self.customColor(127, 0, 255)
