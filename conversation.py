@@ -6,7 +6,7 @@ Author: Brian McGinnis
 import json
 from watson_developer_cloud import ConversationV1
 
-class conversation:
+class Conversation:
 
     def __init__(self, usr, pas, workspace):
         self.convo = ConversationV1(
