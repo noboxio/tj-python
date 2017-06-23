@@ -32,7 +32,7 @@ class LedThread(threading.Thread):
         
     def __clearThread__(self):
         if self.thread != None:
-            self.thread.stop()
+            self.thread.cancel()
             
     def stop(self):
         self.__clearThread__()

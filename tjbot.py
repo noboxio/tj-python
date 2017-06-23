@@ -25,10 +25,14 @@ def main():
     print('sleeping')
     time.sleep(3)
     print('done sleeping, Lets Strobe')
-    le.strobe()
+    #le.strobe()
+    le.customColor(255,0,0)
     print('sleeping')
     time.sleep(3)
-    print('done')
+    print('kill in 2')
+    time.sleep(2)
+    #le.stop()
+    print('dead')
 
     tts.speak('Hello I am ' + name + ' ask me something')
 
