@@ -11,6 +11,9 @@ It warns that the Channel is already in use because it has been serup before.
 
 """
 
+import RPi.GPIO as GPIO
+import time
+
 
 
 def map( x,  in_min,  in_max,  out_min,  out_max):
@@ -30,11 +33,11 @@ class Servo:
                 
                 
         def wave(self, times):
-                self.pwm.start(5)
+                self.pwm.start(1)
                 while (times > 0):
-                        self.pwm.ChangeDutyCycle(10)
+                        self.pwm.ChangeDutyCycle(15)
                         time.sleep(1)
-                        self.pwm.ChangeDutyCycle(5)
+                        self.pwm.ChangeDutyCycle(1)
                         time.sleep(1)
                         times = times - 1
                 self.pwm.stop()
@@ -46,12 +49,12 @@ class Servo:
                 self.pwm.stop()
 
         def armUp(self):
-                self.pwm.start(5)
+                self.pwm.start(1)
                 time.sleep(2)
                 self.pwm.stop()
                 
         def armDown(self):
-                self.pwm.start(10)
+                self.pwm.start(15)
                 time.sleep(2)
                 self.pwm.stop()
                 

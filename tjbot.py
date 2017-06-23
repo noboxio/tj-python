@@ -6,7 +6,8 @@ Author: Brian McGinnis
 import conversation
 import ledProcess
 import led
-import servoThread
+import servoProcess
+import servo
 import textToSpeech
 import streaming
 import time
@@ -14,11 +15,33 @@ import time
 def main():
     stt = streaming.StreamingSTT('1f900d96-d3fa-40f0-ab53-9a600f931796', 'GAyuVqI1EEMv')
     name = 'Alex'
-    #servo = servoThread.ServoThread()
+    servo_obj = servo.Servo()
+    servoP = servoProcess.ServoProcess(servo_obj)
+    led_obj = led.Led()
+    ledP = ledProcess.LedProcess(led_obj)
+    
     tts = textToSpeech.TextToSpeech('2cb70eda-ccc5-40d7-adee-91c9aa249841', 'zyzBtEqo73D7')
     convo = conversation.Conversation('1063c5aa-1366-4792-ab2f-e17019a1fed8', 'aM04boXKsMPz', 'e4228507-443b-40be-bc8e-9c30a5d64d08')
-    #servo.daemon = True
-    #servo.start()
+
+    print('armup')
+    servoP.armUp()
+
+    time.sleep(2)
+    print('armdown')
+    servoP.armDown()
+    time.sleep(3)
+    print('armangle')
+    servoP.angle(45)
+    time.sleep(2)
+    print('armwave')
+    servoP.wave(5)
+    time.sleep(1)
+
+    ledP.strobe()
+    print('led waiting')
+    time.sleep(3)
+
+    
     """l = led.Led()
     le = ledProcess.LedProcess(l)
     print('sleeping')
