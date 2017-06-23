@@ -33,12 +33,10 @@ class Servo:
                 
                 
         def wave(self, times):
-                self.pwm.start(1)
+                self.armUp()
                 while (times > 0):
-                        self.pwm.ChangeDutyCycle(15)
-                        time.sleep(1)
-                        self.pwm.ChangeDutyCycle(1)
-                        time.sleep(1)
+                        self.armDown()
+                        self.armUp()
                         times = times - 1
                 self.pwm.stop()
         
@@ -49,14 +47,10 @@ class Servo:
                 self.pwm.stop()
 
         def armUp(self):
-                self.pwm.start(1)
-                time.sleep(2)
-                self.pwm.stop()
+                self.angle(15)
                 
         def armDown(self):
-                self.pwm.start(15)
-                time.sleep(2)
-                self.pwm.stop()
+                self.angle(15)
                 
 #s = servo()
 #s.wave(2)
