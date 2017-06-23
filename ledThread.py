@@ -15,15 +15,15 @@ class LedThread(threading.Thread):
         
             
     def strobe(self):
-        strobeThread = Thread(target = self.led.strobe)
+        strobeThread = threading.Thread(target = self.led.strobe)
         strobeThread.start()
                 
     def wheel(self,pos):
-        wheelThread = Thread(target = self.led.wheel, kwargs={'pos':pos})
+        wheelThread = threading.Thread(target = self.led.wheel, kwargs={'pos':pos})
         wheelThread.start()
         
     def customColor(self, r, g, b):
-        customColorThread = Thread(target = self.led.customColor, kwargs={'r':r,'g':g,'b':b})
+        customColorThread = threading.Thread(target = self.led.customColor, kwargs={'r':r,'g':g,'b':b})
         customColorThread.start()
 
 
