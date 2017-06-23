@@ -32,7 +32,7 @@ class LedProcess():
         self.process = Process(target = self.led.customColor, kwargs={'r':r,'g':g,'b':b})
         self.process.start()
         
-    def __clearThread__(self):
+    def __clearProcess__(self):
         if self.process != None:
             self.process.terminate()
             
