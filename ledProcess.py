@@ -18,22 +18,26 @@ class LedProcess():
         
             
     def strobe(self):
-        self.process.terminate()
+        self.__clearProcess__()
         self.process = Process(target = self.led.strobe)
         self.process.start()
                 
     def wheel(self,pos):
-        self.process.terminate()
+        self.__clearProcess__()
         self.process = Process(target = self.led.wheel, kwargs={'pos':pos})
         self.process.start()
         
     def customColor(self, r, g, b):
-        self.process.terminate()
+        self.__clearProcess__()
         self.process = Process(target = self.led.customColor, kwargs={'r':r,'g':g,'b':b})
         self.process.start()
         
+    def __clearProcess__(self):
+        if self.process != None:
+            self.process.terminate()
+            
     def stop(self):
-        self.process.terminate()
+        self.__clearProcess__()
 
 
 """
