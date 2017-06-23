@@ -31,10 +31,37 @@ import time
 
 
 def main():
+  
     stt = streaming.StreamingSTT(
-        '1f900d96-d3fa-40f0-ab53-9a600f931796',
-        'GAyuVqI1EEMv')
-    name = 'Alex'
+      
+        # replace with speech to text credentials username
+        'username',
+      
+        # replace with speech to text credentials password
+        'password')
+    
+    tts = textToSpeech.TextToSpeech(
+      
+        # replace with text to speech credentials username
+        'username',
+      
+        # replace with text to speech credentials password
+        'password')
+    
+    convo = conversation.Conversation(
+      
+        # replace with conversation credentials username
+        'username',
+      
+        # replace with conversation credentials password
+        'password',
+      
+        # replace with workspace ID.
+        'workspace id')
+    
+    # replace with robot name
+    name = 'Robot name'
+    
     servo_obj = servo.Servo()
     servoP = servoProcess.ServoProcess(servo_obj)
     led_obj = led.Led()
@@ -42,15 +69,7 @@ def main():
 
     music_obj = music.Music("/home/pi/tj-python/resources/music.wav")
     musicP = musicProcess.MusicProcess(music_obj)
-
-    tts = textToSpeech.TextToSpeech(
-        '2cb70eda-ccc5-40d7-adee-91c9aa249841',
-        'zyzBtEqo73D7')
-    convo = conversation.Conversation(
-        '154b5b29-d1ca-4ff2-be09-c33c5e1d9e20',
-        'pmNftYlpvMS8',
-     'b4485bab-1776-4681-ad6b-44657d41385f')
-
+    
     time.sleep(1)
     ledP.red()
     time.sleep(1)
