@@ -19,17 +19,17 @@ class LedProcess(threading):
             
     def strobe(self):
         self.__clearProcess__()
-        self.process = threading.Thread(target = self.led.strobe)
+        self.process = Process(target = self.led.strobe)
         self.process.start()
                 
     def wheel(self,pos):
         self.__clearProcess__()
-        self.process = threading.Thread(target = self.led.wheel, kwargs={'pos':pos})
+        self.process = Process(target = self.led.wheel, kwargs={'pos':pos})
         self.process.start()
         
     def customColor(self, r, g, b):
         self.__clearProcess__()
-        self.process = threading.Thread(target = self.led.customColor, kwargs={'r':r,'g':g,'b':b})
+        self.process = Process(target = self.led.customColor, kwargs={'r':r,'g':g,'b':b})
         self.process.start()
         
     def __clearThread__(self):
