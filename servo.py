@@ -47,10 +47,10 @@ class Servo:
                 self.pwm.stop()
 
         def armUp(self):
-                self.angle(15)
+                self.angle(30)
                 
         def armDown(self):
-                self.angle(15)
+                self.angle(120)
                 
 #s = servo()
 #s.wave(2)
