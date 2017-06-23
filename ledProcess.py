@@ -36,6 +36,33 @@ class LedProcess():
         if self.process != None:
             self.process.terminate()
             
+    def red(self):
+        self.customColor(255, 0, 0)
+        
+    def orange(self):
+        self.customColor(255, 127, 0)
+
+    def yellow(self):
+        self.customColor(255, 255, 0)
+    
+    def green(self):
+        self.customColor(0, 255, 0)
+        
+    def blue(self):
+        self.customColor(0, 255, 0)
+    
+    def purple(self):
+        self.customColor(127, 0, 255)
+        
+    def pink(self):
+        self.customColor(255, 0, 255)
+    
+    def white(self):
+        self.customColor(255, 255, 255)
+        
+    def off(self):
+        self.stop()
+            
     def stop(self):
         self.__clearProcess__()
 
