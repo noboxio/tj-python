@@ -21,7 +21,6 @@ class Led:
 
     def strobe(self):
         wait_ms = 50
-
         for j in range(256):
             for q in range(3):
                 for i in range(0, self.strip.numPixels(), 3):

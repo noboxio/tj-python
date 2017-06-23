@@ -12,19 +12,30 @@ class LedThread(threading.Thread):
 
     def __init__(self, led):
         self.led = led
+        self.thread = None
         
             
     def strobe(self):
-        strobeThread = threading.Thread(target = self.led.strobe)
-        strobeThread.start()
+        self.__clearThread__()
+        self.thread = threading.Thread(target = self.led.strobe)
+        self.thread.start()
                 
     def wheel(self,pos):
-        wheelThread = threading.Thread(target = self.led.wheel, kwargs={'pos':pos})
-        wheelThread.start()
+        self.__clearThread__()
+        self.thred = threading.Thread(target = self.led.wheel, kwargs={'pos':pos})
+        self.thread.start()
         
     def customColor(self, r, g, b):
-        customColorThread = threading.Thread(target = self.led.customColor, kwargs={'r':r,'g':g,'b':b})
-        customColorThread.start()
+        self.__clearThread__()
+        self.thread = threading.Thread(target = self.led.customColor, kwargs={'r':r,'g':g,'b':b})
+        self.thread.start()
+        
+    def __clearThread__(self):
+        if self.thread != None:
+            self.thread.stop()
+            
+    def stop(self):
+        self.__clearThread__()
 
 
 """
