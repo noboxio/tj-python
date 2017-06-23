@@ -26,13 +26,13 @@ def main():
     print('armup')
     servoP.armUp()
 
-    time.sleep(2)
+    time.sleep(.5)
     print('armdown')
     servoP.armDown()
-    time.sleep(3)
+    time.sleep(.5)
     print('armangle')
     servoP.angle(45)
-    time.sleep(2)
+    time.sleep(1)
     print('armwave')
     servoP.wave(5)
     time.sleep(1)
@@ -63,34 +63,34 @@ def main():
         phrase = stt.get_phrase()
         if name in phrase:
             response = convo.sendMessage(phrase)
-            respone.upper()
+            response.upper()
             if '~' in response:
                 if '~RED' in response:
-                    le.red()
-                    response.replace('~RED', '', 1)
+                    ledP.red()
+                    response = response.replace('~RED', '', 1)
                 if '~ORANGE' in response:
-                    le.orange()
-                    response.replace('~ORANGE', '', 1)
+                    ledP.orange()
+                    response = response.replace('~ORANGE', '', 1)
                 if '~YELLOW' in response:
-                    le.yellow()
-                    response.replace('~YELLOW', '', 1)
+                    ledP.yellow()
+                    response = response.replace('~YELLOW', '', 1)
                 if '~GREEN' in response:
-                    le.green()
-                    response.replace('~GREEN', '', 1)
+                    ledP.green()
+                    response = response.replace('~GREEN', '', 1)
                 if '~BLUE' in response:
-                    le.blue()
-                    response.replace('~BLUE', '', 1)
+                    ledP.blue()
+                    response = response.replace('~BLUE', '', 1)
                 if '~PURPLE' in response:
-                    le.purple()
-                    response.replace('~PURPLE', '', 1)
+                    ledP.purple()
+                    response = response.replace('~PURPLE', '', 1)
                 if '~PINK' in response:
-                    le.pink()
-                    response.replace('~PINK', '', 1)
+                    ledP.pink()
+                    response = response.replace('~PINK', '', 1)
                 if '~WHITE' in response:
-                    le.white()
-                    response.replace('~WHITE', '', 1)
-                """if '~WAVE' in response:
-                    response.replace('~WAVE', '', 1) """
+                    ledP.white()
+                    response = response.replace('~WHITE', '', 1)
+                if '~WAVE' in response:
+                    response = response.replace('~WAVE', '', 1) 
             tts.speak(response)
     
 

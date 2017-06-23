@@ -23,14 +23,13 @@ class TextToSpeech:
 
                 with open(join(dirname(__file__), self.fileLocation), 'wb') as audio_file:
                         audio_file.write(self.text_to_speech.synthesize(message, accept='audio/wav', voice="en-US_AllisonVoice"))
-                        
-                
-                subprocess.call(["aplay", self.fileLocation])
+
+                subprocess.call("exec aplay " + self.fileLocation ,shell=True)
                 
                 """
                 old code going to run it with system calls
                 #define stream chunk   
-                chunk = 2048
+                chunk = 4096
                 #open a wav forat music  
                 f = wave.open(r"resources/output.wav","rb")  
                 #instantiate PyAudio  
