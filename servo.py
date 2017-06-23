@@ -32,7 +32,7 @@ class Servo:
                 self.pwm=GPIO.PWM(26,50)
                 
                 
-        def wave(self, times):
+        def wave(self, times=5):
                 self.armUp()
                 while (times > 0):
                         self.armDown()
@@ -43,7 +43,7 @@ class Servo:
         def angle(self, degrees):
                 #degrees MUST BE between 0 and 180
                 self.pwm.start(map(degrees, 0, 180, 1, 15))
-                time.sleep(1)
+                time.sleep(.5)
                 self.pwm.stop()
 
         def armUp(self):

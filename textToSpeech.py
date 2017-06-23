@@ -16,7 +16,7 @@ class TextToSpeech:
                 self.user = username
                 self.pas = password
                 self.text_to_speech = TextToSpeechV1(username=username, password=password, x_watson_learning_opt_out=True)
-                self.fileLocation = "resources/output.wav"
+                self.fileLocation = "/home/pi/tj-python/resources/output.wav"
   
 
         def speak(self, message):
