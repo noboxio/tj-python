@@ -31,37 +31,37 @@ import time
 
 
 def main():
-  
+
     stt = streaming.StreamingSTT(
-      
+
         # replace with speech to text credentials username
         'username',
-      
+
         # replace with speech to text credentials password
         'password')
-    
+
     tts = textToSpeech.TextToSpeech(
-      
+
         # replace with text to speech credentials username
         'username',
-      
+
         # replace with text to speech credentials password
         'password')
-    
+
     convo = conversation.Conversation(
-      
+
         # replace with conversation credentials username
         'username',
-      
+
         # replace with conversation credentials password
         'password',
-      
+
         # replace with workspace ID.
         'workspace id')
-    
+
     # replace with robot name
     name = 'Robot name'
-    
+
     servo_obj = servo.Servo()
     servoP = servoProcess.ServoProcess(servo_obj)
     led_obj = led.Led()
@@ -69,7 +69,7 @@ def main():
 
     music_obj = music.Music("/home/pi/tj-python/resources/music.wav")
     musicP = musicProcess.MusicProcess(music_obj)
-    
+
     time.sleep(1)
     ledP.red()
     time.sleep(1)
@@ -156,9 +156,6 @@ def main():
                 if '~ARMDOWN' in response:
                     servoP.armDown()
                     response = response.replace('~ARMDOWN', '', 1)
-                if '~ARMWAVE' in response:
-                    servoP.wave(2)
-                    response = response.replace('~ARMWAVE', '', 1)
                 if '~DANCE' in response:
                     servoP.wave(10)
                     ledP.rainbowCycle(1, 50)
@@ -173,6 +170,9 @@ def main():
                     param = int(response.split("~", 1)[0])
                     response = response.split("~", 1)[1]
                     servoP.wave(param)
+                if '~ARMWAVE' in response:
+                    servoP.wave(2)
+                    response = response.replace('~ARMWAVE', '', 1)
                 if response == '':
                     response = 'akward silence'
             tts.speak(response)
