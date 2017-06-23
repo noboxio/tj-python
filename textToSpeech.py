@@ -8,6 +8,7 @@ import wave
 import pyaudio
 import os.path
 from os.path import join, dirname
+import subprocess
 
 class TextToSpeech:
         
@@ -15,12 +16,19 @@ class TextToSpeech:
                 self.user = username
                 self.pas = password
                 self.text_to_speech = TextToSpeechV1(username=username, password=password, x_watson_learning_opt_out=True)
+                self.fileLocation = "resources/output.wav"
   
 
         def speak(self, message):
 
-                with open(join(dirname(__file__), 'resources/output.wav'), 'wb') as audio_file:
+                with open(join(dirname(__file__), self.fileLocation), 'wb') as audio_file:
                         audio_file.write(self.text_to_speech.synthesize(message, accept='audio/wav', voice="en-US_AllisonVoice"))
+                        
+                
+                subprocess.call("aplay " + self.fileLocation)
+                
+                """
+                old code going to run it with system calls
                 #define stream chunk   
                 chunk = 4096
                 #open a wav forat music  
@@ -41,6 +49,7 @@ class TextToSpeech:
                 stream.close()  
                         #close PyAudio  
                 p.terminate()
+                """
 
 #tts = TextToSpeech('2cb70eda-ccc5-40d7-adee-91c9aa249841', 'zyzBtEqo73D7')
 #tts.speak('I believe I know what you are saying')
