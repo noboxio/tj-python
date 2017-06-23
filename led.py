@@ -19,6 +19,22 @@ class Led:
         self.strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL, LED_STRIP)
         self.strip.begin()
 
+    def rainbow(self, wait_ms=20, iterations=1):
+	"""Draw rainbow that fades across all pixels at once."""
+	for j in range(256*iterations):
+		for i in range(self.strip.numPixels()):
+			self.strip.setPixelColor(i, self.wheel((i+j) & 255))
+		self.strip.show()
+		time.sleep(wait_ms/1000.0)
+
+    def rainbowCycle(self, wait_ms=20, iterations=5):
+	"""Draw rainbow that uniformly distributes itself across all pixels."""
+	for j in range(256*iterations):
+		for i in range(self.strip.numPixels()):
+			self.strip.setPixelColor(i, self.wheel((int(i * 256 / strip.numPixels()) + j) & 255))
+		self.strip.show()
+		time.sleep(wait_ms/1000.0)
+
     def strobe(self):
         wait_ms = 50
         for j in range(256):

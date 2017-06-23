@@ -21,6 +21,16 @@ class LedProcess():
         self.__clearProcess__()
         self.process = Process(target = self.led.strobe)
         self.process.start()
+
+    def rainbow(self):
+        self.__clearProcess__()
+        self.process = Process(target = self.led.rainbow)
+        self.process.start()
+
+    def rainbowCycle(self):
+        self.__clearProcess__()
+        self.process = Process(target = self.led.rainbowCycle)
+        self.process.start()
                 
     def wheel(self,pos):
         self.__clearProcess__()
