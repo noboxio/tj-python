@@ -10,7 +10,7 @@ import led
 
 
 
-class LedProcess():
+class LedProcess():the
 
     def __init__(self, led):
         self.led = led

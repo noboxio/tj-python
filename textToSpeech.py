@@ -25,7 +25,7 @@ class TextToSpeech:
                         audio_file.write(self.text_to_speech.synthesize(message, accept='audio/wav', voice="en-US_AllisonVoice"))
                         
                 
-                subprocess.call("aplay " + self.fileLocation)
+                subprocess.call(["aplay", self.fileLocation])
                 
                 """
                 old code going to run it with system calls

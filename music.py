@@ -14,7 +14,6 @@ class Music:
     def play(self):
         self.process = subprocess.Popen("exec " + self.cmd, stdout=subprocess.PIPE, shell=True)
 
-
     def stop(self):
         self.process.kill()
 
