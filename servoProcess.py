@@ -26,6 +26,8 @@ import servo
 
 
 class ServoProcess:
+    """ServoProcess is basically a manager for the servo objects, it functions
+       as a thread so that the servo can be started, stopped or whatever whenever"""
 
     def __init__(self, servo):
         self.servo = servo

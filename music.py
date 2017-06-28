@@ -22,14 +22,21 @@ import subprocess
 class Music:
 
     def __init__(self, fileLocation):
+        """Creates a Music object that requires a file name to be passed
+        fileLocation -- the location of the wave file to be played
+        """
         self.fileLocation = fileLocation
         self.cmd = "aplay " + fileLocation
 
     def play(self):
+        """Play the song file and wait for the song to end and return nothing
+        """
         self.process = subprocess.Popen(
             "exec " + self.cmd,
             stdout=subprocess.PIPE,
             shell=True)
-
+        """Stop this playing song immediately by terminating the process and
+           then return nothing
+        """
     def stop(self):
         self.process.kill()
