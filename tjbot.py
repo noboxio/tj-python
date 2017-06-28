@@ -31,6 +31,7 @@ import time
 
 
 def main():
+    """Main method that runs the program."""
 
     stt = streaming.StreamingSTT(
 

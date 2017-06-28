@@ -24,8 +24,14 @@ from watson_developer_cloud import SpeechToTextV1
 
 
 class SpeechToText:
+    """SpeechToText is an objct that converts Speech to text using watson."""
 
     def __init__(self, username, password):
+        """Create SpeechToText object.
+
+        username -- username for watson sst service
+        password -- password for watson sst service
+        """
         self.user = username
         self.pas = password
         self.speech_to_text = SpeechToTextV1(
@@ -34,6 +40,11 @@ class SpeechToText:
             x_watson_learning_opt_out=True)
 
     def transcribe(self):
+        """Transcribe an existing file.
+
+        streams the speech.wav temporary file to watson and gets a string back
+        and then returns the collected json results
+        """
         if not os.path.exists('resources/speech.wav'):
             return 'I hear nothing'
         with open(join(dirname(__file__), 'resources/speech.wav'), 'rb') as audio_file:

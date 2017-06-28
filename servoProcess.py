@@ -26,23 +26,37 @@ import servo
 
 
 class ServoProcess:
-    """ ServoProcess is basically a manager for the servo objects, it functions
-        as a thread so that the servo can be started, stopped or whatever whenever"""
+    """ServoProcess is basically a manager for the servo objects.
+
+    it functions as a process so that the servo can be started, stopped or
+    whatever whenever
+    """
 
     def __init__(self, servo):
+        """Create a ServoProcess type object.
+
+        servo -- Servo to contorl
+        TODO: make it control multiple servos?
+        """
         self.servo = servo
         self.process = None
 
     def wave(self, times):
-        """ Wave the arm a certian number of times
-            times -- int count of time to wave"""
+        """Wave the arm.
+
+        Wave the arm a certian number of times
+
+        times -- int count of time to wave
+        """
         self.__clearProcess__()
         self.process = Process(target=self.servo.wave, kwargs={'times': times})
         self.process.start()
 
     def angle(self, degrees):
-        """ Set the servo to a specific angle
-            degrees -- int amount of degrees to be set at"""
+        """Set the servo to a specific angle.
+
+        degrees -- int amount of degrees to be set at
+        """
         self.__clearProcess__()
         self.process = Process(
             target=self.servo.angle,
@@ -50,23 +64,23 @@ class ServoProcess:
         self.process.start()
 
     def armUp(self):
-        """ Sets servo in the "UP" position"""
+        """Set servo in the "UP" position."""
         self.__clearProcess__()
         self.process = Process(target=self.servo.armUp)
         self.process.start()
 
     def armDown(self):
-        """ Sets servo in the "DOWN" position"""
+        """Set servo in the "DOWN" position."""
         self.__clearProcess__()
         self.process = Process(target=self.servo.armDown)
         self.process.start()
 
     def stop(self):
-        """ Calls the clear process method that stops all servos in this manager"""
+        """Call the clear process method that stops all servos in this manager."""
         self.__clearProcess__()
 
     def __clearProcess__(self):
-        """ Stops all processes running with regards to the servos"""
+        """Stop all processes running with regards to the servos."""
         if self.process is not None:
             self.process.terminate()
 

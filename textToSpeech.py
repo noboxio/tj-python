@@ -27,8 +27,14 @@ import subprocess
 
 
 class TextToSpeech:
+    """TextToSpeech class uses watson tts service"""
 
     def __init__(self, username, password):
+        """Cereate TextToSpeech object to work with watson services.
+
+        username -- username for watson tts service
+        password -- password for watson tts service
+        """
         self.user = username
         self.pas = password
         self.text_to_speech = TextToSpeechV1(
@@ -38,6 +44,10 @@ class TextToSpeech:
         self.fileLocation = "/home/pi/tj-python/resources/output.wav"
 
     def speak(self, message):
+        """Speak a text message.
+
+        message - the text string to be played.
+        """
         with open(join(dirname(__file__), self.fileLocation), 'wb') as audio_file:
                 audio_file.write(
                     self.text_to_speech.synthesize(
