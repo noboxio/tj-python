@@ -1,3 +1,5 @@
+#!/usr/bin/env python.
+
 """
 
                   888
@@ -19,31 +21,36 @@ import music
 
 
 class MusicProcess():
-    """ MusicProcess is basically a manager for the music objects, it functions
-        as a thread so that the song can be started, stopped or whatever whenever"""
+    """MusicProcess is basically a manager for the music objects.
+
+    it functions as a process so that the song can be started, stopped or
+    whatever whenever
+    """
 
     def __init__(self, music):
-        """ Constructor for the MusicProcess type, it requires a music objects
-            music -- Music object that has been created to be played
+        """Create a MusicProcess type.
 
-            TODO: don't require it to be passed a song, allow it to load a
-            library of songs."""
+        music -- Music object that has been created to be played
+
+        TODO: don't require it to be passed a song, allow it to load a
+        library of songs.
+        """
         self.music = music
         self.process = None
 
     def play(self):
-        """ Plays the single song and then immediately returns nothing"""
+        """Play the single song and then immediately returns nothing."""
         self.__clearProcess__()
         self.process = Process(target=self.music.play)
         self.process.start()
 
     def stop(self):
-        """ Stops the single song and then immediately returns nothing"""
+        """Stop the single song and then immediately returns nothing."""
         self.__clearProcess__()
         self.process = Process(target=self.music.stop)
         self.process.start()
 
     def __clearProcess__(self):
-        """ Clears any exisiting Music process so that it can be terminated"""
+        """Clear any exisiting Music process so that it can be terminated."""
         if self.process is not None:
             self.process.terminate()

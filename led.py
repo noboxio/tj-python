@@ -11,7 +11,7 @@
 888  888 Y88..88P 888 d88P Y88..88P .d8""8b.     http://nobox.io
 888  888  "Y88P"  88888P"   "Y88P"  888  888     http://github.com/noboxio
 
-Author: Brian McGinnis
+Author: Brian McGinnis and Patrick McGinnis
 Date: 6/23/17
 """
 
@@ -22,6 +22,10 @@ from neopixel import *
 class Led:
 
     def __init__(self):
+        """Create an LED object.
+
+        Creates an led object that is based off of the neopixel adafruit stuff
+        """
         LED_COUNT = 16
         LED_PIN = 10
         LED_FREQ_HZ = 800000
@@ -42,6 +46,13 @@ class Led:
         self.strip.begin()
 
     def rainbow(self, wait_ms=1, iterations=1):
+        """Make the LED go rainbow.
+
+        The led will go between the different colors with a wait and iteration.
+
+        wait_ms -- int miliseconds to wait between changes default=1
+        iterations -- number of times to repeat the cycle default=1
+        """
         for j in range(256 * iterations):
             for i in range(self.strip.numPixels()):
                 self.strip.setPixelColor(i, self.wheel((i + j) & 255))
@@ -49,6 +60,13 @@ class Led:
                 time.sleep(wait_ms / 1000.0)
 
     def rainbowCycle(self, wait_ms=1, iterations=5):
+        """Make the LED go rainbow cycle.
+
+        The led will go between the different colors with a wait and iteration.
+
+        wait_ms -- int miliseconds to wait between changes default=1
+        iterations -- number of times to repeat the cycle default=5
+        """
         for j in range(256 * iterations):
             for i in range(self.strip.numPixels()):
                 self.strip.setPixelColor(
@@ -58,6 +76,10 @@ class Led:
                 time.sleep(wait_ms / 1000.0)
 
     def strobe(self):
+        """Strobe the led.
+
+        Turn the led on and off rapidly
+        """
         wait_ms = 50
         for j in range(256):
             for q in range(3):
@@ -69,6 +91,12 @@ class Led:
                     self.strip.setPixelColor(i + q, 0)
 
     def wheel(self, pos):
+        """Change the color based on the 'wheel'.
+
+        Change the color based on the wheel determined by adafruit
+
+        pos -- int position on the wheel
+        """
         if pos < 85:
             return Color(pos * 3, 255 - pos * 3, 0)
         elif pos < 170:
@@ -79,5 +107,13 @@ class Led:
             return Color(0, pos * 3, 255 - pos * 3)
 
     def customColor(self, r, g, b):
+        """Change the color to a custom color.
+
+        Change the color of the LED to the specified color R G B values
+
+        r -- int value of red
+        g -- int value of green
+        b -- int value of blue
+        """
         self.strip.setPixelColorRGB(0, r, g, b)
         self.strip.show()
