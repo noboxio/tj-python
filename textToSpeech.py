@@ -27,7 +27,7 @@ import subprocess
 
 
 class TextToSpeech:
-    """TextToSpeech class uses watson tts service"""
+    """TextToSpeech class uses watson tts service."""
 
     def __init__(self, username, password):
         """Cereate TextToSpeech object to work with watson services.
