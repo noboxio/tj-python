@@ -6,3 +6,4 @@ include/*
 lib/*
 local/*
 share/*
+.DS_Store
