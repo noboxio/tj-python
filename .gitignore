@@ -1,3 +1,8 @@
-# Ignore generated .wav files
 *.wav
 *.pyc
+.directory
+bin/*
+include/*
+lib/*
+local/*
+share/*
