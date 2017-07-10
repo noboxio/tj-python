@@ -26,24 +26,28 @@ import threading
 import time
 import pyaudio
 import websocket
+import audioop
+import math
 from websocket._abnf import ABNF
 
 
 class StreamingSTT:
 
     # Mic config.
-    CHUNK = 16384
-    FORMAT = pyaudio.paInt16
+    CHUNK = None
+    FORMAT = None
     # It is necessary to keep CHANNELS at 1. Streaming STT does not handle the
     # extra data well and returns unwanted hums.
     CHANNELS = 1
-    RATE = 48000
+    RATE = None
 
-    # RECSEC: how long to record speech.
-    # TODO: integrate some speechrecorder.py code over here and get rid of this
-    # variable.  Currently, recording stops after 5 seconds no matter if the
-    # user is still talking or has stopped for a long time.
-    RECSEC = 5
+    # Threshold: above this point it is considered user speech, below this
+    # point it is considered silence.
+    THRESHOLD = None
+
+    # The amount of silence allowed after a sound that passes the
+    # threshold in seconds.
+    SILENCE_LIMIT = None
 
     # large array of json data returned by watson.
     FINAL = []
@@ -52,7 +56,6 @@ class StreamingSTT:
     TIMEOUT = None
 
     # the actual websocket
-
     WS = None
 
     # Constructor.  Basically all you really need is StreamingSTT(<username>,
@@ -64,17 +67,17 @@ class StreamingSTT:
             timeout=5,
             chunk=16384,
             format=pyaudio.paInt16,
-            channels=1,
-            rate=48000,
-            recsec=5
+            rate=44100,
+            threshold=1000,
+            silence_limit=2
     ):
         self.userpass = ":".join((username, password))
         self.TIMEOUT = timeout
         self.CHUNK = chunk
         self.FORMAT = format
-        self.CHANNELS = channels
         self.RATE = rate
-        self.RECSEC = recsec
+        self.THRESHOLD = threshold
+        self.SILENCE_LIMIT = silence_limit
 
     # read_audio starts a stream and sends chunks to watson realtime.
     def read_audio(self, ws, timeout):
@@ -92,10 +95,25 @@ class StreamingSTT:
 
         # magic happens here. Read a chunk from the stream, encode it as ABNF,
         # and put it through the websocket.
-        # TODO: implement auto stop not hard-coded time
-        for i in range(0, int(self.RATE / self.CHUNK * self.RECSEC)):
+
+        # silence_chunks is a counter variable counting number of chunks with
+        # silence. Once this value surpasses the silence limit, stop recording.
+        silence_chunks = 0
+        limit_chunks = self.SILENCE_LIMIT * self.RATE / self.CHUNK
+
+        while True:
+
+            if silence_chunks >= limit_chunks:
+                break
+
             data = stream.read(self.CHUNK)
             ws.send(data, ABNF.OPCODE_BINARY)
+
+            if math.sqrt(abs(audioop.avg(data, 4))) > self.THRESHOLD:
+                silence_chunks = 0
+            else:
+                silence_chunks += 1
+
 
         # Disconnect the audio stream
         stream.stop_stream()
