@@ -13,12 +13,33 @@
 
 Author: Brian McGinnis and Patrick McGinnis
 Date: 7/11/17
-atom-timestamp:update-timestamp
 """
 
 import time
 import subprocess
 from multiprocessing import Process
+import os.path
+
+
+
+class MusicFile:
+    """MusicFile is an object that contains the location of a song
+
+    contains the location of a sound fileLocation
+    """
+
+    def __init__(self, file_location):
+        """Create a new MusiFile object that requires a file name to be passed.
+
+        file_location -- the location of the WAVE file to be played
+        """
+
+        #if the file doesn't exist raise an exception
+        if not os.path.isfile(file_location):
+            raise IOError("file:" + file_location + " does not exist")
+            self.file_location = None
+        else:
+            self.file_location = file_location
 
 
 
