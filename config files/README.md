@@ -41,7 +41,9 @@
     * `sudo python3 setup.py install`
 
 11. you need to copy the asound.conf file to ??? TODO: FINISH THIS
-12. you need to copy the asound file to ~/.asound TODO: FINISH THIS
+
+12. you need to copy the asound file to ~/.asound
+    * `cp .asoundrc ~/.asoundrc`
 
 13. Install the python libraries required.
     WHEN IT GETS TO THE SOCKET PART INSTALL SOCKET CLIENT NOT SOCKET OR SOMETHING LIKE THAT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  TODO: FINISH THIS
