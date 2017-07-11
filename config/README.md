@@ -47,3 +47,6 @@
 
 13. Install the python libraries required.
     WHEN IT GETS TO THE SOCKET PART INSTALL SOCKET CLIENT NOT SOCKET OR SOMETHING LIKE THAT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  TODO: FINISH THIS
+
+
+  14. you need to have pip install colour for the color name functions
