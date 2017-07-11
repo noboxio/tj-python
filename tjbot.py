@@ -14,7 +14,7 @@
 
 TJBot
 
-Author: Brian McGinnis
+Author: Brian McGinnis and Patrick McGinnis
 Date: 6/23/17
 """
 
@@ -63,14 +63,23 @@ def main():
     # replace with robot name
     name = 'ENTER_ROBOT_NAME'
 
+    # Create a Servo object and also create a ServoProcess object
+    # to control the servo
     servo_obj = servo.Servo()
     servoP = servoProcess.ServoProcess(servo_obj)
+
+    # Create a Led object and also create a LedProcess object
+    # to control the Led
     led_obj = led.Led()
     ledP = ledProcess.LedProcess(led_obj)
 
+    # Create a Music object and also create a MusicProcess object
+    # to control the music
     music_obj = music.Music("/home/pi/tj-python/resources/music.wav")
     musicP = musicProcess.MusicProcess(music_obj)
 
+    # Simple led commands to make the LED go RED --> GREEN --> BLUE to
+    # basically show that the TJ Bot is booting
     time.sleep(1)
     ledP.red()
     time.sleep(1)
@@ -79,28 +88,16 @@ def main():
     ledP.blue()
     time.sleep(1)
 
+    # Make the led do the rainbow cycle for forever!
     ledP.rainbowCycle(.0001, 99999999999999)
 
-    # tts.speak("Hello, just a moment while I boot up")
+    # Make TJ bot wave 3 times
     servoP.wave(3)
 
-    """l = led.Led()
-    le = ledProcess.LedProcess(l)
-    print('sleeping')
-    time.sleep(3)
-    print('done sleeping, Lets Strobe')
-    le.strobe()
-    #le.customColor(255,0,0)
-    print('sleeping')
-    time.sleep(3)
-    print('kill in 2')
-    time.sleep(2)
-    le.customColor(255,0,0)
-    #le.stop()
-    print('dead') """
-
+    # Make TJ bot say hello
     tts.speak('Hello I am ' + name + ' ask me something')
 
+    # This processes the conversation commands from the conversation service
     while(1):
         phrase = stt.get_phrase()
         if name in phrase:
