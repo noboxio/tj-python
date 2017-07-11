@@ -22,6 +22,7 @@ Date: 6/23/17
 
 import RPi.GPIO as GPIO
 import time
+from multiprocessing import Process
 
 
 def map(x, in_min, in_max, out_min, out_max):
@@ -91,7 +92,64 @@ class Servo:
         """
         self.angle(120)
 
-# s = servo()
-# s.wave(2)
-# s.armDown()
-# s.armUp()
+
+
+
+class ServoManager:
+    """ServoManager is basically a manager for the servo objects.
+
+    it functions as a process so that the servo can be started, stopped or
+    whatever whenever
+    """
+
+    def __init__(self, servo):
+        """Create a ServoManager type object.
+
+        servo -- Servo to contorl
+        TODO: make it control multiple servos?
+        """
+        self.servo = servo
+        self.process = None
+
+    def wave(self, times):
+        """Wave the arm.
+
+        Wave the arm a certian number of times
+
+        times -- int count of time to wave
+        """
+        self.__clearProcess__()
+        self.process = Process(target=self.servo.wave, kwargs={'times': times})
+        self.process.start()
+
+    def angle(self, degrees):
+        """Set the servo to a specific angle.
+
+        degrees -- int amount of degrees to be set at
+        """
+        self.__clearProcess__()
+        self.process = Process(
+            target=self.servo.angle,
+            kwargs={'degrees': degrees})
+        self.process.start()
+
+    def armUp(self):
+        """Set servo in the "UP" position."""
+        self.__clearProcess__()
+        self.process = Process(target=self.servo.armUp)
+        self.process.start()
+
+    def armDown(self):
+        """Set servo in the "DOWN" position."""
+        self.__clearProcess__()
+        self.process = Process(target=self.servo.armDown)
+        self.process.start()
+
+    def stop(self):
+        """Call the clear process method that stops all servos in this manager."""
+        self.__clearProcess__()
+
+    def __clearProcess__(self):
+        """Stop all processes running with regards to the servos."""
+        if self.process is not None:
+            self.process.terminate()
