@@ -29,36 +29,6 @@ import watsonServices
 
 
 def main():
-    """
-
-    stt = streaming.StreamingSTT(
-
-        # replace with speech to text credentials username
-        'ENTER_USERNAME',
-
-        # replace with speech to text credentials password
-        'ENTER_PASSWORD')
-
-    tts = textToSpeech.TextToSpeech(
-
-        # replace with text to speech credentials username
-        'ENTER_USERNAME',
-
-        # replace with text to speech credentials password
-        'ENTER_PASSWORD')
-
-    convo = conversation.Conversation(
-
-        # replace with conversation credentials username
-        'ENTER_USERNAME',
-
-        # replace with conversation credentials password
-        'ENTER_PASSWORD',
-
-        # replace with workspace ID.
-        'ENTER_WORKSPACE_ID')
-
-        """
 
     # replace with robot name
     name = 'ENTER_ROBOT_NAME'

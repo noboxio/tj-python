@@ -38,17 +38,13 @@ class MusicProcess():
         self.music = music
         self.process = None
 
-    def play(self):
-        """Play the single song and then immediately returns nothing."""
+
+    def execute_command(self, command):
+        """Execute a command in text form"""
         self.__clearProcess__()
-        self.process = Process(target=self.music.play)
+        self.process = Process(target=eval("self.music." + command))
         self.process.start()
 
-    def stop(self):
-        """Stop the single song and then immediately returns nothing."""
-        self.__clearProcess__()
-        self.process = Process(target=self.music.stop)
-        self.process.start()
 
     def __clearProcess__(self):
         """Clear any exisiting Music process so that it can be terminated."""
