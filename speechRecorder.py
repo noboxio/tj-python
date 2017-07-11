@@ -34,6 +34,10 @@ import pyaudio
 
 
 class SpeechRecorder:
+    """SpeechRecorder uses pyAudio to record audio from usb mic.
+
+    Working on getting this to stream.  I am not sure if it does at this time.
+    """
 
     # Declare a few constants.
 
@@ -66,6 +70,18 @@ class SpeechRecorder:
             threshold=1200,
             silence_limit=2,
             autothresh=False):
+        """Create speechRecorder object.
+
+        list parameters:
+        channels --
+        chunk --
+        format --
+        rate --
+        init_padding --
+        threshold --
+        silence_limit --
+        autothresh --
+        """
         self.CHANNELS = channels
         self.CHUNK = chunk
         self.FORMAT = format

@@ -16,8 +16,6 @@ Notes: The Servo is acting up a bit. May need to change to another library.
 Need to suppress the warnings that the GPIO library is giving for a cleaner GUI
 It warns that the Channel is already in use because it has been serup before.
 
-5 has it in upright position 10 is down
-
 Author: Brian McGinnis and Patrick McGinnis
 Date: 6/23/17
 """
@@ -27,16 +25,17 @@ import time
 
 
 def map(x, in_min, in_max, out_min, out_max):
-    """ Method taken from arduino library that maps a min and max to another
-        min and max linearly.
+    """Method taken from arduino library that maps a min and max to another
+    min and max linearly.
 
-        example: in_min = 0 in_max = 10 out_min = 0 out_max = 20
-                 if you input 0 --> 0
-                             1 --> 2
-                             5 --> 10
-        it works in both directions, min must always be less than max
+    example: in_min = 0 in_max = 10 out_min = 0 out_max = 20
+        if you input 0 --> 0
+                     1 --> 2
+                     5 --> 10
+    it works in both directions, min must always be less than max
 
-        Returns an int or double, not really sure"""
+    Returns an int or double, not really sure
+    """
     return ((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 
 
@@ -44,17 +43,18 @@ class Servo:
     pwm = None
 
     def __init__(self):
-        """ Constructor for a single servo"""
+        """Constructor for a single servo."""
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(26, GPIO.OUT)
         self.pwm = GPIO.PWM(26, 50)
 
     def wave(self, times=5):
-        """ Wave the arm
-            A wave is defined as going from the down position to the up position once
+        """Wave the arm.
+        A wave is defined as going from the down position to the up position once
 
-            times -- the number of times to wave, default = 5""""
+        times -- the number of times to wave, default = 5
+        """"
         while (times > 0):
             self.armUp()
             self.armDown()
@@ -62,30 +62,33 @@ class Servo:
         self.pwm.stop()
 
     def angle(self, degrees):
-        """ Set the angle of the servo to a specific angle.
+        """Set the angle of the servo to a specific angle.
 
-            degrees -- int value of degrees to be set at
-                       MUST BE BETWEEN 0 and 180
-            map function is used to map the values into useful data for the servos
-            we are using.  The out min and max may need to be changed for
-            different servos."""
+        degrees -- int value of degrees to be set at
+                   MUST BE BETWEEN 0 and 180
+        map function is used to map the values into useful data for the servos
+        we are using.  The out min and max may need to be changed for
+        different servos.
+        """
         # degrees MUST BE between 0 and 180
         self.pwm.start(map(degrees, 0, 180, 1, 15))
         time.sleep(.5)
         self.pwm.stop()
 
     def armUp(self):
-        """ Point the arm up, use this to define the up angle
-            angle depends on the orientation of the servo
+        """Point the arm up, use this to define the up angle
+        angle depends on the orientation of the servo
 
-            TODO: perhaps make this a constructor variable?"""
+        TODO: perhaps make this a constructor variable?
+        """
         self.angle(30)
 
     def armDown(self):
-        """ Point the arm down, use this to define the up angle
-            angle depends on the orientation of the servo
+        """Point the arm down, use this to define the up angle
+        angle depends on the orientation of the servo
 
-            TODO: perhaps make this a constructor variable?"""
+        TODO: perhaps make this a constructor variable?
+        """
         self.angle(120)
 
 # s = servo()

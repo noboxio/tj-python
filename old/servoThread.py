@@ -29,7 +29,7 @@ import threading
 import servo
 
 
-""" TOOD: this file should probably be depricated"""
+"""TOOD: this file should probably be depricated."""
 
 
 class ServoThread:
