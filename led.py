@@ -146,7 +146,7 @@ class LedManager():
     """
 
     def __init__(self, led):
-        """Create an LED Process type.
+        """Create an LED Manager type.
 
         led -- the led that is to be controlled by this process
         """
@@ -161,7 +161,7 @@ class LedManager():
         self.process = Process(target=eval("self.led." + command))
         self.process.start()
 
-        
+
     def off(self):
         """Set color.
 
