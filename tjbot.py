@@ -18,20 +18,18 @@ Author: Brian McGinnis and Patrick McGinnis
 Date: 6/23/17
 """
 
-import conversation
 import ledProcess
 import led
 import servoProcess
 import servo
 import musicProcess
 import music
-import textToSpeech
-import streaming
 import time
+import watsonServices
 
 
 def main():
-    """Main method that runs the program."""
+    """
 
     stt = streaming.StreamingSTT(
 
@@ -59,6 +57,8 @@ def main():
 
         # replace with workspace ID.
         'ENTER_WORKSPACE_ID')
+
+        """
 
     # replace with robot name
     name = 'ENTER_ROBOT_NAME'
@@ -95,13 +95,13 @@ def main():
     servoP.wave(3)
 
     # Make TJ bot say hello
-    tts.speak('Hello I am ' + name + ' ask me something')
+    watsonServices.tts.speak('Hello I am ' + name + ' ask me something')
 
     # This processes the conversation commands from the conversation service
     while(1):
-        phrase = stt.get_phrase()
+        phrase = watsonServices.stt.get_phrase()
         if name in phrase:
-            response = convo.sendMessage(phrase)
+            response = watsonServices.convo.sendMessage(phrase)
             response = response.upper()
             if '~' in response:
                 print('Command Found')
@@ -173,7 +173,7 @@ def main():
                     response = response.replace('~ARMWAVE', '', 1)
                 if response == '':
                     response = 'akward silence'
-            tts.speak(response)
+            watsonServices.tts.speak(response)
 
 
 if __name__ == "__main__":
