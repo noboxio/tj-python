@@ -19,27 +19,8 @@ import time
 import subprocess
 from multiprocessing import Process
 import os.path
+from random import shuffle
 
-
-
-class MusicFile:
-    """MusicFile is an object that contains the location of a song
-
-    contains the location of a sound fileLocation
-    """
-
-    def __init__(self, file_location):
-        """Create a new MusiFile object that requires a file name to be passed.
-
-        file_location -- the location of the WAVE file to be played
-        """
-
-        #if the file doesn't exist raise an exception
-        if not os.path.isfile(file_location):
-            raise IOError("file:" + file_location + " does not exist")
-            self.file_location = None
-        else:
-            self.file_location = file_location
 
 
 
@@ -54,8 +35,14 @@ class Music:
 
         fileLocation -- the location of the wave file to be played
         """
-        self.fileLocation = fileLocation
-        self.cmd = "aplay " + fileLocation
+        #if the file doesn't exist raise an exception
+        if not os.path.isfile(file_location):
+            raise IOError("file:" + file_location + " does not exist")
+            self.file_location = None
+            self.cmd = ""
+        else:
+            self.file_location = file_location
+            self.cmd = "aplay " + fileLocation
 
     def play(self):
         """Play the song file.
@@ -84,17 +71,55 @@ class MusicManager():
     whatever whenever
     """
 
-    def __init__(self, music):
+    def __init__(self):
         """Create a MusicManager type.
 
-        music -- Music object that has been created to be played
-
-        TODO: don't require it to be passed a song, allow it to load a
-        library of songs.
+        doesn't require a song to be passed any more.
         """
-        self.music = music
         self.process = None
+        self.playlist = None
+        self.now_playing = None
 
+    def load_song(self, music):
+        """Load a song into the player
+
+        music -- music object to be added to the player
+        """
+        self.playlist.add(music)
+
+    def shuffle(self):
+        """Shuffle the list of music objects
+
+        shuffles the list of music objects, it does not reset current playing
+        """
+        shuffle(self.playlist)
+
+    def play(self):
+        #play next song
+        if self.now_playing == None:
+            self.now_playing = self.playlist.pop(0)
+        else:
+            pass
+            #there is nothing to do
+
+    def stop(self):
+        self.playlist.append(self.now_playing)
+        self.now_playing = None
+
+    def pause(self):
+        self.now_playing.stop()
+        
+    def resume(self):
+        self.now_playing.start()
+
+    def next(self):
+        self.playlist.append(self.now_playing)
+        self.now_playing = None
+        self.play()
+
+    def previous(self):
+        temp = self.playlist.pop()
+        self.playlist.
 
     def execute_command(self, command):
         """Execute a command in text form"""
