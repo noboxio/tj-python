@@ -137,6 +137,7 @@ class Led:
 
 
 
+
 class LedManager():
     """LedManager is basically a manager for the led objects.
 
@@ -152,130 +153,15 @@ class LedManager():
         self.led = led
         self.process = None
 
-    def strobe(self):
-        """Strobe the led.
 
-        Turn the led on and off rapidly or whatever else is programmed
-        """
+    # perthaps a distinguisnation should be made for commands for the led and commands for the manager?
+    def execute_command(self, command):
+        """Execute a command in text form"""
         self.__clearProcess__()
-        self.process = Process(target=self.led.strobe)
+        self.process = Process(target=eval("self.led." + command))
         self.process.start()
 
-    def rainbow(self, wait_ms, iterations):
-        """Make the LED go rainbow.
-
-        The led will go between the different colors with a wait and iteration.
-
-        wait_ms -- int miliseconds to wait between changes
-        iterations -- number of times to repeat the cycle
-        """
-        self.__clearProcess__()
-        self.process = Process(
-            target=self.led.rainbow,
-            kwargs={
-                'wait_ms': wait_ms,
-                'iterations': iterations})
-        self.process.start()
-
-    def rainbowCycle(self, wait_ms, iterations):
-        """Make the LED go rainbow cucle.
-
-        The led will go between the different colors with a wait and iteration.
-
-        wait_ms -- int miliseconds to wait between changes
-        iterations -- number of times to repeat the cycle
-        """
-        self.__clearProcess__()
-        self.process = Process(
-            target=self.led.rainbowCycle,
-            kwargs={'wait_ms': wait_ms,
-                    'iterations': iterations})
-        self.process.start()
-
-    def wheel(self, pos):
-        """Change the color based on the 'wheel'.
-
-        Change the color based on the wheel determined by adafruit
-
-        pos -- int position on the wheel
-        """
-        self.__clearProcess__()
-        self.process = Process(target=self.led.wheel, kwargs={'pos': pos})
-        self.process.start()
-
-    def customColor(self, r, g, b):
-        """Change the color to a custom color.
-
-        Change the color of the LED to the specified color R G B values
-
-        r -- int value of red
-        g -- int value of green
-        b -- int value of blue
-        """
-        self.__clearProcess__()
-        self.process = Process(
-            target=self.led.customColor,
-            kwargs={'r': r,
-                    'g': g,
-                    'b': b})
-        self.process.start()
-
-    def red(self):
-        """Set color.
-
-        Set the color to the color specified
-        """
-        self.customColor(255, 0, 0)
-
-    def orange(self):
-        """Set color.
-
-        Set the color to the color specified
-        """
-        self.customColor(255, 127, 0)
-
-    def yellow(self):
-        """Set color.
-
-        Set the color to the color specified
-        """
-        self.customColor(255, 255, 0)
-
-    def green(self):
-        """Set color.
-
-        Set the color to the color specified
-        """
-        self.customColor(0, 255, 0)
-
-    def blue(self):
-        """Set color.
-
-        Set the color to the color specified
-        """
-        self.customColor(0, 0, 255)
-
-    def purple(self):
-        """Set color.
-
-        Set the color to the color specified
-        """
-        self.customColor(127, 0, 255)
-
-    def pink(self):
-        """Set color.
-
-        Set the color to the color specified
-        """
-        self.customColor(255, 0, 255)
-
-    def white(self):
-        """Set color.
-
-        Set the color to the color specified
-        """
-        self.customColor(255, 255, 255)
-
+        
     def off(self):
         """Set color.
 
