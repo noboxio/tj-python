@@ -36,32 +36,32 @@ def main():
     stt = streaming.StreamingSTT(
 
         # replace with speech to text credentials username
-        'username',
+        'ENTER_USERNAME',
 
         # replace with speech to text credentials password
-        'password')
+        'ENTER_PASSWORD')
 
     tts = textToSpeech.TextToSpeech(
 
         # replace with text to speech credentials username
-        'username',
+        'ENTER_USERNAME',
 
         # replace with text to speech credentials password
-        'password')
+        'ENTER_PASSWORD')
 
     convo = conversation.Conversation(
 
         # replace with conversation credentials username
-        'username',
+        'ENTER_USERNAME',
 
         # replace with conversation credentials password
-        'password',
+        'ENTER_PASSWORD',
 
         # replace with workspace ID.
-        'workspace id')
+        'ENTER_WORKSPACE_ID')
 
     # replace with robot name
-    name = 'Robot name'
+    name = 'ENTER_ROBOT_NAME'
 
     servo_obj = servo.Servo()
     servoP = servoProcess.ServoProcess(servo_obj)
