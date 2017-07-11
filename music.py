@@ -108,7 +108,7 @@ class MusicManager():
 
     def pause(self):
         self.now_playing.stop()
-        
+
     def resume(self):
         self.now_playing.start()
 
@@ -121,6 +121,7 @@ class MusicManager():
         temp = self.playlist.pop()
         self.playlist.
 
+    #this needs to interpret commands JUST for the music manager
     def execute_command(self, command):
         """Execute a command in text form"""
         self.__clearProcess__()
