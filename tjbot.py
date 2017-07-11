@@ -67,6 +67,16 @@ def main():
     # Make TJ bot say hello
     watsonServices.tts.speak('Hello I am ' + name + ' ask me something')
 
+
+    while(1):
+        phrase = watsonServices.stt.get_phrase()
+        if name in phrase:
+            response = watsonServices.convo.sendMessage(phrase)
+            response = response.upper()
+            while '~' in response:
+
+
+    """
     # This processes the conversation commands from the conversation service
     while(1):
         phrase = watsonServices.stt.get_phrase()
@@ -143,6 +153,7 @@ def main():
                     response = response.replace('~ARMWAVE', '', 1)
                 if response == '':
                     response = 'akward silence'
+            """
             watsonServices.tts.speak(response)
 
 
