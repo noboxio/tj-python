@@ -18,7 +18,10 @@ Date: 6/23/17
 import time
 from neopixel import *
 
+"""LED class
 
+This is the led class
+"""
 class Led:
 
     def __init__(self):
