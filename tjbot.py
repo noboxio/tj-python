@@ -85,7 +85,7 @@ def main():
             response = response.upper()
             commands = regex.findall(response)
             for cmd in commands:
-                print("response: " + response + " | commands: " + commands)
+                print("response: " + response + " | command: " + cmd)
 
             #while '~' in response:
             #    print("response: " + response)
