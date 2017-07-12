@@ -1,7 +1,8 @@
 import configparser
 import io
-from conversation import *
 from textToSpeech import *
+from conversation import *
+
 from streaming import *
 import time
 
