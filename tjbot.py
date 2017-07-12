@@ -90,14 +90,15 @@ def main():
                 print("response: " + response + " | command: " + cmd)
                 response = response.replace(cmd,'',1)
                 #TODO execute the command passed.....
-                if 'music' in cmd:
+                if 'music.' in cmd:
+                    cmd = cmd.replace('music.','',1)
                     music_manager.execute_command(cmd)
                 if 'led' in cmd:
                     pass
                     #TODO implement this
                 if 'arm' in cmd:
                     servo_manager.execute_command(cmd)
-                    
+
 
 
             watsonServices.tts.speak(response)
