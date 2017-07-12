@@ -28,8 +28,8 @@ tts = textToSpeech.TextToSpeech(
 
 convo = conversation.Conversation(
     # replace with conversation credentials username
-    auth.get("convo", "username"),
+    auth.get("conversation", "username"),
     # replace with conversation credentials password
-    auth.get("convo", "password"),
+    auth.get("conversation", "password"),
     # replace with workspace ID.
-    auth.get("convo","workspaceid"))
+    auth.get("conversation","workspaceid"))
