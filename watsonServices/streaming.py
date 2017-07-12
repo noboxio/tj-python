@@ -173,7 +173,7 @@ class StreamingSTT:
                 print(data['results'][0]['alternatives'][0]['transcript'])
 
     # print those errors
-    def on_error(self, error):
+    def on_error(self, error, err):
         if __debug__:
             print(error)
 
