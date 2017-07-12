@@ -144,8 +144,8 @@ class LedManager():
     it functions as a thread so that the led can be started, stopped or
     whatever whenever
     """
-
-    def __init__(self, led):
+    #not sure if you can set the default like this but we shall see lol
+    def __init__(self, led=Led()):
         """Create an LED Manager type.
 
         led -- the led that is to be controlled by this process
@@ -155,12 +155,16 @@ class LedManager():
 
 
     # perthaps a distinguisnation should be made for commands for the led and commands for the manager?
+    """!!!!!!!!!!!!  USING MUSICMANAGER AS THE BASE FOR THESE COMMANDS!!!!!!!!!!! """
     def execute_command(self, command):
         """Execute a command in text form"""
         self.__clearProcess__()
         self.process = Process(target=eval("self.led." + command))
         self.process.start()
 
+
+    # So the only commands that should be available at the manager level
+    # are basically stop, and maybe off?  or is off repetative?
 
     def off(self):
         """Set color.
