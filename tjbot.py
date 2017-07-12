@@ -78,6 +78,7 @@ def main():
 
 
     while(1):
+        time.sleep(.001)
         phrase = watsonServices.stt.get_phrase()
         if name in phrase:
             response = watsonServices.convo.sendMessage(phrase)
