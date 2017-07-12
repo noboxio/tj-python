@@ -86,6 +86,7 @@ def main():
             commands = regex.findall(response)
             for cmd in commands:
                 print("response: " + response + " | command: " + cmd)
+                response = response.replace(cmd,'',1)
 
             #while '~' in response:
             #    print("response: " + response)
