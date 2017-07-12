@@ -36,7 +36,7 @@ def main():
     # Create a Servo object and also create a ServoProcess object
     # to control the servo
     #servo_obj = servo.Servo()
-    #servoP = servoProcess.ServoProcess(servo_obj)
+    servo_manager = servo.ServoManager()
 
     # Create a Led object and also create a LedProcess object
     # to control the Led
