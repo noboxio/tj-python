@@ -21,7 +21,7 @@ Date: 6/23/17
 #import ledProcess
 import led
 #import servoProcess
-#import servo
+import servo
 #import musicProcess
 import music
 import time
@@ -36,7 +36,7 @@ def main():
     # Create a Servo object and also create a ServoProcess object
     # to control the servo
     #servo_obj = servo.Servo()
-    #servoP = servoProcess.ServoProcess(servo_obj)
+    servo_manager = servo.ServoManager()
 
     # Create a Led object and also create a LedProcess object
     # to control the Led

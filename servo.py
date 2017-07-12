@@ -102,7 +102,7 @@ class ServoManager:
     whatever whenever
     """
 
-    def __init__(self, servo):
+    def __init__(self, servo=Servo()):
         """Create a ServoManager type object.
 
         servo -- Servo to contorl
