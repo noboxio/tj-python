@@ -51,11 +51,14 @@ def main():
     # Simple led commands to make the LED go RED --> GREEN --> BLUE to
     # basically show that the TJ Bot is booting
     time.sleep(1)
-    ledP.red()
+    #ledP.red()
+    print("color")
     time.sleep(1)
-    ledP.green()
+    #ledP.green()
+    print("color")
     time.sleep(1)
-    ledP.blue()
+    #ledP.blue()
+    print("color")
     time.sleep(1)
 
     # Make the led do the rainbow cycle for forever!
