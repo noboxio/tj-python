@@ -75,7 +75,7 @@ def main():
             response = response.upper()
             while '~' in response:
                 print("response: " + response)
-
+                watsonServices.tts.speak(response)
 
     """
     # This processes the conversation commands from the conversation service
@@ -155,7 +155,7 @@ def main():
                 if response == '':
                     response = 'akward silence'
             """
-            watsonServices.tts.speak(response)
+            #watsonServices.tts.speak(response)
 
 
 if __name__ == "__main__":
