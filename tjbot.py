@@ -71,14 +71,30 @@ def main():
     watsonServices.tts.speak('Hello I am ' + name + ' ask me something')
 
 
+    # Create the regex object to pull out the data
+        regex = re.compile(r"~\S+~") #selects just the first word
+
+
+
     while(1):
         phrase = watsonServices.stt.get_phrase()
         if name in phrase:
             response = watsonServices.convo.sendMessage(phrase)
             response = response.upper()
-            while '~' in response:
-                print("response: " + response)
+            commands = regex.findall(response)
+            for cmd in commands:
+                print("response: " + response + " | commands: " + commands)
+
+            #while '~' in response:
+            #    print("response: " + response)
+
+                # Interpert the commands ~COMMAND~
+
+
             watsonServices.tts.speak(response)
+
+
+
 
     """
     # This processes the conversation commands from the conversation service
