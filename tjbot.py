@@ -74,6 +74,7 @@ def main():
             response = watsonServices.convo.sendMessage(phrase)
             response = response.upper()
             while '~' in response:
+                print("response: " + response)
 
 
     """
