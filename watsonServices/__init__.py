@@ -11,7 +11,7 @@ import time
 
 # read in the config file
 auth = configparser.RawConfigParser(allow_no_value=True)
-auth.read("auth")
+auth.read("./auth")
 
 stt = streaming.StreamingSTT(
     # replace with speech to text credentials username
