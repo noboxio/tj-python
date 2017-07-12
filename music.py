@@ -23,8 +23,6 @@ from random import shuffle
 import re
 
 
-
-
 class Music:
     """Music is an object that can play sound.
 
@@ -121,6 +119,10 @@ class MusicManager():
     def previous(self):
         temp = self.playlist.pop()
         #self.playlist.
+
+    def get_playlist(self):
+        return(self.playlist)
+        
 
     #this needs to interpret commands JUST for the music manager
     def execute_command(self, command):
