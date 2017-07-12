@@ -30,7 +30,7 @@
 9. Install system dependencies for the watson-developer-cloud
     * `sudo apt-get install libssl-dev`
     * `sudo apt-get install libffi-dev`
-    * `sudo easy_install --upgrade watson-developer-cloud`
+    * `sudo easy_install3 --upgrade watson-developer-cloud`
         * needs to be changed to install for python3!
     * `sudo apt-get install build-essential python-dev scons swig`
 
@@ -47,6 +47,8 @@
     * `cp .asoundrc ~/.asoundrc`
 
 13. Install the python libraries required.
+    * sudo easy_install3 websocket-client
+    * sudo pip3 install colour
     WHEN IT GETS TO THE SOCKET PART INSTALL SOCKET CLIENT NOT SOCKET OR SOMETHING LIKE THAT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  TODO: FINISH THIS
 
 
