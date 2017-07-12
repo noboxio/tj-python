@@ -72,7 +72,11 @@ def main():
 
 
     # Create the regex object to pull out the data
+<<<<<<< HEAD
     regex = re.compile(r"~\S+~") #selects just the first word
+=======
+        regex = re.compile(r"~\S+~") #selects just the first word
+>>>>>>> 6b5989a98df05de5de1a9c345991c2c09b0c6fc7
 
 
 
