@@ -29,8 +29,9 @@
 
 9. Install system dependencies for the watson-developer-cloud
     * `sudo apt-get install libssl-dev`
-    * `sudo apt-getinstall libffi-dev`
+    * `sudo apt-get install libffi-dev`
     * `sudo easy_install --upgrade watson-developer-cloud`
+        * needs to be changed to install for python3!
     * `sudo apt-get install build-essential python-dev scons swig`
 
 10. Install the adafruit stuff  
