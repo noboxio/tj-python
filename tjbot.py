@@ -65,7 +65,7 @@ def main():
     #ledP.rainbowCycle(.0001, 99999999999999)
 
     # Make TJ bot wave 3 times
-    servoP.wave(3)
+    #servoP.wave(3)
 
     # Make TJ bot say hello
     watsonServices.tts.speak('Hello I am ' + name + ' ask me something')
