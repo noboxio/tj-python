@@ -23,14 +23,14 @@ from random import shuffle
 import re
 
 
-class Music:
-    """Music is an object that can play sound.
+class Song:
+    """Song is an object that can play sound.
 
     plays the fileLocation sound when asked to
     """
 
     def __init__(self, file_location):
-        """Create a Music object that requires a file name to be passed.
+        """Create a Song object that requires a file name to be passed.
 
         fileLocation -- the location of the wave file to be played
         """
@@ -59,7 +59,22 @@ class Music:
         """
         self.process.kill()
 
+    def pause(self):
+        """Pause this song.
 
+        This will pause playing the song.  A repeat pause command will not
+        resume playing the song.  resume must be called to resume.
+        TODO: NOT IMPLEMENTED YET
+        """
+        print("pause function not supported yet")
+
+    def resume(self):
+        """Resume playing this song.
+
+        This will resume playing the song.
+        TODO: NOT IMPLEMENTED YET
+        """
+        print("resume function not supported yet")
 
 
 
@@ -79,12 +94,20 @@ class MusicManager():
         self.playlist = list()
         self.now_playing = None
 
-    def load_song(self, music):
+    def load_song(self, song):
         """Load a song into the player
 
-        music -- music object to be added to the player
+        song -- song object to be added to the player
         """
-        self.playlist.append(music)
+        self.playlist.append(song)
+
+    def add(self, song):
+        """Alternate command for load_song.
+
+        song -- song object to be added to the player
+        """
+        self.load_song(song)
+
 
     def shuffle(self):
         """Shuffle the list of music objects
@@ -106,10 +129,10 @@ class MusicManager():
         self.now_playing = None
 
     def pause(self):
-        self.now_playing.stop()
+        self.now_playing.pause()
 
     def resume(self):
-        self.now_playing.start()
+        self.now_playing.resume()
 
     def next(self):
         self.playlist.append(self.now_playing)
@@ -122,7 +145,7 @@ class MusicManager():
 
     def get_playlist(self):
         return(self.playlist)
-        
+
 
     #this needs to interpret commands JUST for the music manager
     def execute_command(self, command):
