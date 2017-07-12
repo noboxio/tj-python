@@ -84,7 +84,7 @@ def main():
         phrase = watsonServices.stt.get_phrase()
         if name in phrase:
             response = watsonServices.convo.sendMessage(phrase)
-            response = response.upper()
+            response = response.lower()
             commands = regex.findall(response)
             for cmd in commands:
                 print("response: " + response + " | command: " + cmd)
