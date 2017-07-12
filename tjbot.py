@@ -45,7 +45,7 @@ def main():
 
     # Create a Music object and also create a MusicProcess object
     # to control the music
-    music_obj = music.Music("/home/pi/tj-python/resources/music.wav")
+    music_obj = music.Song("/home/pi/tj-python/resources/music.wav")
     #musicP = musicProcess.MusicProcess(music_obj)
 
     # Simple led commands to make the LED go RED --> GREEN --> BLUE to
