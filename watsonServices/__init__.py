@@ -11,7 +11,7 @@ import time
 
 # read in the config file
 #auth = configparser.RawConfigParser(allow_no_value=True)
-auth - configparser.ConfigParser()
+auth = configparser.ConfigParser()
 auth.read("auth")
 
 stt = streaming.StreamingSTT(
