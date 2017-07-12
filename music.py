@@ -145,7 +145,9 @@ class MusicManager():
         else:
             #maybe it is in the led object?
             print("no matching command fond")
-
+            self.__clearProcess__()
+            self.process = Process(target=eval("self.led." + command))
+            self.process.start()
 
 
 
