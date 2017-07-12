@@ -20,6 +20,7 @@ import subprocess
 from multiprocessing import Process
 import os.path
 from random import shuffle
+import re
 
 
 
@@ -30,7 +31,7 @@ class Music:
     plays the fileLocation sound when asked to
     """
 
-    def __init__(self, fileLocation):
+    def __init__(self, file_location):
         """Create a Music object that requires a file name to be passed.
 
         fileLocation -- the location of the wave file to be played
@@ -42,7 +43,7 @@ class Music:
             self.cmd = ""
         else:
             self.file_location = file_location
-            self.cmd = "aplay " + fileLocation
+            self.cmd = "aplay " + file_location
 
     def play(self):
         """Play the song file.
@@ -77,7 +78,7 @@ class MusicManager():
         doesn't require a song to be passed any more.
         """
         self.process = None
-        self.playlist = None
+        self.playlist = list()
         self.now_playing = None
 
     def load_song(self, music):
@@ -85,7 +86,7 @@ class MusicManager():
 
         music -- music object to be added to the player
         """
-        self.playlist.add(music)
+        self.playlist.append(music)
 
     def shuffle(self):
         """Shuffle the list of music objects
@@ -119,14 +120,35 @@ class MusicManager():
 
     def previous(self):
         temp = self.playlist.pop()
-        self.playlist.
+        #self.playlist.
 
     #this needs to interpret commands JUST for the music manager
     def execute_command(self, command):
         """Execute a command in text form"""
-        self.__clearProcess__()
-        self.process = Process(target=eval("self.music." + command))
-        self.process.start()
+
+        #first check to see if the command is a manager command
+        #take the command passed and just pull the method name, basically
+        #remove the ().  ex. play() --> play  |  load(something) --> load
+
+        #generate a regex
+        regex = re.compile(r"^\w+") #selects just the first word
+        command_method = regex.match(command).group()
+        print("command_method: " + command_method)
+
+        # check to see if the command is in the manager
+        if command_method in dir(self):
+            #matching command was foudn
+            print("matching command found")
+            self.__clearProcess__()
+            self.process = Process(target=eval("self." + command))
+            self.process.start()
+        else:
+            #maybe it is in the led object?
+            print("no matching command fond")
+
+
+
+
 
 
     def __clearProcess__(self):
