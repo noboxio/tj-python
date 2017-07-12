@@ -89,6 +89,7 @@ def main():
             for cmd in commands:
                 print("response: " + response + " | command: " + cmd)
                 response = response.replace(cmd,'',1)
+                cmd = cmd.replace("~",'',2)
                 #TODO execute the command passed.....
                 if 'music.' in cmd:
                     print("sending command to music")
