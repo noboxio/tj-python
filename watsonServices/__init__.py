@@ -1,4 +1,4 @@
-import ConfigParser
+import configparser
 import io
 from conversation import *
 from textToSpeech import *
@@ -8,7 +8,7 @@ import time
 
 
 # read in the config file
-auth = ConfigParser.RawConfigParser(allow_no_value=True)
+auth = configparser.RawConfigParser(allow_no_value=True)
 auth.read("auth")
 
 stt = streaming.StreamingSTT(
