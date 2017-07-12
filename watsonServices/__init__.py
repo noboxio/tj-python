@@ -1,7 +1,8 @@
 import configparser
 import io
-from .textToSpeech import tts
-from .conversation import convo
+from .textToSpeech import *
+from .conversation import *
+from .speechToText import *
 
 from .streaming import *
 import time
