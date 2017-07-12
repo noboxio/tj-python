@@ -26,6 +26,7 @@ import servo
 import music
 import time
 import watsonServices
+import re
 
 
 def main():
