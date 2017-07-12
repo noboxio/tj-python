@@ -151,6 +151,7 @@ class MusicManager():
     def execute_command(self, command):
         """Execute a command in text form"""
 
+        print("music execute method: " + command)
         #first check to see if the command is a manager command
         #take the command passed and just pull the method name, basically
         #remove the ().  ex. play() --> play  |  load(something) --> load

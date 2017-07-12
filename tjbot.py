@@ -91,6 +91,7 @@ def main():
                 response = response.replace(cmd,'',1)
                 #TODO execute the command passed.....
                 if 'music.' in cmd:
+                    print("sending command to music")
                     cmd = cmd.replace('music.','',1)
                     music_manager.execute_command(cmd)
                 if 'led' in cmd:
