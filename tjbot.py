@@ -46,8 +46,10 @@ def main():
 
     # Create a Music object and also create a MusicProcess object
     # to control the music
-    music_obj = music.Song("/home/pi/tj-python/resources/music.wav")
+    song = music.Song("/home/pi/tj-python/resources/music.wav")
     #musicP = musicProcess.MusicProcess(music_obj)
+    music_manager = music.MusicManager()
+    music_manager.load_song(song)
 
     # Simple led commands to make the LED go RED --> GREEN --> BLUE to
     # basically show that the TJ Bot is booting
@@ -87,17 +89,21 @@ def main():
             for cmd in commands:
                 print("response: " + response + " | command: " + cmd)
                 response = response.replace(cmd,'',1)
-
-            #while '~' in response:
-            #    print("response: " + response)
-
-                # Interpert the commands ~COMMAND~
+                #TODO execute the command passed.....
+                if 'music' in cmd:
+                    music_manager.execute_command(cmd)
+                if 'led' in cmd:
+                    pass
+                    #TODO implement this
+                if 'arm' in cmd:
+                    servo_manager.execute_command(cmd)
+                    
 
 
             watsonServices.tts.speak(response)
 
 
-
+def process_commands(string):
 
     """
     # This processes the conversation commands from the conversation service
