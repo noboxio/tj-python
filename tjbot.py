@@ -78,7 +78,7 @@ def main():
             response = response.upper()
             while '~' in response:
                 print("response: " + response)
-                watsonServices.tts.speak(response)
+            watsonServices.tts.speak(response)
 
     """
     # This processes the conversation commands from the conversation service
