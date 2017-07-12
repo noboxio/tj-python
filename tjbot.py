@@ -50,22 +50,22 @@ def main():
 
     # Simple led commands to make the LED go RED --> GREEN --> BLUE to
     # basically show that the TJ Bot is booting
-    time.sleep(1)
+    time.sleep(.25)
     #ledP.red()
     print("color")
-    time.sleep(1)
+    time.sleep(.25)
     #ledP.green()
     print("color")
-    time.sleep(1)
+    time.sleep(.25)
     #ledP.blue()
     print("color")
-    time.sleep(1)
+    time.sleep(.25)
 
     # Make the led do the rainbow cycle for forever!
     #ledP.rainbowCycle(.0001, 99999999999999)
 
     # Make TJ bot wave 3 times
-    servo.wave(3)
+    servo_manager.wave(3)
 
     # Make TJ bot say hello
     watsonServices.tts.speak('Hello I am ' + name + ' ask me something')
