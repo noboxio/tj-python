@@ -55,7 +55,7 @@ class Servo:
         A wave is defined as going from the down position to the up position once
 
         times -- the number of times to wave, default = 5
-        """"
+        """
         while (times > 0):
             self.armUp()
             self.armDown()
