@@ -31,7 +31,7 @@ import watsonServices
 def main():
 
     # replace with robot name
-    name = 'ENTER_ROBOT_NAME'
+    name = 'Watson'
 
     # Create a Servo object and also create a ServoProcess object
     # to control the servo
