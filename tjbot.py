@@ -18,11 +18,11 @@ Author: Brian McGinnis and Patrick McGinnis
 Date: 6/23/17
 """
 
-import ledProcess
+#import ledProcess
 import led
-import servoProcess
+#import servoProcess
 import servo
-import musicProcess
+#import musicProcess
 import music
 import time
 import watsonServices
@@ -36,17 +36,17 @@ def main():
     # Create a Servo object and also create a ServoProcess object
     # to control the servo
     servo_obj = servo.Servo()
-    servoP = servoProcess.ServoProcess(servo_obj)
+    #servoP = servoProcess.ServoProcess(servo_obj)
 
     # Create a Led object and also create a LedProcess object
     # to control the Led
     led_obj = led.Led()
-    ledP = ledProcess.LedProcess(led_obj)
+    #ledP = ledProcess.LedProcess(led_obj)
 
     # Create a Music object and also create a MusicProcess object
     # to control the music
     music_obj = music.Music("/home/pi/tj-python/resources/music.wav")
-    musicP = musicProcess.MusicProcess(music_obj)
+    #musicP = musicProcess.MusicProcess(music_obj)
 
     # Simple led commands to make the LED go RED --> GREEN --> BLUE to
     # basically show that the TJ Bot is booting
@@ -59,7 +59,7 @@ def main():
     time.sleep(1)
 
     # Make the led do the rainbow cycle for forever!
-    ledP.rainbowCycle(.0001, 99999999999999)
+    #ledP.rainbowCycle(.0001, 99999999999999)
 
     # Make TJ bot wave 3 times
     servoP.wave(3)
