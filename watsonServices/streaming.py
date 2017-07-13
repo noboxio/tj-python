@@ -64,7 +64,7 @@ class StreamingSTT:
             self,
             username,
             password,
-            timeout=5,
+            timeout=10,
             chunk=16384,
             format=pyaudio.paInt16,
             rate=44100,
@@ -175,7 +175,7 @@ class StreamingSTT:
     # print those errors
     def on_error(self, error):
         if __debug__:
-            print(error)
+            #print(error)
 
     # inform coder dude that websocket was closed
     def on_close(self, ws):
