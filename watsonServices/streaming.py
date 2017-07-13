@@ -112,7 +112,7 @@ class StreamingSTT:
             ws.send(data, ABNF.OPCODE_BINARY)
 
             if math.sqrt(abs(audioop.avg(data, 4))) > self.THRESHOLD:
-                silence_chunks = 0
+                silence_chunks = -10
             else:
                 silence_chunks += 1
 
