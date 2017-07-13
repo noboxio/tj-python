@@ -100,7 +100,7 @@ class StreamingSTT:
 
         # silence_chunks is a counter variable counting number of chunks with
         # silence. Once this value surpasses the silence limit, stop recording.
-        silence_chunks = 10
+        silence_chunks = -10
         limit_chunks = self.SILENCE_LIMIT * self.RATE / self.CHUNK
 
         while True:
