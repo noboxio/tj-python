@@ -166,7 +166,8 @@ class MusicManager():
             #matching command was foudn
             print("matching command found")
             self.__clearProcess__()
-            self.process = Process(target=eval("self." + command + "()"))
+            print("self." + command)
+            self.process = Process(target=eval("self." + command)
             self.process.start()
         else:
             #maybe it is in the led object?
