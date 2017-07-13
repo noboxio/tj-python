@@ -132,7 +132,7 @@ class StreamingSTT:
 
         # close the websocket
         ws.close()
-        p.terminate()
+        #p.terminate()
 
     # this callback is used when the connection is activated.
     # basically initializing and configuring settings and stuff
