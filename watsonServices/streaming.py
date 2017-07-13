@@ -175,6 +175,7 @@ class StreamingSTT:
     # print those errors
     def on_error(self, error):
         if __debug__:
+            pass
             #print(error)
 
     # inform coder dude that websocket was closed
