@@ -124,6 +124,8 @@ class MusicManager():
             pass
             #there is nothing to do
 
+        self.now_playing.play()
+
     def stop(self):
         self.playlist.append(self.now_playing)
         self.now_playing = None
