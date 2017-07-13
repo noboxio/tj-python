@@ -53,7 +53,7 @@ class StreamingSTT:
     FINAL = []
 
     # timeout
-    TIMEOUT = None
+    TIMEOUT = 10
 
     # the actual websocket
     WS = None
@@ -79,11 +79,13 @@ class StreamingSTT:
         self.THRESHOLD = threshold
         self.SILENCE_LIMIT = silence_limit
 
+        self.p = pyaudio.PyAudio()
+
     # read_audio starts a stream and sends chunks to watson realtime.
     def read_audio(self, ws, timeout):
 
         # get a stream
-        p = pyaudio.PyAudio()
+        p = self.p
         stream = p.open(format=self.FORMAT,
                         channels=self.CHANNELS,
                         rate=self.RATE,
@@ -175,8 +177,7 @@ class StreamingSTT:
     # print those errors
     def on_error(self, error):
         if __debug__:
-            pass
-            #print(error)
+            print(error)
 
     # inform coder dude that websocket was closed
     def on_close(self, ws):
