@@ -31,7 +31,7 @@ import re
 
 class TJBott:
     import watsonServices
-    
+
     def __init__(self, name="none"):
         for a in range(100):
             print("making a tjbot")
@@ -71,7 +71,7 @@ class TJBott:
         print("color")
         time.sleep(.25)
         #ledP.blue()
-        print("color
+        print("color")
         time.sleep(.25)
 
         # Make the led do the rainbow cycle for forever!
