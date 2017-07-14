@@ -214,7 +214,7 @@ def main():
     tj = TJBott()
     process_input = Process(target="console_input(tj)")
     print("asdf")
-    process_tj = Process(target=eval("tj.run()"))
+    process_tj = Process(target="tj.run()")
     process_input.start()
     print("fot here")
     process_tj.start()
