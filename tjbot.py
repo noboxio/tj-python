@@ -210,10 +210,11 @@ def console_input():
         #text = input("COMMAND: ")
         #tjbot.process_response(text)
         print(sys.stdin.readlines())
-
+        time.sleep(.25)
+        
         for x in sys.stdin.readlines():
             print("x: " + x)
-            time.sleep(.25)
+
 
 
 
