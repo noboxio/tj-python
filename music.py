@@ -63,26 +63,17 @@ class Song:
         Stop this playing song immediately by terminating the process
         and then return nothing
         """
-        self.process.kill()
+        #self.process.kill()
+        self.player.stop()
 
     def pause(self):
         """Pause this song.
 
-        This will pause playing the song.  A repeat pause command will not
-        resume playing the song.  resume must be called to resume.
-        TODO: NOT IMPLEMENTED YET
+        This will pause playing the song.
         """
-        print("pause function not supported yet")
-        #self.process.communicate(input="p")
         self.player.pause()
 
-    def resume(self):
-        """Resume playing this song.
 
-        This will resume playing the song.
-        TODO: NOT IMPLEMENTED YET
-        """
-        print("resume function not supported yet")
 
     def __str__(self):
         return (self.file_location)
