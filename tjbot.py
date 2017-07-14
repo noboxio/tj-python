@@ -192,7 +192,7 @@ class TJBot:
 
 
     def console_input():
-        print('nothi9ng')
+        print('nothi9n')
 
 def main():
     tj = TJBot("noname")
