@@ -192,10 +192,7 @@ class TJBot:
 
 
     def console_input():
-<<<<<<< HEAD
         print('nothi9n')
-=======
->>>>>>> d6d2ac55f4257685538879f4dd37418cc9310d70
 
 def main():
     tj = TJBot("noname")
