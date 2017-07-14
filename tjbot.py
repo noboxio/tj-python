@@ -204,7 +204,7 @@ class TJBott:
                 #watsonServices.tts.speak(response)
 
 
-def console_input():
+def console_input(tj):
 
     while(1):
         text = input("COMMAND: ")
@@ -221,7 +221,7 @@ def main():
     print("fot here")
     process_tj.start()
 
-    console_input()
+    console_input(tj)
 
     #tj.run()
 
