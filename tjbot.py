@@ -29,7 +29,7 @@ import watsonServices
 import re
 
 
-class TJBot:
+class TJBott:
     def __init___(self, name="none"):
         for a in range(100):
             print("making a tjbot")
@@ -197,7 +197,7 @@ class TJBot:
         print('nothi9n')
 
 def main():
-    tj = TJBot()
+    tj = TJBott()
     tj.run()
 
 
