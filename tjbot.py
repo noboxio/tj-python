@@ -205,12 +205,11 @@ class TJBott:
 
 
 def console_input():
-    print("asdfasdfasdfasdfasdffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
+
     while(1):
-        text = eval('input("COMMAND: ")')
+        text = input("COMMAND: ")
         #tjbot.process_response(text)
         print("text  " + text)
-        time.sleep(.25)
 
         for x in text:
             print("x: " + x)
@@ -221,13 +220,12 @@ def console_input():
 def main():
     tj = TJBott()
 
-    process_input = Process(target=console_input)
-    print("asdf")
     process_tj = Process(target=tj.run)
 
     print("fot here")
     process_tj.start()
-    process_input.start()
+
+    console_input()
 
     #tj.run()
 
