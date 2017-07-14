@@ -25,6 +25,8 @@ import servo
 #import musicProcess
 import music
 import time
+import subprocess
+from multiprocessing import Process
 
 import re
 
@@ -200,11 +202,17 @@ class TJBott:
                 #watsonServices.tts.speak(response)
 
 
-    def console_input():
-        print('nothi9n')
+def console_input(tjbot):
+
+    while(1):
+        text = input("COMMAND: ")
+        tjbot.process_response(text)
+
 
 def main():
     tj = TJBott()
+    process = Process(target=eval("console_input", args = (tj)))
+    process.start()
     tj.run()
 
 
