@@ -42,7 +42,7 @@ class Song:
             self.cmd = ""
         else:
             self.file_location = file_location
-            self.cmd = "aplay " + file_location
+            self.cmd = "mplay " + file_location
 
     def play(self):
         """Play the song file.
