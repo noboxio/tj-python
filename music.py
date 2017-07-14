@@ -45,8 +45,9 @@ class Song:
             self.file_location = file_location
             #self.cmd = "mplayer " + file_location
             self.player = mplayer.Player()
-            self.player.pause()
+
             self.player.loadfile(self.file_location)
+            self.player.pause()
 
     def play(self):
         """Play the song file.
