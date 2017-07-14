@@ -101,6 +101,7 @@ class TJBott:
 
 
     def process_response(self, response):
+        print("recponse: " + response)
 
 
         commands = self.regex.findall(response)
