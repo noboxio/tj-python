@@ -99,6 +99,9 @@ class MusicManager():
 
         """
 
+        files = glob.glob("./resources/music/*.wav")
+        for f in files:
+            self.load_song(Song(f))
 
     def load_song(self, song):
         """Load a song into the player

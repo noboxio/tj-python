@@ -46,10 +46,11 @@ def main():
 
     # Create a Music object and also create a MusicProcess object
     # to control the music
-    song = music.Song("/home/pi/tj-python/resources/music.wav")
+    #song = music.Song("/home/pi/tj-python/resources/music.wav")
     #musicP = musicProcess.MusicProcess(music_obj)
     music_manager = music.MusicManager()
-    music_manager.load_song(song)
+    music_manager.load_music()
+    #music_manager.load_song(song)
 
     # Simple led commands to make the LED go RED --> GREEN --> BLUE to
     # basically show that the TJ Bot is booting
