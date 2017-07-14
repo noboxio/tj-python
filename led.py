@@ -21,16 +21,16 @@ from multiprocessing import Process
 from colour import Color
 
 
-"""LED class
+"""NeoPixel class
 
-This is the led class
+This is the NeoPixel class
 """
-class Led:
+class NeoPixel:
 
     def __init__(self):
-        """Create an LED object.
+        """Create an NeoPixel object.
 
-        Creates an led object that is based off of the neopixel adafruit stuff
+        Creates an NeoPixel object that is based off of the neopixel adafruit stuff
         """
         LED_COUNT = 16
         LED_PIN = 10
