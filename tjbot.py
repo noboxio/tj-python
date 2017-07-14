@@ -208,6 +208,7 @@ def console_input():
     while(1):
         #text = input("COMMAND: ")
         #tjbot.process_response(text)
+        print("asdfasdfasdfasdfasdffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
         for x in sys.stdin.readlines():
             print("x: " + x)
 
