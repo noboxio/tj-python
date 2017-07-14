@@ -67,6 +67,7 @@ class Song:
         TODO: NOT IMPLEMENTED YET
         """
         print("pause function not supported yet")
+        self.process.communicate(input="p")
 
     def resume(self):
         """Resume playing this song.
