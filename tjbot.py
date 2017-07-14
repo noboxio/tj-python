@@ -211,13 +211,15 @@ def console_input():
 
 def main():
     tj = TJBott()
-    tj.run()
+
     process_input = Process(target=console_input)
     print("asdf")
     #process_tj = Process(target="tj.run")
     process_input.start()
     print("fot here")
     #process_tj.start()
+
+    tj.run()
 
 
 
