@@ -212,9 +212,13 @@ def console_input(tjbot):
 
 def main():
     tj = TJBott()
-    process = Process(target=eval("console_input(tj)"))
-    process.start()
-    tj.run()
+    process_input = Process(target=eval("console_input(tj)"))
+    process_tj = Process(target=eval("tj.run()"))
+    process_input.start()
+    print("fot here")
+    process_tj.start()
+
+    #tj.run()
 
 
 
