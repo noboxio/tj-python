@@ -31,6 +31,8 @@ import re
 
 class TJBot:
     def __init___(self, name="none"):
+        for a in range(100):
+            print("making a tjbot")
 
         # replace with robot name
         self.name = name
