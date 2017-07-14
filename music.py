@@ -49,7 +49,7 @@ class Song:
 
         Play the song and wait for the song to end and return nothing
         """
-        self.process = subprocess.Popen("exec " + self.cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, shell=True)
+        self.process = subprocess.Popen("exec " + self.cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE)#, shell=True)
 
     def stop(self):
         """Stop this playing song.
