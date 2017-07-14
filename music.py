@@ -102,7 +102,6 @@ class MusicManager():
         """Load the songs that are in the resources/music folder
 
         """
-
         files = glob.glob("./resources/music/*.wav")
         for f in files:
             self.load_song(Song(f))
