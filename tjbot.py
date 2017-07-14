@@ -88,31 +88,36 @@ class TJBott:
         while(1):
             time.sleep(.001)
             phrase = self.watsonServices.stt.get_phrase()
-            if name in phrase:
+            if self.name in phrase:
                 response = self.watsonServices.convo.sendMessage(phrase)
                 response = response.lower()
-                commands = self.regex.findall(response)
-                for cmd in commands:
-                    print("response: " + response + " | command: " + cmd)
-                    response = response.replace(cmd,'',1)
-                    cmd = cmd.replace("~",'',2)
-                    #TODO execute the command passed.....
-                    if 'music.' in cmd:
-                        print("sending command to music")
-                        cmd = cmd.replace('music.','',1)
-                        self.music_manager.execute_command(cmd)
-                    if 'led' in cmd:
-                        pass
-                        #TODO implement this
-                    if 'arm' in cmd:
-                        self.servo_manager.execute_command(cmd)
+                self.process_response(response)
 
 
 
                 self.watsonServices.tts.speak(response)
 
 
-    def process_commands(string):
+    def process_response(self, response):
+
+
+        commands = self.regex.findall(response)
+        for cmd in commands:
+            print("response: " + response + " | command: " + cmd)
+            response = response.replace(cmd,'',1)
+            cmd = cmd.replace("~",'',2)
+            #TODO execute the command passed.....
+            if 'music.' in cmd:
+                print("sending command to music")
+                cmd = cmd.replace('music.','',1)
+                self.music_manager.execute_command(cmd)
+            if 'led' in cmd:
+                pass
+                #TODO implement this
+            if 'arm' in cmd:
+                self.servo_manager.execute_command(cmd)
+
+
 
         """
         # This processes the conversation commands from the conversation service
