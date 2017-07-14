@@ -30,7 +30,7 @@ import re
 
 
 class TJBot:
-    def __init___(self, name):
+    def __init___(self, name="none"):
 
         # replace with robot name
         self.name = name
@@ -195,7 +195,7 @@ class TJBot:
         print('nothi9n')
 
 def main():
-    tj = TJBot("noname")
+    tj = TJBot()
     tj.run()
 
 
