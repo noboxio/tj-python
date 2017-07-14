@@ -94,6 +94,12 @@ class MusicManager():
         self.playlist = list()
         self.now_playing = None
 
+    def load_music(self):
+        """Load the songs that are in the resources/music folder
+
+        """
+
+
     def load_song(self, song):
         """Load a song into the player
 
