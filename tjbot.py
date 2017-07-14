@@ -207,12 +207,12 @@ class TJBott:
 def console_input():
     print("asdfasdfasdfasdfasdffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
     while(1):
-        #text = input("COMMAND: ")
+        text = eval(input("COMMAND: "))
         #tjbot.process_response(text)
-        print(sys.stdin)
+        print("text  " + text)
         time.sleep(.25)
 
-        for x in sys.stdin.readlines():
+        for x in text:
             print("x: " + x)
 
 
