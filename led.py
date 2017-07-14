@@ -145,7 +145,7 @@ class LedManager():
     whatever whenever
     """
     #not sure if you can set the default like this but we shall see lol
-    def __init__(self, led=Led()):
+    def __init__(self, led=NeoPixel()):
         """Create an LED Manager type.
 
         led -- the led that is to be controlled by this process
