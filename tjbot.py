@@ -205,8 +205,11 @@ class TJBott:
 
 def console_input():
     while(1):
-        text = input("COMMAND: ")
-        tjbot.process_response(text)
+        #text = input("COMMAND: ")
+        #tjbot.process_response(text)
+        for x in sys.stdin:
+            print("x: " + x)
+
 
 
 def main():
