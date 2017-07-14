@@ -77,6 +77,9 @@ class Song:
         """
         print("resume function not supported yet")
 
+    def __str__(self):
+        return (self.file_location)
+
 
 
 class MusicManager():
@@ -110,6 +113,7 @@ class MusicManager():
         song -- song object to be added to the player
         """
         self.playlist.append(song)
+        print("SONG LOADED: " + str(song))
 
     def add(self, song):
         """Alternate command for load_song.
