@@ -22,6 +22,7 @@ import os.path
 from random import shuffle
 import re
 import glob
+import mplayer
 
 
 class Song:
@@ -42,14 +43,18 @@ class Song:
             self.cmd = ""
         else:
             self.file_location = file_location
-            self.cmd = "mplayer " + file_location
+            #self.cmd = "mplayer " + file_location
+            self.player = mplayer.Player()
+            self.player.pause()
+            self.player.load(self.file_location)
 
     def play(self):
         """Play the song file.
 
         Play the song and wait for the song to end and return nothing
         """
-        self.process = subprocess.Popen("exec " + self.cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, shell=True)
+        #self.process = subprocess.Popen("exec " + self.cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, shell=True)
+        self.player.pause()
 
     def stop(self):
         """Stop this playing song.
@@ -67,7 +72,8 @@ class Song:
         TODO: NOT IMPLEMENTED YET
         """
         print("pause function not supported yet")
-        self.process.communicate(input="p")
+        #self.process.communicate(input="p")
+        self.player.pause()
 
     def resume(self):
         """Resume playing this song.
