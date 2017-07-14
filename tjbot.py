@@ -213,6 +213,7 @@ def console_input():
 
         for x in sys.stdin.readlines():
             print("x: " + x)
+            time.sleep(.25)
 
 
 
