@@ -30,7 +30,7 @@ import re
 
 
 class TJBott:
-    def __init___(self, name="none"):
+    def __init__(self, name="none"):
         for a in range(100):
             print("making a tjbot")
 
