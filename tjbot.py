@@ -41,7 +41,7 @@ def main():
 
     # Create a Led object and also create a LedProcess object
     # to control the Led
-    led_obj = led.Led()
+    led_obj = led.NeoPixel()
     #ledP = ledProcess.LedProcess(led_obj)
 
     # Create a Music object and also create a MusicProcess object
