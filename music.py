@@ -28,7 +28,8 @@ import mplayer
 class Song:
     """Song is an object that can play sound.
 
-    plays the fileLocation sound when asked to
+    plays the fileLocation sound when asked to.
+    TODO: REWIND, FAST FORWARD, FAST, SLOW
     """
 
     def __init__(self, file_location):
@@ -36,11 +37,13 @@ class Song:
 
         fileLocation -- the location of the wave file to be played
         """
+        #song is not playing
+        self.playing = False
+
         #if the file doesn't exist raise an exception
         if not os.path.isfile(file_location):
             raise IOError("file:" + file_location + " does not exist")
             self.file_location = None
-            self.cmd = ""
         else:
             self.file_location = file_location
             #self.cmd = "mplayer " + file_location
@@ -55,6 +58,7 @@ class Song:
         Play the song and wait for the song to end and return nothing
         """
         #self.process = subprocess.Popen("exec " + self.cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, shell=True)
+        self.playing = True
         self.player.pause()
 
     def stop(self):
@@ -64,6 +68,7 @@ class Song:
         and then return nothing
         """
         #self.process.kill()
+        self.playing = False
         self.player.stop()
 
     def pause(self):
@@ -71,9 +76,12 @@ class Song:
 
         This will pause playing the song.
         """
+        if self.playing is True:
+            self.playing = False
+        else:
+            self.playing = True
+            
         self.player.pause()
-
-
 
     def __str__(self):
         return (self.file_location)
@@ -85,6 +93,8 @@ class MusicManager():
 
     it functions as a process so that the song can be started, stopped or
     whatever whenever
+
+    TODO: NEXT, PREVIOUS
     """
 
     def __init__(self):
@@ -108,6 +118,7 @@ class MusicManager():
         """Load a song into the player
 
         song -- song object to be added to the player
+        TODO: CHECK THAT A SOUND OBJECT IS PASSED
         """
         self.playlist.append(song)
         print("SONG LOADED: " + str(song))
@@ -118,6 +129,7 @@ class MusicManager():
         song -- song object to be added to the player
         """
         self.load_song(song)
+
 
 
     def shuffle(self):
