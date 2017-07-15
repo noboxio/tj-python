@@ -54,6 +54,9 @@ class Song:
         else:
             self.file_location = file_location
             self.player = vlc.MediaPlayer(self.file_location)
+            
+    def _log(self, message):
+        print("|" + str(self) + "| " + str(message) )
 
     def play(self):
         """Play the song file.
@@ -87,17 +90,17 @@ class Song:
         self.player.pause()
 
     def speed(self, speed):
-        print("play " + str(self) + " at speed " + str(speed))
+        self._log("play " + str(self) + " at speed " + str(speed))
 
     def seek(self, change):
-        print("seek " + str(self) + " by seek " + str(seek))
+        self._log("seek " + str(self) + " by seek " + str(seek))
 
     def slow(self):
-        print("play slower")
+        self._log("play slower")
         self.speed(-10)
 
     def fast(self):
-        print("play faster")
+        self._log("play faster")
         self.speed(10)
 
     def __str__(self):
@@ -128,13 +131,16 @@ class MusicManager(threading.Thread):
         #self.process.start()
         self.start()
 
+    def _log(self, message):
+        print("|" + str(self) + "| " + str(message) )
+
     def run(self):
         while(True):
             time.sleep(1)
             if self.now_playing is not None:
                 state = self.now_playing.get_state()
                 if str(state) == "State.Ended":
-                    print("song finished")
+                    self._log("song finished")
                     self.next()
 
     def load_music(self):
@@ -153,7 +159,7 @@ class MusicManager(threading.Thread):
         TODO: CHECK THAT A SOUND OBJECT IS PASSED
         """
         self.playlist.append(song)
-        print("SONG LOADED: " + str(song))
+        self._log("SONG LOADED: " + str(song))
 
     def add(self, song):
         """Alternate command for load_song.
@@ -184,7 +190,7 @@ class MusicManager(threading.Thread):
 
     def pause(self):
         if self.now_playing == None:
-            print("Nothing to Pause")
+            self._log("Nothing to Pause")
         else:
             self.now_playing.pause()
 
@@ -212,7 +218,7 @@ class MusicManager(threading.Thread):
     def execute_command(self, command):
         """Execute a command in text form"""
 
-        print("music execute method: " + command)
+        self._log("music execute method: " + command)
         #first check to see if the command is a manager command
         #take the command passed and just pull the method name, basically
         #remove the ().  ex. play() --> play  |  load(something) --> load
@@ -220,18 +226,18 @@ class MusicManager(threading.Thread):
         #generate a regex
         regex = re.compile(r"^\w+") #selects just the first word
         command_method = regex.match(command).group()
-        print("command_method: " + command_method)
+        self._log("command_method: " + command_method)
 
         # check to see if the command is in the manager
         if command_method in dir(self):
             #matching command was foudn
-            print("matching command found")
-            print("self." + command)
+            self._log("matching command found")
+            self._log("self." + command)
             eval("self." + command)
         else:
-            print("no matching command found in MusicManager")
+            self._log("no matching command found in MusicManager")
             if self.now_playing is None:
-                print("MUSIC MANAGER: no song is currently playing")
+                self._log("MUSIC MANAGER: no song is currently playing")
             else:
                 eval("self.now_playing." + command)
 
