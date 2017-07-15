@@ -131,11 +131,11 @@ class MusicManager(threading.Thread):
     def run(self):
         while(True):
             time.sleep(1)
-            if self.now_playing is None:
-                msg = "no song playing"
-            else:
-                msg = self.now_playing.get_state()
-            print("_check_status: " + str(msg))
+            if self.now_playing is not None:
+                state = self.now_playing.get_state()
+                if str(state) == "State.Ended":
+                    print("song finished")
+                    self.next()
 
     def load_music(self):
         """Load the songs that are in the resources/music folder
