@@ -135,11 +135,6 @@ class NeoPixel:
         c = colour.Color(color_name)
         self.custom_color_rgb(int(c.red * 255), int(c.green * 255), int(c.blue * 255))
 
-    def dosleep(self, duration):
-        print("don't see why this crap needs to be in here")
-
-
-
 
 
 class LedManager(threading.Thread):
@@ -203,9 +198,7 @@ class LedManager(threading.Thread):
                     print("there was an exception")
 
 
-        self.__clearProcess__()
-        self.process = Process(target=eval("self.led." + command))
-        self.process.start()
+
 
 
     # So the only commands that should be available at the manager level
