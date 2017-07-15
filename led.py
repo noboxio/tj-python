@@ -138,7 +138,7 @@ class NeoPixel:
 
 
 
-class LedManager():
+class LedManager(threading.Thread):
     """LedManager is basically a manager for the led objects.
 
     it functions as a thread so that the led can be started, stopped or
@@ -150,14 +150,42 @@ class LedManager():
 
         led -- the led that is to be controlled by this process
         """
+        threading.Thread.__init__(self)
         self.led = led
         self.process = None
+        self.commands = list()
+
+    def run(self):
+        """ run as thread"""
+        while(True):
+            if self.commands():
+                execute_command(self.commands.pop())
+                
 
 
-    # perthaps a distinguisnation should be made for commands for the led and commands for the manager?
-    """!!!!!!!!!!!!  USING MUSICMANAGER AS THE BASE FOR THESE COMMANDS!!!!!!!!!!! """
+
     def execute_command(self, command):
         """Execute a command in text form"""
+
+
+        regex = re.compile(r"^\w+") #selects just the first word
+        command_method = regex.match(command).group()
+        print("command_method: " + command_method)
+
+        # check to see if the command is in the manager
+        if command_method in dir(self):
+            #matching command was foudn
+            print("matching command found")
+            print("self." + command)
+            eval("self." + command)
+        else:
+            print("no matching command found in LedManager")
+            if self.now_playing is None:
+                print("LED MANAGER: no led is currently active")
+            else:
+                eval("self.now_playing." + command)
+
+
         self.__clearProcess__()
         self.process = Process(target=eval("self.led." + command))
         self.process.start()
