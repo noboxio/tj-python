@@ -126,7 +126,7 @@ class MusicManager(threading.Thread):
 
         #self.process = Process(target=self._check_status)
         #self.process.start()
-        self.run()
+        self.start()
 
     def run(self):
         while(True):
