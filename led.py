@@ -201,6 +201,8 @@ class LedManager(threading.Thread):
                 except:
                     print("there was an exception")
 
+    def empty_commands(self):
+        self.commands = list()
 
 
 
