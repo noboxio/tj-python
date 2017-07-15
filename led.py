@@ -162,7 +162,8 @@ class LedManager(threading.Thread):
         """ run as thread"""
         while(True):
             if self.commands:
-                self.execute_command(self.commands.pop())
+                cmd = self.commands.pop()
+                self.execute_command(cmd)
 
 
     def _sleep(self, duration):
