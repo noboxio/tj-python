@@ -40,6 +40,10 @@ class Song:
         #song is not playing
         self.playing = False
 
+        self._load_file(file_location)
+
+
+    def _load_file(self, file_location):
         #if the file doesn't exist raise an exception
         if not os.path.isfile(file_location):
             raise IOError("file:" + file_location + " does not exist")
@@ -68,10 +72,10 @@ class Song:
         Stop this playing song immediately by terminating the process
         and then return nothing
         """
-        #self.process.kill()
         self.playing = False
-        #TODO: need something else other than stop
         self.player.stop()
+        self.player.quit()
+        _load_file(self.file_location)
 
     def pause(self):
         """Pause this song.
@@ -173,6 +177,9 @@ class MusicManager():
 
     def get_playlist(self):
         return(self.playlist)
+
+
+
 
 
     #this needs to interpret commands JUST for the music manager
