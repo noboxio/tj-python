@@ -28,15 +28,15 @@ import time
 import subprocess
 from multiprocessing import Process
 import sys
-
+import threading
 import re
 
 
-class TJBott:
+class TJBott(threading.Thread):
     import watsonServices
 
     def __init__(self, name="none"):
-
+        threading.Thread.__init__(self)
 
         # set TJBot's name
         self.name = name
