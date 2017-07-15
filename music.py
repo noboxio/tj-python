@@ -22,8 +22,7 @@ import os.path
 from random import shuffle
 import re
 import glob
-import mplayer
-
+import vlc
 
 class Song:
     """Song is an object that can play sound.
@@ -51,11 +50,7 @@ class Song:
             self.file_location = None
         else:
             self.file_location = file_location
-            #self.cmd = "mplayer " + file_location
-            self.player = mplayer.Player()
-
-            self.player.loadfile(self.file_location)
-            self.player.pause()
+            self.player = vlc.MediaPlayer(self.file_location)
 
     def play(self):
         """Play the song file.
@@ -64,7 +59,7 @@ class Song:
         """
         #self.process = subprocess.Popen("exec " + self.cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, shell=True)
         if self.playing is False:
-            self.player.pause()
+            self.player.play()
             self.playing = True
 
     def stop(self):
@@ -75,8 +70,6 @@ class Song:
         """
         self.playing = False
         self.player.stop()
-        self.player.quit()
-        _load_file(self.file_location)
 
     def pause(self):
         """Pause this song.
