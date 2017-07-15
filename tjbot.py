@@ -49,8 +49,8 @@ class TJBott:
 
         # Create a Led object and also create a LedProcess object
         # to control the Led
-        self.led_obj = led.NeoPixel()
-        #ledP = ledProcess.LedProcess(led_obj)
+        #self.led_obj = led.NeoPixel()
+        self.led_manager = led.LedManager()
 
         # Create a Music object and also create a MusicProcess object
         # to control the music
@@ -117,8 +117,9 @@ class TJBott:
                 self.music_manager.execute_command(cmd)
 
             if 'led.' in cmd:
-                pass
-                #TODO implement this
+                print("sending command to led")
+                cmd = cmd.replace('led.','',1)
+                self.led_manager.execute_command(cmd)
             if 'arm.' in cmd:
                 self.servo_manager.execute_command(cmd)
 
