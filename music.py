@@ -90,6 +90,20 @@ class Song:
 
         self.player.pause()
 
+    def speed(self, speed):
+        print("play " + str(self) + " at speed " + speed)
+
+    def seek(self, change):
+        print("seek " + str(self) + " by seek " + seek)
+
+    def slow(self):
+        print("play slower")
+        self.speed(-10)
+
+    def fast(self):
+        print("play faster")
+        self.speed(10)
+
     def __str__(self):
         return (self.file_location)
 
