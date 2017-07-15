@@ -163,7 +163,11 @@ class LedManager(threading.Thread):
                 execute_command(self.commands.pop())
 
 
+    def sleep(self, duration):
+        time.sleep(duration)
 
+    def add_command(self, command):
+        self.commands.append(command)
 
     def execute_command(self, command):
         """Execute a command in text form"""
