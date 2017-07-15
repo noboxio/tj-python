@@ -54,7 +54,7 @@ class Song:
         else:
             self.file_location = file_location
             self.player = vlc.MediaPlayer(self.file_location)
-            
+
     def _log(self, message):
         print("|" + str(self) + "| " + str(message) )
 
@@ -66,6 +66,7 @@ class Song:
         #self.process = subprocess.Popen("exec " + self.cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, shell=True)
         if self.playing is False:
             self.player.play()
+            self._log("playing")
             self.playing = True
 
     def stop(self):
@@ -76,6 +77,7 @@ class Song:
         """
         self.playing = False
         self.player.stop()
+        self._log("stop")
 
     def pause(self):
         """Pause this song.
@@ -84,8 +86,10 @@ class Song:
         """
         if self.playing is True:
             self.playing = False
+            self._log("paused")
         else:
             self.playing = True
+            self._log("un-paused")
 
         self.player.pause()
 
