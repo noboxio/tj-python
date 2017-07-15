@@ -133,7 +133,7 @@ class NeoPixel:
         color_name -- valid color name or id using colour module
         """
         c = colour.Color(color_name)
-        self.custom_color_rgb(c.red * 255, c.green * 255, c.blue * 255)
+        self.custom_color_rgb(int(c.red * 255), int(c.green * 255), int(c.blue * 255))
 
 
 
