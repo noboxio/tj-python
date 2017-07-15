@@ -52,6 +52,9 @@ class NeoPixel:
             LED_STRIP)
         self.strip.begin()
 
+    def _log(self, message):
+        print("|" + str(self) + "| " + str(message) )
+
     def rainbow(self, wait_ms=1, iterations=1):
         """Make the LED go rainbow.
 
@@ -160,6 +163,10 @@ class LedManager(threading.Thread):
 
         self.start()
 
+    def _log(self, message):
+        print("|" + str(self) + "| " + str(message) )
+
+
     def run(self):
         """ run as thread"""
         while(True):
@@ -180,26 +187,26 @@ class LedManager(threading.Thread):
 
         regex = re.compile(r"^\w+") #selects just the first word
         command_method = regex.match(command).group()
-        print("command_method: " + command_method)
+        self._log("command_method: " + command_method)
 
         # check to see if the command is in the manager
         if command_method in dir(self):
             #matching command was foudn
-            print("matching command found")
-            print("self." + command)
+            self._log("matching command found")
+            self._log("self." + command)
             try:
                 eval("self." + command)
             except:
-                print("there was an exception")
+                self._log("there was an exception")
         else:
-            print("no matching command found in LedManager")
+            self._log("no matching command found in LedManager")
             if self.led is None:
-                print("LED MANAGER: no led is currently active")
+                self._log("LED MANAGER: no led is currently active")
             else:
                 try:
                     eval("self.led." + command)
                 except:
-                    print("there was an exception")
+                    self._log("there was an exception")
 
     def empty_commands(self):
         self.commands = list()
