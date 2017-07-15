@@ -18,7 +18,7 @@ Date: 6/23/17
 import time
 from neopixel import *
 from multiprocessing import Process
-from colour import Color as colour.Color
+import colour
 import threading
 
 
@@ -132,7 +132,7 @@ class NeoPixel:
 
         color_name -- valid color name or id using colour module
         """
-        c = Color(color_name)
+        c = colour.Color(color_name)
         self.custom_color_rgb(c.red * 255, c.green * 255, c.blue * 255)
 
 
