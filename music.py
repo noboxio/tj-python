@@ -23,6 +23,7 @@ from random import shuffle
 import re
 import glob
 import vlc
+import threading
 
 class Song:
     """Song is an object that can play sound.
@@ -104,7 +105,7 @@ class Song:
 
 
 
-class MusicManager():
+class MusicManager(threading.Thread):
     """MusicManager is basically a manager for the music objects.
 
     it functions as a process so that the song can be started, stopped or
@@ -118,14 +119,16 @@ class MusicManager():
 
         doesn't require a song to be passed any more.
         """
+        threading.Thread.__init__(self)
         self.process = None
         self.playlist = list()
         self.now_playing = None
 
-        self.process = Process(target=self._check_status)
-        self.process.start()
+        #self.process = Process(target=self._check_status)
+        #self.process.start()
+        self.run()
 
-    def _check_status(self):
+    def run(self):
         while(True):
             time.sleep(1)
             if self.now_playing is None:
