@@ -136,6 +136,10 @@ class NeoPixel:
         self.custom_color_rgb(int(c.red * 255), int(c.green * 255), int(c.blue * 255))
 
 
+    def off(self):
+        self.custom_color_rgb(0, 0, 0)
+
+
 
 class LedManager(threading.Thread):
     """LedManager is basically a manager for the led objects.
@@ -164,7 +168,7 @@ class LedManager(threading.Thread):
                 self.execute_command(cmd)
 
 
-    def dosleep(self, duration):
+    def wait(self, duration):
         time.sleep(duration)
 
     def add_command(self, command):
@@ -200,21 +204,10 @@ class LedManager(threading.Thread):
 
 
 
-
-    # So the only commands that should be available at the manager level
-    # are basically stop, and maybe off?  or is off repetative?
-
-    def off(self):
-        """Set color.
-
-        Set the color to the color specified
-        """
-        self.stop()
-
     def stop(self):
         """Stop all leds.
 
-        calls the __clearProcess__ function to stop all processes
+        they will be at their last state
         """
         self.__clearProcess__()
 
