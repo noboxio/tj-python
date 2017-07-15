@@ -132,7 +132,7 @@ class MusicManager():
                 msg = "no song playing"
             else:
                 msg = self.now_playing.get_state()
-            print("_check_status: " + )
+            print("_check_status: " + msg)
 
     def load_music(self):
         """Load the songs that are in the resources/music folder
