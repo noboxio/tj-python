@@ -220,7 +220,7 @@ class MusicManager():
             eval("self." + command)
         else:
             print("no matching command found in MusicManager")
-            eval("self.now_playing." + command))
+            eval("self.now_playing." + command)
 
 
 
