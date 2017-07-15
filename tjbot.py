@@ -120,9 +120,12 @@ class TJBott:
 
 def console_input(tj):
     while(True):
-        text = input("COMMAND: ")
-        #tjbot.process_response(text)
-        tj.process_response(text)
+        try:
+            text = input("COMMAND: ")
+            #tjbot.process_response(text)
+            tj.process_response(text)
+        except:
+            print("console_input exception occured")
 
 
 
