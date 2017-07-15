@@ -135,7 +135,7 @@ class NeoPixel:
         c = colour.Color(color_name)
         self.custom_color_rgb(int(c.red * 255), int(c.green * 255), int(c.blue * 255))
 
-    def dosleep(self):
+    def dosleep(self, duration):
         print("don't see why this crap needs to be in here")
 
 
