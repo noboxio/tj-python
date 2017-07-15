@@ -68,13 +68,13 @@ class TJBott:
         # basically show that the TJ Bot is booting
         time.sleep(.25)
         #ledP.red()
-        print("color")
+        print("color red")
         time.sleep(.25)
         #ledP.green()
-        print("color")
+        print("color green")
         time.sleep(.25)
         #ledP.blue()
-        print("color")
+        print("color blue")
         time.sleep(.25)
 
         # Make the led do the rainbow cycle for forever!
@@ -88,7 +88,7 @@ class TJBott:
 
 
 
-        while(1):
+        while(True):
             time.sleep(.001)
             phrase = self.watsonServices.stt.get_phrase()
             if self.name in phrase:
@@ -102,7 +102,7 @@ class TJBott:
 
 
     def process_response(self, response):
-        print("recponse: " + response)
+        print("response: " + response)
 
 
         commands = self.regex.findall(response)
@@ -115,10 +115,11 @@ class TJBott:
                 print("sending command to music")
                 cmd = cmd.replace('music.','',1)
                 self.music_manager.execute_command(cmd)
-            if 'led' in cmd:
+
+            if 'led.' in cmd:
                 pass
                 #TODO implement this
-            if 'arm' in cmd:
+            if 'arm.' in cmd:
                 self.servo_manager.execute_command(cmd)
 
 
@@ -205,8 +206,7 @@ class TJBott:
 
 
 def console_input(tj):
-
-    while(1):
+    while(True):
         text = input("COMMAND: ")
         #tjbot.process_response(text)
         tj.process_response(text)
