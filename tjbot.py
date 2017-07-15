@@ -43,7 +43,7 @@ class TJBott:
 
         # Create a Servo object and also create a ServoManager object
         # to control the servo
-        #self.servo_manager = servo.ServoManager()
+        self.servo_manager = servo.ServoManager()
 
         # Create a Led object and also create a LedManager object
         # to control the Led
