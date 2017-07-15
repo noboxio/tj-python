@@ -220,7 +220,10 @@ class MusicManager():
             eval("self." + command)
         else:
             print("no matching command found in MusicManager")
-            eval("self.now_playing." + command)
+            if self.now_playing is None:
+                print("MUSIC MANAGER: no song is currently playing")
+            else:
+                eval("self.now_playing." + command)
 
 
 
