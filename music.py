@@ -45,6 +45,7 @@ class Song:
 
     def _load_file(self, file_location):
         #if the file doesn't exist raise an exception
+        #TODO: change to pull all valid audio files for mplayer
         if not os.path.isfile(file_location):
             raise IOError("file:" + file_location + " does not exist")
             self.file_location = None
@@ -116,6 +117,7 @@ class MusicManager():
         """Load the songs that are in the resources/music folder
 
         """
+        #TODO: change to pull all valid audio files for mplayer DO THIS INSIDE OF SONG
         files = glob.glob("./resources/music/*.wav")
         for f in files:
             self.load_song(Song(f))
