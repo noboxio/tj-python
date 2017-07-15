@@ -216,16 +216,12 @@ class MusicManager():
         if command_method in dir(self):
             #matching command was foudn
             print("matching command found")
-            self.__clearProcess__()
             print("self." + command)
-            self.process = Process(target=eval("self." + command))
-            self.process.start()
+            eval("self." + command)
         else:
-            #maybe it is in the led object?
-            print("no matching command fond")
-            self.__clearProcess__()
-            self.process = Process(target=eval("self.led." + command))
-            self.process.start()
+            print("no matching command found in MusicManager")
+            eval("self.now_playing." + command))
+
 
 
 
