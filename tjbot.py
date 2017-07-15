@@ -36,29 +36,24 @@ class TJBott:
     import watsonServices
 
     def __init__(self, name="none"):
-        for a in range(100):
-            print("making a tjbot")
 
-        # replace with robot name
+
+        # set TJBot's name
         self.name = name
 
-        # Create a Servo object and also create a ServoProcess object
+        # Create a Servo object and also create a ServoManager object
         # to control the servo
-        #servo_obj = servo.Servo()
         self.servo_manager = servo.ServoManager()
 
-        # Create a Led object and also create a LedProcess object
+        # Create a Led object and also create a LedManager object
         # to control the Led
-        #self.led_obj = led.NeoPixel()
         self.led_manager = led.LedManager()
 
-        # Create a Music object and also create a MusicProcess object
+        # Create a Music object and also create a MusicManager object
         # to control the music
-        #song = music.Song("/home/pi/tj-python/resources/music.wav")
-        #musicP = musicProcess.MusicProcess(music_obj)
         self.music_manager = music.MusicManager()
+        # load the music that is in the resources/music folder
         self.music_manager.load_music()
-        #music_manager.load_song(song)
 
         # Create the regex object to pull out the data
         self.regex = re.compile(r"~\S+~") #selects just the first word
@@ -67,14 +62,11 @@ class TJBott:
         # Simple led commands to make the LED go RED --> GREEN --> BLUE to
         # basically show that the TJ Bot is booting
         time.sleep(.25)
-        #ledP.red()
-        print("color red")
+        self.led_manager.execute_command("led.custom_color_name('red')")
         time.sleep(.25)
-        #ledP.green()
-        print("color green")
+        self.led_manager.execute_command("led.custom_color_name('green')")
         time.sleep(.25)
-        #ledP.blue()
-        print("color blue")
+        self.led_manager.execute_command("led.custom_color_name('blue')")
         time.sleep(.25)
 
         # Make the led do the rainbow cycle for forever!
