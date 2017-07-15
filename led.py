@@ -19,6 +19,7 @@ import time
 from neopixel import *
 from multiprocessing import Process
 from colour import Color
+import threading
 
 
 """NeoPixel class
@@ -160,7 +161,7 @@ class LedManager(threading.Thread):
         while(True):
             if self.commands():
                 execute_command(self.commands.pop())
-                
+
 
 
 
