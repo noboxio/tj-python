@@ -161,7 +161,7 @@ class LedManager(threading.Thread):
     def run(self):
         """ run as thread"""
         while(True):
-            if self.commands():
+            if self.commands:
                 execute_command(self.commands.pop())
 
 
