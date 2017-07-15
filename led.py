@@ -18,7 +18,7 @@ Date: 6/23/17
 import time
 from neopixel import *
 from multiprocessing import Process
-from colour import Color
+from colour import Color as colour.Color
 import threading
 
 
