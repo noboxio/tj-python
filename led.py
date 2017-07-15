@@ -181,7 +181,7 @@ class LedManager(threading.Thread):
         print("command_method: " + command_method)
 
         # check to see if the command is in the manager
-        print("dir " + dir(self))
+        print("dir " + str(dir(self)))
         if command_method in dir(self):
             #matching command was foudn
             print("matching command found")
