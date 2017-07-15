@@ -91,10 +91,10 @@ class Song:
         self.player.pause()
 
     def speed(self, speed):
-        print("play " + str(self) + " at speed " + speed)
+        print("play " + str(self) + " at speed " + str(speed))
 
     def seek(self, change):
-        print("seek " + str(self) + " by seek " + seek)
+        print("seek " + str(self) + " by seek " + str(seek))
 
     def slow(self):
         print("play slower")
