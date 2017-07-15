@@ -41,6 +41,8 @@ class Song:
 
         self._load_file(file_location)
 
+    def get_state(self):
+        return(self.player.get_state())
 
     def _load_file(self, file_location):
         #if the file doesn't exist raise an exception
@@ -119,6 +121,18 @@ class MusicManager():
         self.process = None
         self.playlist = list()
         self.now_playing = None
+
+        self.process = Process(target=self._check_status)
+        self.process.start()
+
+    def _check_status(self):
+        while(True):
+            time.sleep(1)
+            if self.now_playing is None:
+                msg = "no song playing"
+            else:
+                msg = self.now_playing.get_state()
+            print("_check_status: " + )
 
     def load_music(self):
         """Load the songs that are in the resources/music folder
