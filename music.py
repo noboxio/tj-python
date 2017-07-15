@@ -58,8 +58,9 @@ class Song:
         Play the song and wait for the song to end and return nothing
         """
         #self.process = subprocess.Popen("exec " + self.cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, shell=True)
-        self.playing = True
-        self.player.pause()
+        if self.playing is False:
+            self.player.pause()
+            self.playing = True
 
     def stop(self):
         """Stop this playing song.
@@ -69,6 +70,7 @@ class Song:
         """
         #self.process.kill()
         self.playing = False
+        #TODO: need something else other than stop
         self.player.stop()
 
     def pause(self):
@@ -80,7 +82,7 @@ class Song:
             self.playing = False
         else:
             self.playing = True
-            
+
         self.player.pause()
 
     def __str__(self):
@@ -130,8 +132,6 @@ class MusicManager():
         """
         self.load_song(song)
 
-
-
     def shuffle(self):
         """Shuffle the list of music objects
 
@@ -140,32 +140,35 @@ class MusicManager():
         shuffle(self.playlist)
 
     def play(self):
-        #play next song
+        #play next song if nothing is playing
         if self.now_playing == None:
             self.now_playing = self.playlist.pop(0)
+            self.now_playing.play()
         else:
-            pass
-            #there is nothing to do
-
-        self.now_playing.play()
+            self.now_playing.play()
 
     def stop(self):
-        self.playlist.append(self.now_playing)
+        self.now_playing.stop()
+        self.playlist.insert(0, self.now_playing)
         self.now_playing = None
 
     def pause(self):
-        self.now_playing.pause()
-
-    def resume(self):
-        self.now_playing.resume()
+        if self.now_playing == None:
+            print("Nothing to Pause")
+        else:
+            self.now_playing.pause()
 
     def next(self):
+        self.now_playing.stop()
         self.playlist.append(self.now_playing)
         self.now_playing = None
         self.play()
 
     def previous(self):
-        temp = self.playlist.pop()
+        self.now_playing.stop()
+        self.playlist.insert(0, self.now_playing)
+        self.now_playing = self.playlist.pop()
+        self.now_playing.play()
         #self.playlist.
 
     def get_playlist(self):
