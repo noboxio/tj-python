@@ -20,7 +20,7 @@ from neopixel import *
 from multiprocessing import Process
 import colour
 import threading
-
+import re
 
 """NeoPixel class
 
