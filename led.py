@@ -166,7 +166,7 @@ class LedManager(threading.Thread):
                 self.execute_command(cmd)
 
 
-    def _sleep(self, duration):
+    def dosleep(self, duration):
         time.sleep(duration)
 
     def add_command(self, command):
