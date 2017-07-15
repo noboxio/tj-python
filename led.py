@@ -188,13 +188,19 @@ class LedManager(threading.Thread):
             #matching command was foudn
             print("matching command found")
             print("self." + command)
-            eval("self." + command)
+            try:
+                eval("self." + command)
+            except:
+                print("there was an exception")
         else:
             print("no matching command found in LedManager")
             if self.led is None:
                 print("LED MANAGER: no led is currently active")
             else:
-                eval("self.led." + command)
+                try:
+                    eval("self.led." + command)
+                except:
+                    print("there was an exception")
 
 
         self.__clearProcess__()
