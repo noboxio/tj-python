@@ -181,10 +181,10 @@ class LedManager(threading.Thread):
             eval("self." + command)
         else:
             print("no matching command found in LedManager")
-            if self.now_playing is None:
+            if self.led is None:
                 print("LED MANAGER: no led is currently active")
             else:
-                eval("self.now_playing." + command)
+                eval("self.led." + command)
 
 
         self.__clearProcess__()
