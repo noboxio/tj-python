@@ -43,7 +43,7 @@ class TJBott(threading.Thread):
 
         # Create a Servo object and also create a ServoManager object
         # to control the servo
-        # self.servo_manager = servo.ServoManager()
+        self.servo_manager = servo.ServoManager()
 
         # Create a Led object and also create a LedManager object
         # to control the Led
@@ -70,11 +70,9 @@ class TJBott(threading.Thread):
         self.led_manager.add_command("led.rainbow())")
 
 
-        # Make the led do the rainbow cycle for forever!
-        #ledP.rainbowCycle(.0001, 99999999999999)
 
         # Make TJ bot wave 3 times
-        #self.servo_manager.wave(3)
+        self.servo_manager.wave(3)
 
         # Make TJ bot say hello
         self.watsonServices.tts.speak('Hello I am ' + self.name + ' ask me something')
