@@ -69,21 +69,7 @@ class NeoPixel:
                 self.strip.show()
                 time.sleep(wait_ms / 1000.0)
 
-    def rainbow_cycle(self, wait_ms=1, iterations=5):
-        """Make the LED go rainbow cycle.
 
-        The led will go between the different colors with a wait and iteration.
-
-        wait_ms -- int miliseconds to wait between changes default=1
-        iterations -- number of times to repeat the cycle default=5
-        """
-        for j in range(256 * iterations):
-            for i in range(self.strip.numPixels()):
-                self.strip.setPixelColor(
-                    i,
-                    self.wheel((int(i * 256 / self.strip.numPixels()) + j) & 255))
-                self.strip.show()
-                time.sleep(wait_ms / 1000.0)
 
     def strobe(self):
         """Strobe the led.
