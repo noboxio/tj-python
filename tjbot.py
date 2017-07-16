@@ -62,9 +62,9 @@ class TJBott(threading.Thread):
         # Simple led commands to make the LED go RED --> GREEN --> BLUE to
         # basically show that the TJ Bot is booting
         self.led_manager.add_command("led.custom_color_name('red')")
-        self.led_manager.add_command("led.wait(.25)")
+        self.led_manager.add_command("wait(.25)")
         self.led_manager.add_command("led.custom_color_name('green')")
-        self.led_manager.add_command("led.wait(.25)")
+        self.led_manager.add_command("wait(.25)")
         self.led_manager.add_command("led.custom_color_name('blue')")
 
         # Make the led do the rainbow cycle for forever!
