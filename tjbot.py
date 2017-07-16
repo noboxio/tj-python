@@ -113,6 +113,8 @@ class TJBott(threading.Thread):
                 print("sending command to led")
                 cmd = cmd.replace('led.','',1)
                 self.led_manager.add_command(cmd)
+
+
             if 'arm.' in cmd:
                 self.servo_manager.execute_command(cmd)
 
@@ -132,11 +134,6 @@ def console_input(tj):
 
 def main():
     tj = TJBott()
-
-    #process_tj = Process(target=tj.run)
-
-    print("fot here")
-    #process_tj.start()
     tj.start()
 
     console_input(tj)
