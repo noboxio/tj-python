@@ -71,7 +71,7 @@ class TJBott(threading.Thread):
         #ledP.rainbowCycle(.0001, 99999999999999)
 
         # Make TJ bot wave 3 times
-        self.servo_manager.wave(3)
+        #self.servo_manager.wave(3)
 
         # Make TJ bot say hello
         self.watsonServices.tts.speak('Hello I am ' + self.name + ' ask me something')
