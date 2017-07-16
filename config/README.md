@@ -53,3 +53,7 @@
 
 
   14. you need to have pip install colour for the color name functions
+
+
+sudo apt-get install python3-dev
+  pip3 install RPi.GPIO
