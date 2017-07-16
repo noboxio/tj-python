@@ -66,6 +66,9 @@ class TJBott(threading.Thread):
         self.led_manager.add_command("led.custom_color_name('green')")
         self.led_manager.add_command("wait(1)")
         self.led_manager.add_command("led.custom_color_name('blue')")
+        self.led_manager.add_command("wait(1)")
+        self.led_manager.add_command("led.rainbow())")
+
 
         # Make the led do the rainbow cycle for forever!
         #ledP.rainbowCycle(.0001, 99999999999999)
