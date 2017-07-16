@@ -112,7 +112,7 @@ class TJBott(threading.Thread):
             if 'led.' in cmd:
                 print("sending command to led")
                 cmd = cmd.replace('led.','',1)
-                self.led_manager.execute_command(cmd)
+                self.led_manager.add_command(cmd)
             if 'arm.' in cmd:
                 self.servo_manager.execute_command(cmd)
 
