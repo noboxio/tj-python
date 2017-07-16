@@ -81,7 +81,7 @@ class TJBott(threading.Thread):
         self.led_manager.add_command("wait(1)")
         self.led_manager.add_command("led.custom_color_name('blue')")
         self.led_manager.add_command("wait(1)")
-        self.led_manager.add_command("led.rainbow())")
+        self.led_manager.add_command("led.rainbow()")
 
 
 
