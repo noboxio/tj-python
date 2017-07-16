@@ -10,6 +10,7 @@
 888  888 888  888 888  888 888  888   X88K
 888  888 Y88..88P 888 d88P Y88..88P .d8""8b.     http://nobox.io
 888  888  "Y88P"  88888P"   "Y88P"  888  888     http://github.com/noboxio
+git config --global push.default matching
 
 Author: Brian McGinnis and Patrick McGinnis
 Date: 7/11/17
@@ -102,13 +103,28 @@ class Song:
         self._log("play " + str(self) + " at speed " + str(speed))
 
     def seek(self, change):
+        """Seek to change
+
+        This will seek to a new point in the song
+        Currently not implemented
+        """
         self._log("seek " + str(self) + " by seek " + str(seek))
 
     def slow(self):
+        """Makes this song slower
+
+        Will make the song play slower
+        Currently not implemented
+        """
         self._log("play slower")
         self.speed(-10)
 
     def fast(self):
+        """Makes this song faster
+
+        This will make the song play faster
+        Currently not implemented
+        """
         self._log("play faster")
         self.speed(10)
 
@@ -173,18 +189,22 @@ class MusicManager(threading.Thread):
     def add(self, song):
         """Alternate command for load_song.
 
-        song -- song object to be added to the player
+        song -- song object to be added to the player.
         """
         self.load_song(song)
 
     def shuffle(self):
-        """Shuffle the list of music objects
+        """Shuffle the list of music objects.
 
-        shuffles the list of music objects, it does not reset current playing
+        shuffles the list of music objects, it does not reset current playing.
         """
         shuffle(self.playlist)
 
     def play(self):
+        """Play the next song.
+
+        Plays the next song in the list of music, if no song is playing.
+        """
         #play next song if nothing is playing
         if self.now_playing == None:
             self.now_playing = self.playlist.pop(0)
@@ -193,6 +213,10 @@ class MusicManager(threading.Thread):
             self.now_playing.play()
 
     def stop(self):
+        """Stop the song.
+
+        Stops the song that is currently playing.
+        """
         self.now_playing.stop()
         self.playlist.insert(0, self.now_playing)
         self.now_playing = None
@@ -237,7 +261,8 @@ class MusicManager(threading.Thread):
         command_method = regex.match(command).group()
         self._log("command_method: " + command_method)
 
-        # check to see if the command is in the manager
+        # check to see if the command is in the managergit config --global push.default matching
+
         if command_method in dir(self):
             #matching command was foudn
             self._log("matching command found")
