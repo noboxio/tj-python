@@ -201,7 +201,7 @@ class MusicManager(threading.Thread):
         shuffle(self.playlist)
 
     def play(self):
-        """Play the next song.
+        """Play next song.
 
         Plays the next song in the list of music, if no song is playing.
         """
@@ -222,18 +222,30 @@ class MusicManager(threading.Thread):
         self.now_playing = None
 
     def pause(self):
+        """Pause the now_playing song.
+
+        Pauses the now_playing song.
+        """
         if self.now_playing == None:
             self._log("Nothing to Pause")
         else:
             self.now_playing.pause()
 
     def next(self):
+        """Play next song.
+
+        Plays the next song in the list.
+        """
         self.now_playing.stop()
         self.playlist.append(self.now_playing)
         self.now_playing = None
         self.play()
 
     def previous(self):
+        """Play previous song.
+
+        Plays the previous song in the list.
+        """
         self.now_playing.stop()
         self.playlist.insert(0, self.now_playing)
         self.now_playing = self.playlist.pop()
@@ -241,6 +253,10 @@ class MusicManager(threading.Thread):
         #self.playlist.
 
     def get_playlist(self):
+        """Get playlist.
+
+        Returns the list of songs in the playlist.
+        """
         return(self.playlist)
 
 
