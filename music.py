@@ -151,7 +151,7 @@ class MusicManager(threading.Thread):
         """Load the songs that are in the resources/music folder
 
         """
-        #TODO: change to pull all valid audio files for mplayer DO THIS INSIDE OF SONG
+        #TODO: change to pull all valid audio files for vlc DO THIS INSIDE OF SONG
         files = glob.glob("./resources/music/*.wav")
         for f in files:
             self.load_song(Song(f))
