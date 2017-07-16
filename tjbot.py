@@ -33,9 +33,19 @@ import re
 
 
 class TJBott(threading.Thread):
+    """TJBott is a thread that controls the TJ Bot.
+
+    TODO: Need to work on the name.  I am not sure where TJBot is used else where.
+    """
     import watsonServices
 
     def __init__(self, name="none"):
+        """Create a TJBott type object.
+
+        If a name isn't passed it will default to none.
+
+        name -- the name of the TJBot
+        """
         threading.Thread.__init__(self)
 
         # set TJBot's name
@@ -59,6 +69,10 @@ class TJBott(threading.Thread):
         self.regex = re.compile(r"~\S+~") #selects just the first word
 
     def run(self):
+        """The run method required by threading.Thread.
+
+        run run's itself when object.start() is called
+        """
         # Simple led commands to make the LED go RED --> GREEN --> BLUE to
         # basically show that the TJ Bot is booting
         self.led_manager.add_command("led.custom_color_name('red')")
@@ -93,6 +107,14 @@ class TJBott(threading.Thread):
 
 
     def process_response(self, response):
+        """Process the response from the converation module or input.
+
+        Cleans the response and sends the detected commands to the proper modules.
+
+        See the list of available commands that is in the help file.
+        THIS WILL NEED TO BE GENERATED EVERY time
+        TODO: Write a script or something that creates this list.
+        """
         print("response: " + response)
 
 
@@ -120,6 +142,10 @@ class TJBott(threading.Thread):
 
 
 def console_input(tj):
+    """Keep asking for input in the console.
+
+    When input is recieved send it to the process_response method in TJBott.
+    """
     while(True):
         try:
             text = input("COMMAND: ")
@@ -131,6 +157,10 @@ def console_input(tj):
 
 
 def main():
+    """Main method creates a TJ bot and starts it along with the console_input.
+
+    main method
+    """
     tj = TJBott()
     tj.start()
 
