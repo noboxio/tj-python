@@ -130,10 +130,11 @@ def console_input(tj):
 def main():
     tj = TJBott()
 
-    process_tj = Process(target=tj.run)
+    #process_tj = Process(target=tj.run)
 
     print("fot here")
-    process_tj.start()
+    #process_tj.start()
+    tj.start()
 
     console_input(tj)
 
