@@ -94,6 +94,11 @@ class Song:
         self.player.pause()
 
     def speed(self, speed):
+        """Change the speed of the song
+
+        This will change the speed of the song playing
+        Currently not implemented
+        """
         self._log("play " + str(self) + " at speed " + str(speed))
 
     def seek(self, change):
