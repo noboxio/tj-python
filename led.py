@@ -146,7 +146,6 @@ class LedManager(threading.Thread):
         self.led = led
         self.process = None
         self.commands = list()
-
         self.start()
 
     def _log(self, message):
@@ -193,6 +192,8 @@ class LedManager(threading.Thread):
                     eval("self.led." + command)
                 except:
                     self._log("there was an exception")
+
+
 
     def empty_commands(self):
         self.commands = list()
