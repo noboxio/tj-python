@@ -169,8 +169,6 @@ class LedManager(threading.Thread):
 
     def execute_command(self, command):
         """Execute a command in text form"""
-
-
         regex = re.compile(r"^\w+") #selects just the first word
         command_method = regex.match(command).group()
         self._log("command_method: " + command_method)
