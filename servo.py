@@ -44,8 +44,10 @@ def map(x, in_min, in_max, out_min, out_max):
 class Servo(threading.Thread):
     pwm = None
 
-    def __init__(self):
+    def __init__(self, up=0, down=0):
         """Constructor for a single servo."""
+        self.up = up
+        self.down = down
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(26, GPIO.OUT)
@@ -86,7 +88,7 @@ class Servo(threading.Thread):
 
         TODO: perhaps make this a constructor variable?
         """
-        self.angle(30)
+        self.angle(self.up)
 
     def armDown(self):
         """Point the arm down, use this to define the up angle
@@ -94,7 +96,7 @@ class Servo(threading.Thread):
 
         TODO: perhaps make this a constructor variable?
         """
-        self.angle(120)
+        self.angle(self.down)
 
 
 
