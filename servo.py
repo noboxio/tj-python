@@ -23,6 +23,7 @@ Date: 6/23/17
 import RPi.GPIO as GPIO
 import time
 from multiprocessing import Process
+import threading
 
 
 def map(x, in_min, in_max, out_min, out_max):
@@ -40,7 +41,7 @@ def map(x, in_min, in_max, out_min, out_max):
     return ((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 
 
-class Servo:
+class Servo(threading.Thread):
     pwm = None
 
     def __init__(self):
@@ -72,9 +73,12 @@ class Servo:
         different servos.
         """
         # degrees MUST BE between 0 and 180
-        self.pwm.start(map(degrees, 0, 180, 1, 15))
-        time.sleep(.5)
-        self.pwm.stop()
+        if angle > 180 or angle < 0:
+            print("INVALID ANGLE SPECIFIED.  MUST BE BETWEEN 0 AND 180")
+        else:
+            self.pwm.start(map(degrees, 0, 180, 1, 15))
+            time.sleep(.5)
+            self.pwm.stop()
 
     def armUp(self):
         """Point the arm up, use this to define the up angle
@@ -110,44 +114,6 @@ class ServoManager:
         """
         self.servo = servo
         self.process = None
-
-    def wave(self, times):
-        """Wave the arm.
-
-        Wave the arm a certian number of times
-
-        times -- int count of time to wave
-        """
-        self.__clearProcess__()
-        self.process = Process(target=self.servo.wave, kwargs={'times': times})
-        self.process.start()
-
-    def angle(self, degrees):
-        """Set the servo to a specific angle.
-
-        degrees -- int amount of degrees to be set at
-        """
-        self.__clearProcess__()
-        self.process = Process(
-            target=self.servo.angle,
-            kwargs={'degrees': degrees})
-        self.process.start()
-
-    def armUp(self):
-        """Set servo in the "UP" position."""
-        self.__clearProcess__()
-        self.process = Process(target=self.servo.armUp)
-        self.process.start()
-
-    def armDown(self):
-        """Set servo in the "DOWN" position."""
-        self.__clearProcess__()
-        self.process = Process(target=self.servo.armDown)
-        self.process.start()
-
-    def stop(self):
-        """Call the clear process method that stops all servos in this manager."""
-        self.__clearProcess__()
 
     def __clearProcess__(self):
         """Stop all processes running with regards to the servos."""
