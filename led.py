@@ -26,6 +26,8 @@ import re
 
 This is the NeoPixel class
 """
+
+
 class NeoPixel:
 
     def __init__(self):
@@ -68,8 +70,6 @@ class NeoPixel:
                 self.strip.setPixelColor(i, self.wheel((i + j) & 255))
                 self.strip.show()
                 time.sleep(wait_ms / 1000.0)
-
-
 
     def strobe(self):
         """Strobe the led.
