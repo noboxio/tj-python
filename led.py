@@ -33,7 +33,8 @@ class NeoPixel:
     def __init__(self):
         """Create an NeoPixel object.
 
-        Creates an NeoPixel object that is based off of the neopixel adafruit stuff
+        Creates an NeoPixel object that is based off of the neopixel adafruit
+        stuff
         """
         LED_COUNT = 16
         LED_PIN = 10
