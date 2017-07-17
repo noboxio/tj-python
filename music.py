@@ -17,14 +17,13 @@ Date: 7/11/17
 """
 
 import time
-import subprocess
-from multiprocessing import Process
 import os.path
 from random import shuffle
 import re
 import glob
 import vlc
 import threading
+
 
 class Song:
     """Song is an object that can play sound.
@@ -38,17 +37,25 @@ class Song:
 
         fileLocation -- the location of the wave file to be played
         """
-        #song is not playing
+        # song is not playing
         self.playing = False
 
         self._load_file(file_location)
 
     def get_state(self):
+        """Get the current state of the song.
+
+        retuens the current state of the player from the vlc class
+        """
         return(self.player.get_state())
 
     def _load_file(self, file_location):
-        #if the file doesn't exist raise an exception
-        #TODO: change to pull all valid audio files for mplayer
+        """Load a single file and create a VLC player object.
+
+        file_location -- The relative path to the file to be played
+        """
+        # if the file doesn't exist raise an exception
+        # TODO: change to pull all valid audio files for mplayer
         if not os.path.isfile(file_location):
             raise IOError("file:" + file_location + " does not exist")
             self.file_location = None
@@ -57,14 +64,17 @@ class Song:
             self.player = vlc.MediaPlayer(self.file_location)
 
     def _log(self, message):
-        print("|" + str(self) + "| " + str(message) )
+        """Print the log message with the object id.
+
+        message -- string that needs to be logged
+        """
+        print("|" + str(self) + "| " + str(message))
 
     def play(self):
         """Play the song file.
 
         Play the song and wait for the song to end and return nothing
         """
-        #self.process = subprocess.Popen("exec " + self.cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, shell=True)
         if self.playing is False:
             self.player.play()
             self._log("playing")
@@ -95,7 +105,7 @@ class Song:
         self.player.pause()
 
     def speed(self, speed):
-        """Change the speed of the song
+        """Change the speed of the song.
 
         This will change the speed of the song playing
         Currently not implemented
@@ -103,15 +113,15 @@ class Song:
         self._log("play " + str(self) + " at speed " + str(speed))
 
     def seek(self, change):
-        """Seek to change
+        """Seek to change.
 
         This will seek to a new point in the song
         Currently not implemented
         """
-        self._log("seek " + str(self) + " by seek " + str(seek))
+        self._log("seek " + str(self) + " by seek " + str(change))
 
     def slow(self):
-        """Makes this song slower
+        """Make this song slower.
 
         Will make the song play slower
         Currently not implemented
@@ -120,7 +130,7 @@ class Song:
         self.speed(-10)
 
     def fast(self):
-        """Makes this song faster
+        """Make this song faster.
 
         This will make the song play faster
         Currently not implemented
@@ -129,8 +139,11 @@ class Song:
         self.speed(10)
 
     def __str__(self):
-        return (self.file_location)
+        """Override the system string method.
 
+        Returns the file location
+        """
+        return (self.file_location)
 
 
 class MusicManager(threading.Thread):
@@ -152,14 +165,19 @@ class MusicManager(threading.Thread):
         self.playlist = list()
         self.now_playing = None
 
-        #self.process = Process(target=self._check_status)
-        #self.process.start()
+        # self.process = Process(target=self._check_status)
+        # self.process.start()
         self.start()
 
     def _log(self, message):
-        print("|" + str(self) + "| " + str(message) )
+        """Print the log message with the object id.
+
+        message -- string that needs to be logged
+        """
+        print("|" + str(self) + "| " + str(message))
 
     def run(self):
+        """Run method to be run as thread."""
         while(True):
             time.sleep(1)
             if self.now_playing is not None:
@@ -169,16 +187,17 @@ class MusicManager(threading.Thread):
                     self.next()
 
     def load_music(self):
-        """Load the songs that are in the resources/music folder
+        """Load the songs that are in the resources/music folder.
 
+        Loads the music from the resources/music folder
         """
-        #TODO: change to pull all valid audio files for vlc DO THIS INSIDE OF SONG
+        # TODO:change to pull all valid audio files for vlc?
         files = glob.glob("./resources/music/*.wav")
         for f in files:
             self.load_song(Song(f))
 
     def load_song(self, song):
-        """Load a song into the player
+        """Load a song into the player.
 
         song -- song object to be added to the player
         TODO: CHECK THAT A SOUND OBJECT IS PASSED
@@ -205,8 +224,8 @@ class MusicManager(threading.Thread):
 
         Plays the next song in the list of music, if no song is playing.
         """
-        #play next song if nothing is playing
-        if self.now_playing == None:
+        # play next song if nothing is playing
+        if self.now_playing is None:
             self.now_playing = self.playlist.pop(0)
             self.now_playing.play()
         else:
@@ -226,7 +245,7 @@ class MusicManager(threading.Thread):
 
         Pauses the now_playing song.
         """
-        if self.now_playing == None:
+        if self.now_playing is None:
             self._log("Nothing to Pause")
         else:
             self.now_playing.pause()
@@ -250,7 +269,7 @@ class MusicManager(threading.Thread):
         self.playlist.insert(0, self.now_playing)
         self.now_playing = self.playlist.pop()
         self.now_playing.play()
-        #self.playlist.
+        # self.playlist.
 
     def get_playlist(self):
         """Get playlist.
@@ -259,28 +278,24 @@ class MusicManager(threading.Thread):
         """
         return(self.playlist)
 
-
-
-
-
-    #this needs to interpret commands JUST for the music manager
+    # this needs to interpret commands JUST for the music manager
     def execute_command(self, command):
-        """Execute a command in text form"""
-
+        """Execute a command in text form."""
         self._log("music execute method: " + command)
-        #first check to see if the command is a manager command
-        #take the command passed and just pull the method name, basically
-        #remove the ().  ex. play() --> play  |  load(something) --> load
+        # first check to see if the command is a manager command
+        # take the command passed and just pull the method name, basically
+        # remove the ().  ex. play() --> play  |  load(something) --> load
 
-        #generate a regex
-        regex = re.compile(r"^\w+") #selects just the first word
+        # generate a regex
+        regex = re.compile(r"^\w+")   # selects just the first word
         command_method = regex.match(command).group()
         self._log("command_method: " + command_method)
 
-        # check to see if the command is in the managergit config --global push.default matching
+        # check to see if the command is in the managergit
+        # config --global push.default matching
 
         if command_method in dir(self):
-            #matching command was foudn
+            # matching command was foudn
             self._log("matching command found")
             self._log("self." + command)
             eval("self." + command)
@@ -290,13 +305,3 @@ class MusicManager(threading.Thread):
                 self._log("MUSIC MANAGER: no song is currently playing")
             else:
                 eval("self.now_playing." + command)
-
-
-
-
-
-
-    def __clearProcess__(self):
-        """Clear any exisiting Music process so that it can be terminated."""
-        if self.process is not None:
-            self.process.terminate()
