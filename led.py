@@ -27,7 +27,6 @@ import re
 This is the NeoPixel class
 """
 
-
 class NeoPixel:
 
     def __init__(self):
@@ -122,11 +121,21 @@ class NeoPixel:
 
         color_name -- valid color name or id using colour module
         """
-        c = colour.Color(color_name)
-        self.custom_color_rgb(int(c.red * 255), int(c.green * 255), int(c.blue * 255))
+        try:
+            c = colour.Color(color_name)
+        except ValueError:
+            print("INVALID COLOR SELECTION")
+
+        self.custom_color_rgb(int(c.red * 255),
+                              int(c.green * 255),
+                              int(c.blue * 255))
 
 
     def off(self):
+        """Turn the led off.
+
+        Turning the led off just sets the color to black.
+        """
         self.custom_color_rgb(0, 0, 0)
 
 
@@ -150,6 +159,10 @@ class LedManager(threading.Thread):
         self.start()
 
     def _log(self, message):
+        """Print the log message with the object id.
+
+        message -- string that needs to be logged
+        """
         print("|" + str(self) + "| " + str(message) )
 
 
@@ -162,9 +175,21 @@ class LedManager(threading.Thread):
 
 
     def wait(self, duration):
+        """Wait for a specified period of time.
+
+        Cause this thread to sleep for a specified duration.
+
+        duration -- amount of seconds to make this thread sleep.
+        """
         time.sleep(duration)
 
     def add_command(self, command):
+        """Add a command to the commands list.
+
+        Append the command to the commands list.
+
+        command -- the text command to appent to the commands list.
+        """
         self.commands.append(command)
 
     def execute_command(self, command):
@@ -195,6 +220,10 @@ class LedManager(threading.Thread):
 
 
     def empty_commands(self):
+        """Empty the commands list.
+
+        empties the commands list
+        """
         self.commands = list()
 
 
