@@ -371,3 +371,5 @@ class MusicManager(threading.Thread):
                 self._log("MUSIC MANAGER: no song is currently playing")
             else:
                 eval("self.now_playing." + command)
+    def __dir__(self):
+        return(['play', 'stop', 'get_playlist'])
