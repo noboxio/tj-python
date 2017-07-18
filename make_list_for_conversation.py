@@ -23,10 +23,10 @@ def main():
     mm = music.MusicManager()
 
     for m in dir(mm):
-        print("music." + m)
         details = eval("pydoc.render_doc(mm." + m + ")")
         details = fix_line(details)
-        print(details)
+        out = "music." + details
+        print(out)
         print(thin_line)
 
 
