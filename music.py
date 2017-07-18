@@ -111,6 +111,7 @@ class Song:
         This will change the speed of the song playing
         Currently not implemented
         """
+        self._log("speed is not supported yet.")
         self._log("play " + str(self) + " at speed " + str(speed))
 
     def seek(self, change):
@@ -119,6 +120,7 @@ class Song:
         This will seek to a new point in the song
         Currently not implemented
         """
+        self._log("seek is not supported yet.")
         self._log("seek " + str(self) + " by seek " + str(change))
 
     def slow(self):
@@ -127,6 +129,7 @@ class Song:
         Will make the song play slower
         Currently not implemented
         """
+        self._log("slow is not supported yet.")
         self._log("play slower")
         self.speed(-10)
 
@@ -136,6 +139,7 @@ class Song:
         This will make the song play faster
         Currently not implemented
         """
+        self._log("fast is not supported yet.")
         self._log("play faster")
         self.speed(10)
 
@@ -152,8 +156,6 @@ class MusicManager(threading.Thread):
 
     it functions as a process so that the song can be started, stopped or
     whatever whenever
-
-    TODO: NEXT, PREVIOUS
     """
 
     def __init__(self):
@@ -162,12 +164,9 @@ class MusicManager(threading.Thread):
         doesn't require a song to be passed any more.
         """
         threading.Thread.__init__(self)
-        self.process = None
         self.playlist = list()
         self.now_playing = None
 
-        # self.process = Process(target=self._check_status)
-        # self.process.start()
         self.start()
 
     def _log(self, message):
