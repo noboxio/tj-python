@@ -14,12 +14,14 @@ def main():
     main method
     """
 
+    F = open("convo_commands.txt", "w")
+
     thick_line = "================================================================================"
     thin_line =  "--------------------------------------------------------------------------------"
     dash_line =  "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "
-    print(thick_line)
-    print("Commands for MusicManager")
-    print(thick_line)
+    F.write(thick_line)
+    F.write("Commands for MusicManager")
+    F.write(thick_line)
 
     mm = music.MusicManager()
 
@@ -27,7 +29,7 @@ def main():
         details = eval("pydoc.render_doc(mm." + m + ")")
         details = fix_line(details)
         out = "music." + details
-        print(out)
+        F.write(out)
 
     ss = music.Song("./resources/output.wav")
 
@@ -35,19 +37,19 @@ def main():
         details = eval("pydoc.render_doc(ss." + s + ")")
         details = fix_line(details)
         out = "music." + details
-        print(out)
+        F.write(out)
 
 
-    print(thick_line)
-    print("Commands for LedManager")
-    print(thick_line)
+    F.write(thick_line)
+    F.write("Commands for LedManager")
+    F.write(thick_line)
 
     lm = led.LedManager()
     for m in dir(lm):
         details = eval("pydoc.render_doc(lm." + m + ")")
         details = fix_line(details)
         out = "led." + details
-        print(out)
+        F.write(out)
 
 
     lm = led.NeoPixel()
@@ -55,25 +57,25 @@ def main():
         details = eval("pydoc.render_doc(lm." + m + ")")
         details = fix_line(details)
         out = "led." + details
-        print(out)
+        F.write(out)
 
-    print(thick_line)
-    print("Commands for ServoManager")
-    print(thick_line)
+    F.write(thick_line)
+    F.write("Commands for ServoManager")
+    F.write(thick_line)
 
     lm = servo.ServoManager()
     for m in dir(lm):
         details = eval("pydoc.render_doc(lm." + m + ")")
         details = fix_line(details)
         out = "servo." + details
-        print(out)
+        F.write(out)
 
     se = servo.Servo()
     for m in dir(se):
         details = eval("pydoc.render_doc(se." + m + ")")
         details = fix_line(details)
         out = "servo." + details
-        print(out)
+        F.write(out)
 #something else
 
 def fix_line(line):
