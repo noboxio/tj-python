@@ -174,6 +174,8 @@ class Song:
                 return False
         else:
             raise ValueError("invalid object type for comparison")
+    def __dir__(self):
+        return(['play', 'stop', 'pause', 'speed', 'slow', 'fast'])
 
 
 
