@@ -115,7 +115,6 @@ class TJBot(threading.Thread):
         """
         print("response: " + response)
 
-
         commands = self.regex.findall(response)
         for cmd in commands:
             print("response: " + response + " | command: " + cmd)
