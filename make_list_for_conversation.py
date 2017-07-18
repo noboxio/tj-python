@@ -39,8 +39,6 @@ def main():
         print(thin_line)
 
 
-    print
-    for s in dir(sm)
 
 
 def fix_line(line):
