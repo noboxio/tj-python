@@ -340,6 +340,9 @@ class MusicManager(threading.Thread):
         """
         return(self.playlist)
 
+    def say_playlist(self):
+        self.tj.process_response("say.(" + self.get_playlist() + ")")
+
     # this needs to interpret commands JUST for the music manager
     def execute_command(self, command):
         """Execute a command in text form."""
