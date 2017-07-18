@@ -12,6 +12,8 @@ def main():
 
     main method
     """
+
+    help(music)
     line = "================================================================================"
     print(line)
     print("Commands for MusicManager")
