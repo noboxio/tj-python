@@ -36,7 +36,6 @@ def main():
         details = fix_line(details)
         out = "music." + details
         print(out)
-        print(thin_line)
 
 
 
