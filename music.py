@@ -155,7 +155,7 @@ class Song:
 
         Returns the file location
         """
-        return (self.file_location)
+        return ("Song object: " + self.file_location)
 
 
 class MusicManager(threading.Thread):
