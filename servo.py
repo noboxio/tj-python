@@ -82,7 +82,7 @@ class Servo:
             time.sleep(.5)
             self.pwm.stop()
 
-    def armUp(self):
+    def up(self):
         """Point the arm up, use this to define the up angle
         angle depends on the orientation of the servo
 
@@ -90,7 +90,7 @@ class Servo:
         """
         self.angle(self.up)
 
-    def armDown(self):
+    def down(self):
         """Point the arm down, use this to define the up angle
         angle depends on the orientation of the servo
 
@@ -117,6 +117,12 @@ class ServoManager(threading.Thread):
         threading.Thread.__init__(self)
         self.servo = servo
         self.start()
+
+    def set_up(self, up):
+        self.servo.up = up
+
+    def set_down(self, down):
+        self.servo.down = down
 
     def execute_command(self, command):
         """Execute a command in text form"""
