@@ -44,7 +44,7 @@ def map(x, in_min, in_max, out_min, out_max):
 class Servo(threading.Thread):
     pwm = None
 
-    def __init__(self, up=0, down=0):
+    def __init__(self, up=180, down=0):
         """Constructor for a single servo."""
         self.up = up
         self.down = down
@@ -75,7 +75,7 @@ class Servo(threading.Thread):
         different servos.
         """
         # degrees MUST BE between 0 and 180
-        if angle > 180 or angle < 0:
+        if degrees > 180 or degrees < 0:
             print("INVALID ANGLE SPECIFIED.  MUST BE BETWEEN 0 AND 180")
         else:
             self.pwm.start(map(degrees, 0, 180, 1, 15))
