@@ -33,7 +33,7 @@ def main():
 def fix_line(line):
     lin = line.split("\n")
     out = ""
-    for i in range(2, len(l)):
+    for i in range(2, len(lin)):
         out = out + lin[i] + "\n"
     return out
     #dir(music)
