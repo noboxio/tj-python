@@ -24,7 +24,7 @@ def main():
 
     for m in dir(mm):
         print("music." + m)
-        print(eval("pydoc.render_doc(mm." + m + ".__doc__"))
+        print(eval("pydoc.render_doc(mm." + m))
         print(thin_line)
 
 
