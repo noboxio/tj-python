@@ -160,6 +160,9 @@ class Song:
         """
         return ("Song object: " + self.name + " = " + self.file_location)
 
+    def __eq__(self, other):
+        return False
+
 
 class MusicManager(threading.Thread):
     """MusicManager is basically a manager for the music objects.
@@ -179,6 +182,7 @@ class MusicManager(threading.Thread):
 
         self.start()
         self.last_song = None
+        self.play_once = False
 
     def _log(self, message):
         """Print the log message with the object id.
@@ -232,13 +236,16 @@ class MusicManager(threading.Thread):
         shuffle(self.playlist)
         self.load_song(self.playlist.pop())
 
-    def play_song(self, song_name):
+    def play_song_name(self, song_name):
         """Play a song based on the song name.
 
         Search the playlist for the song name and then play it.
         """
         # first stop playing if anything is playing
         self.stop()
+
+        self.playlist.index()
+
 
         # start at the beginning of the playlist and look
         for i in range(len(self.playlist)):
@@ -249,7 +256,7 @@ class MusicManager(threading.Thread):
             else:
                 #the song on top is the right song so stop and play
                 break
-
+        self.play_once = True
         self.play()
 
 
