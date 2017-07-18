@@ -69,7 +69,7 @@ def main():
         print(out)
 
     se = servo.Servo()
-    for m in dir(se)):
+    for m in dir(se):
         details = eval("pydoc.render_doc(se." + m + ")")
         details = fix_line(details)
         out = "servo." + details
