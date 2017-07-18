@@ -98,7 +98,7 @@ class TJBot(threading.Thread):
             if self.name in phrase:
                 response = self.watsonServices.convo.sendMessage(phrase)
                 response = response.lower()
-                self.process_response(response)
+                response = self.process_response(response)
                 self.watsonServices.tts.speak(response)
 
 
@@ -108,6 +108,8 @@ class TJBot(threading.Thread):
         Cleans the response and sends the detected commands to the proper modules.
 
         response -- response to process
+
+        Returns a cleaned response of any commands found.
 
         See the list of available commands that is in the help file.
         THIS WILL NEED TO BE GENERATED EVERY time
@@ -132,12 +134,13 @@ class TJBot(threading.Thread):
                 self.led_manager.add_command(cmd)
 .
             if 'arm.' in cmd:
+                cmd = cmd.replace('arm.','',1)
                 self.servo_manager.execute_command(cmd)
 
             if 'say.' in cmd:
                 cmd = cmd.replace('say.','',1)
                 watsonServices.tts.speak(cmd)
-
+        return(response)
 
 def console_input(tj):
     """Keep asking for input in the console.
