@@ -132,7 +132,7 @@ class TJBot(threading.Thread):
                 print("sending command to led")
                 cmd = cmd.replace('led.','',1)
                 self.led_manager.add_command(cmd)
-.
+
             if 'arm.' in cmd:
                 cmd = cmd.replace('arm.','',1)
                 self.servo_manager.execute_command(cmd)
