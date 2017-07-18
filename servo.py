@@ -24,7 +24,7 @@ import RPi.GPIO as GPIO
 import time
 from multiprocessing import Process
 import threading
-
+import re
 
 def map(x, in_min, in_max, out_min, out_max):
     """Method taken from arduino library that maps a min and max to another
