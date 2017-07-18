@@ -53,6 +53,13 @@ class Servo:
         GPIO.setup(26, GPIO.OUT)
         self.pwm = GPIO.PWM(26, 50)
 
+    def _log(self, message):
+        """Print the log message with the object id.
+
+        message -- string that needs to be logged
+        """
+        print("|" + str(self) + "| " + str(message) )
+
     def wave(self, times=5):
         """Wave the arm.
         A wave is defined as going from the down position to the up position once
@@ -119,6 +126,13 @@ class ServoManager(threading.Thread):
         self.tj = tj
         self.servo = servo
         self.start()
+
+    def _log(self, message):
+        """Print the log message with the object id.
+
+        message -- string that needs to be logged
+        """
+        print("|" + str(self) + "| " + str(message) )
 
     def set_up(self, up):
         """Set the up value of the servo arm.
