@@ -177,6 +177,11 @@ class LedManager(threading.Thread):
                 cmd = self.commands.pop(0)
                 self.execute_command(cmd)
 
+    def restart(self):
+        self.empty_commands()
+        del(self.led)
+        self.led = NeoPixel()
+        
 
     def wait(self, duration):
         """Wait for a specified period of time.
