@@ -97,7 +97,8 @@ class Servo:
         TODO: perhaps make this a constructor variable?
         """
         self.angle(self.down)
-
+    def __dir__(self):
+        return(['wave', 'angle', 'up', 'down'])
 
 
 
@@ -157,3 +158,5 @@ class ServoManager(threading.Thread):
                     eval("self.servo." + command)
                 except:
                     self._log("there was an exception")
+    def __dir__(self):
+        return([])

@@ -57,7 +57,16 @@ def main():
         out = "led." + details
         print(out)
 
+    print(thick_line)
+    print("Commands for ServoManager")
+    print(thick_line)
 
+    lm = servo.ServoManager()
+    for m in dir(lm):
+        details = eval("pydoc.render_doc(lm." + m + ")")
+        details = fix_line(details)
+        out = "servo." + details
+        print(out)
 #something else
 
 def fix_line(line):
