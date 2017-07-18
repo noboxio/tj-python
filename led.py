@@ -178,10 +178,14 @@ class LedManager(threading.Thread):
                 self.execute_command(cmd)
 
     def restart(self):
+        """Delete the led object and create a new one.
+
+        This is an attempt to be able to stop a current command and start a new
+        """
         self.empty_commands()
         del(self.led)
         self.led = NeoPixel()
-        
+
 
     def wait(self, duration):
         """Wait for a specified period of time.
