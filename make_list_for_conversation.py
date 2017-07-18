@@ -17,9 +17,12 @@ def main():
     print(line)
     print("Commands for MusicManager")
     print(line)
+    mm = music.MusicManager()
 
-    for m in dir(music.MusicManager):
-        print(eval("music.MusicManager." + m + ".__doc__"))
+    for m in dir(mm):
+        print(m)
+        print(eval("mm"." + m + ".__doc__"))
+        print(line)
 
 
 
