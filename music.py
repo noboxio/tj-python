@@ -237,6 +237,22 @@ class MusicManager(threading.Thread):
 
         Search the playlist for the song name and then play it.
         """
+        # first stop playing if anything is playing
+        self.stop()
+
+        # start at the beginning of the playlist and look
+        for i in len(self.playlist):
+            # if the current song isn't it then add it to the end
+            if self.playlist[0].name != song_name:
+                # move the top song to the end
+                self.load_song(self.playlist.pop())
+            else:
+                #the song on top is the right song so stop and play
+                break
+
+        self.play()
+
+
 
     def play(self):
         """Play next song.
