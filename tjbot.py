@@ -135,7 +135,9 @@ class TJBot(threading.Thread):
             if 'arm.' in cmd:
                 self.servo_manager.execute_command(cmd)
 
-                #watsonServices.tts.speak(response)
+            if 'say.' in cmd:
+                cmd = cmd.replace('say.','',1)
+                watsonServices.tts.speak(cmd)
 
 
 def console_input(tj):
