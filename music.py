@@ -241,7 +241,7 @@ class MusicManager(threading.Thread):
         self.stop()
 
         # start at the beginning of the playlist and look
-        for i in len(self.playlist):
+        for i in range(len(self.playlist)):
             # if the current song isn't it then add it to the end
             if self.playlist[0].name != song_name:
                 # move the top song to the end
