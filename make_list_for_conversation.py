@@ -22,7 +22,7 @@ def main():
     mm = music.MusicManager()
 
     for m in dir(mm):
-        print(m)
+        print("music."m)
         print(eval("mm." + m + ".__doc__"))
         print(thin_line)
 
