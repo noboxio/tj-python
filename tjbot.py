@@ -84,7 +84,7 @@ class TJBot(threading.Thread):
         self.led_manager.add_command("wait(1)")
         self.led_manager.add_command("led.custom_color_name('blue')")
         self.led_manager.add_command("wait(1)")
-        self.led_manager.add_command("led.rainbow(iterations=1000)")
+        self.led_manager.add_command("led.rainbow(iterations=2)")
 
         # Make TJ bot wave 3 times
         self.servo_manager.execute_command("wave(3)")
