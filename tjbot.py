@@ -54,6 +54,8 @@ class TJBott(threading.Thread):
         # Create a Servo object and also create a ServoManager object
         # to control the servo
         self.servo_manager = servo.ServoManager()
+        self.servo_manager.set_up(180)
+        self.servo_manager.set_down(0)
 
         # Create a Led object and also create a LedManager object
         # to control the Led
@@ -83,15 +85,11 @@ class TJBott(threading.Thread):
         self.led_manager.add_command("wait(1)")
         self.led_manager.add_command("led.rainbow(iterations=1000)")
 
-
-
         # Make TJ bot wave 3 times
         self.servo_manager.wave(3)
 
         # Make TJ bot say hello
         self.watsonServices.tts.speak('Hello I am ' + self.name + ' ask me something')
-
-
 
         while(True):
             time.sleep(.001)
@@ -100,9 +98,6 @@ class TJBott(threading.Thread):
                 response = self.watsonServices.convo.sendMessage(phrase)
                 response = response.lower()
                 self.process_response(response)
-
-
-
                 self.watsonServices.tts.speak(response)
 
 
@@ -111,6 +106,8 @@ class TJBott(threading.Thread):
 
         Cleans the response and sends the detected commands to the proper modules.
 
+        response -- response to process
+        
         See the list of available commands that is in the help file.
         THIS WILL NEED TO BE GENERATED EVERY time
         TODO: Write a script or something that creates this list.
@@ -133,7 +130,6 @@ class TJBott(threading.Thread):
                 print("sending command to led")
                 cmd = cmd.replace('led.','',1)
                 self.led_manager.add_command(cmd)
-
 .
             if 'arm.' in cmd:
                 self.servo_manager.execute_command(cmd)
@@ -145,6 +141,8 @@ def console_input(tj):
     """Keep asking for input in the console.
 
     When input is recieved send it to the process_response method in TJBott.
+
+    tj -- the tjbot to interact with
     """
     while(True):
         try:
@@ -153,8 +151,6 @@ def console_input(tj):
             tj.process_response(text)
         except:
             print("console_input exception occured")
-
-
 
 def main():
     """Main method creates a TJ bot and starts it along with the console_input.
@@ -165,10 +161,6 @@ def main():
     tj.start()
 
     console_input(tj)
-
-    #tj.run()
-
-
 
 
 
