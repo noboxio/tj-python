@@ -17,7 +17,7 @@ def main():
     print("Commands for MusicManager")
     print(line)
 
-    for m in dir(music.MusicManager())
+    for m in dir(music.MusicManager
         help(m)
 
 
