@@ -120,9 +120,17 @@ class ServoManager(threading.Thread):
         self.start()
 
     def set_up(self, up):
+        """Set the up value of the servo arm.
+
+        up -- the angle in degrees that is Up
+        """
         self.servo.up = up
 
     def set_down(self, down):
+        """Set the down value of the servo arm.
+
+        down -- the angle in degrees that is Down
+        """
         self.servo.down = down
 
     def execute_command(self, command):
