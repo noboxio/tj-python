@@ -25,12 +25,16 @@ def main():
     for m in dir(mm):
         print("music." + m)
         details = eval("pydoc.render_doc(mm." + m + ")")
-        details.replace("\n",'',2)
+        details = fix_line(details)
         print(details)
         print(thin_line)
 
 
-
+def fix_line(line):
+    l = line.split("\n")
+    for l in range(2, len(l)):
+        out = out + l + "\n"
+    return out
     #dir(music)
     #dir(servo)
     #dir(music)
