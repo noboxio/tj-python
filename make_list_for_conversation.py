@@ -19,7 +19,7 @@ def main():
     print(line)
 
     for m in dir(music.MusicManager):
-        print(m.__doc__)
+        print(eval("music.MusicManager." + m + ".__doc__"))
 
 
 
