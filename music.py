@@ -113,6 +113,8 @@ class Song:
 
         This will change the speed of the song playing
         Currently not implemented
+
+        speed -- the multiplier of the speed.  1 = normal
         """
         self._log("speed is not supported yet.")
         self._log("play " + str(self) + " at speed " + str(speed))
@@ -122,6 +124,8 @@ class Song:
 
         This will seek to a new point in the song
         Currently not implemented
+
+        change -- the amount of change to occur in seconds
         """
         self._log("seek is not supported yet.")
         self._log("seek " + str(self) + " by seek " + str(change))
