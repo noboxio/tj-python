@@ -150,6 +150,13 @@ class Song:
         """
         return (self.file_location)
 
+    def __repr__(self):
+        """Override the system repr method.
+
+        Returns the file location
+        """
+        return (self.file_location)
+
 
 class MusicManager(threading.Thread):
     """MusicManager is basically a manager for the music objects.
@@ -168,6 +175,7 @@ class MusicManager(threading.Thread):
         self.now_playing = None
 
         self.start()
+        self.last_song = None
 
     def _log(self, message):
         """Print the log message with the object id.
@@ -204,6 +212,7 @@ class MusicManager(threading.Thread):
         """
         self.playlist.append(song)
         self._log("SONG LOADED: " + str(song))
+        self.last_song = song
 
     def add(self, song):
         """Alternate command for load_song.
@@ -218,6 +227,7 @@ class MusicManager(threading.Thread):
         shuffles the list of music objects, it does not reset current playing.
         """
         shuffle(self.playlist)
+        self.load_song(self.playlist.pop())
 
     def play(self):
         """Play next song.
@@ -257,8 +267,15 @@ class MusicManager(threading.Thread):
         """
         self.now_playing.stop()
         self.playlist.append(self.now_playing)
-        self.now_playing = None
-        self.play()
+
+        # check to see if it is the last song,
+        # if so say so otherwise play the next song
+        if self.now_playing == self.last_song:
+            self._log("all songs in playlist played.  press play again")
+            self.now_playing = None
+        else:
+            self.now_playing = None
+            self.play()
 
     def previous(self):
         """Play previous song.
