@@ -50,6 +50,14 @@ def main():
         print(out)
 
 
+    lm = led.NeoPixel()
+    for m in dir(lm):
+        details = eval("pydoc.render_doc(lm." + m + ")")
+        details = fix_line(details)
+        out = "led." + details
+        print(out)
+
+
 #something else
 
 def fix_line(line):
