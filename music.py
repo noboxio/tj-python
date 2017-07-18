@@ -167,7 +167,7 @@ class Song:
                 return True
             else:
                 return False
-        else if isinstance(other, string):
+        elif isinstance(other, string):
             if self.name == other:
                 return True
             else:
