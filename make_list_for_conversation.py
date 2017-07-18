@@ -29,6 +29,19 @@ def main():
         print(out)
         print(thin_line)
 
+    ss = music.Song("./resources/output.wav")
+
+    for s in dir():
+        details = eval("pydoc.render_doc(ss." + s + ")")
+        details = fix_line(details)
+        out = "music." + details
+        print(out)
+        print(thin_line)
+
+
+    print
+    for s in dir(sm)
+
 
 def fix_line(line):
     lin = line.split("\n")
