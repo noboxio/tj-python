@@ -6,7 +6,7 @@ import servo
 import music
 
 import pydoc
-
+import re
 
 def main():
     """Main method creates a TJ bot and starts it along with the console_input.
@@ -24,7 +24,8 @@ def main():
 
     for m in dir(mm):
         print("music." + m)
-        print(eval("pydoc.render_doc(mm." + m + ")"))
+        details = eval("pydoc.render_doc(mm." + m + ")")
+        details.replace("\n",'',2)
         print(thin_line)
 
 
