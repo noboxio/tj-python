@@ -55,6 +55,10 @@ class NeoPixel:
         self.strip.begin()
 
     def _log(self, message):
+        """Print the log message with the object id.
+
+        message -- string that needs to be logged
+        """
         print("|" + str(self) + "| " + str(message) )
 
     def rainbow(self, wait_ms=1, iterations=1):
@@ -124,7 +128,7 @@ class NeoPixel:
         try:
             c = colour.Color(color_name)
         except ValueError:
-            print("INVALID COLOR SELECTION")
+            self._log("INVALID COLOR SELECTION")
 
         self.custom_color_rgb(int(c.red * 255),
                               int(c.green * 255),
