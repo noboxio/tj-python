@@ -32,6 +32,7 @@ def main():
 
 def fix_line(line):
     l = line.split("\n")
+    out = ""
     for l in range(2, len(l)):
         out = out + l + "\n"
     return out
