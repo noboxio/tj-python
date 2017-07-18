@@ -41,7 +41,7 @@ def map(x, in_min, in_max, out_min, out_max):
     return ((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 
 
-class Servo(threading.Thread):
+class Servo:
     pwm = None
 
     def __init__(self, up=180, down=0):
@@ -101,7 +101,7 @@ class Servo(threading.Thread):
 
 
 
-class ServoManager:
+class ServoManager(threading.Thread):
     """ServoManager is basically a manager for the servo objects.
 
     it functions as a process so that the servo can be started, stopped or
@@ -114,8 +114,34 @@ class ServoManager:
         servo -- Servo to contorl
         TODO: make it control multiple servos?
         """
+        threading.Thread.__init__(self)
         self.servo = servo
-        self.process = None
+
+    def execute_command(self, command):
+        """Execute a command in text form"""
+        regex = re.compile(r"^\w+") #selects just the first word
+        command_method = regex.match(command).group()
+        self._log("command_method: " + command_method)
+
+        # check to see if the command is in the manager
+        if command_method in dir(self):
+            #matching command was foudn
+            self._log("matching command found")
+            self._log("self." + command)
+            try:
+                eval("self." + command)
+            except:
+                self._log("there was an exception")
+        else:
+            self._log("no matching command found in ServoManager")
+            if self.led is None:
+                self._log("Servo MANAGER: no servo is currently active")
+            else:
+                try:
+                    eval("self.servo." + command)
+                except:
+                    self._log("there was an exception")
+
 
     def __clearProcess__(self):
         """Stop all processes running with regards to the servos."""
