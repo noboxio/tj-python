@@ -161,7 +161,7 @@ class Song:
         return ("Song object: " + self.name + " = " + self.file_location)
 
     def __eq__(self, other):
-        return False
+        return True
 
 
 class MusicManager(threading.Thread):
