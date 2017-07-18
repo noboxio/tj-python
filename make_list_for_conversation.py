@@ -6,6 +6,8 @@ import servo
 import music
 
 
+help(music)
+
 
 def main():
     """Main method creates a TJ bot and starts it along with the console_input.
