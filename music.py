@@ -184,7 +184,7 @@ class MusicManager(threading.Thread):
     whatever whenever
     """
 
-    def __init__(self, tj):
+    def __init__(self, tj=None):
         """Create a MusicManager type.
 
         doesn't require a song to be passed any more.

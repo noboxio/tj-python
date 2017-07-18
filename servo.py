@@ -108,7 +108,7 @@ class ServoManager(threading.Thread):
     whatever whenever
     """
 
-    def __init__(self, tj, servo=Servo()):
+    def __init__(self, tj=None, servo=Servo()):
         """Create a ServoManager type object.
 
         servo -- Servo to contorl
