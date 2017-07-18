@@ -161,7 +161,20 @@ class Song:
         return ("Song object: " + self.name + " = " + self.file_location)
 
     def __eq__(self, other):
-        return True
+        # first check to see if the other is a song object or a string
+        if isinstance(other, Song):
+            if self.name == other.name:
+                return True
+            else:
+                return False
+        else if isinstance(other, string):
+            if self.name == other:
+                return True
+            else:
+                return False
+        else:
+            raise ValueError("invalid object type for comparison")
+
 
 
 class MusicManager(threading.Thread):
