@@ -256,19 +256,15 @@ class MusicManager(threading.Thread):
         """
         # first stop playing if anything is playing
         self.stop()
+        try:
+            index = self.playlist.index(song_name)
+        except ValueError:
+            self._log("song not found")
 
-        self.playlist.index()
+        #pop all of the songs in the list until the desired song is on top
+        for i in range(index):
+            self.load_song(self.playlist.pop())
 
-
-        # start at the beginning of the playlist and look
-        for i in range(len(self.playlist)):
-            # if the current song isn't it then add it to the end
-            if self.playlist[0].name != song_name:
-                # move the top song to the end
-                self.load_song(self.playlist.pop())
-            else:
-                #the song on top is the right song so stop and play
-                break
         self.play_once = True
         self.play()
 
