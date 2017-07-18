@@ -16,11 +16,11 @@ def main():
 
     F = open("convo_commands.txt", "w")
 
-    thick_line = "================================================================================"
-    thin_line =  "--------------------------------------------------------------------------------"
-    dash_line =  "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "
+    thick_line = "================================================================================\n"
+    thin_line =  "--------------------------------------------------------------------------------\n"
+    dash_line =  "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n"
     F.write(thick_line)
-    F.write("Commands for MusicManager")
+    F.write("Commands for MusicManager\n")
     F.write(thick_line)
 
     mm = music.MusicManager()
@@ -41,7 +41,7 @@ def main():
 
 
     F.write(thick_line)
-    F.write("Commands for LedManager")
+    F.write("Commands for LedManager\n")
     F.write(thick_line)
 
     lm = led.LedManager()
@@ -60,7 +60,7 @@ def main():
         F.write(out)
 
     F.write(thick_line)
-    F.write("Commands for ServoManager")
+    F.write("Commands for ServoManager\n")
     F.write(thick_line)
 
     lm = servo.ServoManager()
