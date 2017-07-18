@@ -31,7 +31,7 @@ def main():
 
     ss = music.Song("./resources/output.wav")
 
-    for s in dir():
+    for s in dir(ss):
         details = eval("pydoc.render_doc(ss." + s + ")")
         details = fix_line(details)
         out = "music." + details
