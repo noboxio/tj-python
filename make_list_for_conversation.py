@@ -5,6 +5,7 @@ import music
 import servo
 import music
 
+import pydoc
 
 
 def main():
@@ -23,7 +24,7 @@ def main():
 
     for m in dir(mm):
         print("music."m)
-        print(eval("mm." + m + ".__doc__"))
+        print(eval("pydoc.render_doc(mm." + m + ".__doc__"))
         print(thin_line)
 
 
