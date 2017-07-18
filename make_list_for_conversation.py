@@ -26,6 +26,7 @@ def main():
         print("music." + m)
         details = eval("pydoc.render_doc(mm." + m + ")")
         details.replace("\n",'',2)
+        print(details)
         print(thin_line)
 
 
