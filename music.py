@@ -271,9 +271,12 @@ class MusicManager(threading.Thread):
 
         Stops the song that is currently playing.
         """
-        self.now_playing.stop()
-        self.playlist.insert(0, self.now_playing)
-        self.now_playing = None
+        if self.now_playing is None:
+            self._log("Nothing to Stop")
+        else:
+            self.now_playing.stop()
+            self.playlist.insert(0, self.now_playing)
+            self.now_playing = None
 
     def pause(self):
         """Pause the now_playing song.
