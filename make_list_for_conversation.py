@@ -13,16 +13,18 @@ def main():
     main method
     """
 
-    line = "================================================================================"
-    print(line)
+    thick_line = "================================================================================"
+    thin_line =  "--------------------------------------------------------------------------------"
+    dash_line =  "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "
+    print(thick_line)
     print("Commands for MusicManager")
-    print(line)
+    print(thick_line)
     mm = music.MusicManager()
 
     for m in dir(mm):
         print(m)
-        print(eval("mm"." + m + ".__doc__"))
-        print(line)
+        print(eval("mm." + m + ".__doc__"))
+        print(thin_line)
 
 
 
