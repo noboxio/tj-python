@@ -44,10 +44,10 @@ def map(x, in_min, in_max, out_min, out_max):
 class Servo:
     pwm = None
 
-    def __init__(self, up=180, down=0):
+    def __init__(self, up_angle=180, down_angle=0):
         """Constructor for a single servo."""
-        self.up = up
-        self.down = down
+        self.up_angle = up_angle
+        self.down_angle = down_angle
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(26, GPIO.OUT)
@@ -60,8 +60,8 @@ class Servo:
         times -- the number of times to wave, default = 5
         """
         while (times > 0):
-            self.armUp()
-            self.armDown()
+            self.up()
+            self.down()
             times = times - 1
         self.pwm.stop()
 
@@ -88,7 +88,7 @@ class Servo:
 
         TODO: perhaps make this a constructor variable?
         """
-        self.angle(self.up)
+        self.angle(self.up_angle)
 
     def down(self):
         """Point the arm down, use this to define the up angle
@@ -96,7 +96,7 @@ class Servo:
 
         TODO: perhaps make this a constructor variable?
         """
-        self.angle(self.down)
+        self.angle(self.down_angle)
     def __dir__(self):
         return(['wave', 'angle', 'up', 'down'])
 
