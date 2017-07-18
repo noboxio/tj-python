@@ -116,6 +116,7 @@ class ServoManager(threading.Thread):
         """
         threading.Thread.__init__(self)
         self.servo = servo
+        self.start()
 
     def execute_command(self, command):
         """Execute a command in text form"""
