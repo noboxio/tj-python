@@ -32,15 +32,16 @@ import threading
 import re
 
 
-class TJBott(threading.Thread):
-    """TJBott is a thread that controls the TJ Bot.
+class TJBot(threading.Thread):
+    """TJBot is a thread that controls the TJ Bot.
 
     TODO: Need to work on the name.  I am not sure where TJBot is used else where.
+    Decided to put it back to TJBot
     """
     import watsonServices
 
     def __init__(self, name="none"):
-        """Create a TJBott type object.
+        """Create a TJBot type object.
 
         If a name isn't passed it will default to none.
 
@@ -107,7 +108,7 @@ class TJBott(threading.Thread):
         Cleans the response and sends the detected commands to the proper modules.
 
         response -- response to process
-        
+
         See the list of available commands that is in the help file.
         THIS WILL NEED TO BE GENERATED EVERY time
         TODO: Write a script or something that creates this list.
@@ -157,7 +158,7 @@ def main():
 
     main method
     """
-    tj = TJBott()
+    tj = TJBot()
     tj.start()
 
     console_input(tj)
