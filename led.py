@@ -158,7 +158,6 @@ class LedManager(threading.Thread):
         """
         threading.Thread.__init__(self)
         self.led = led
-        self.process = None
         self.commands = list()
         self.start()
 
