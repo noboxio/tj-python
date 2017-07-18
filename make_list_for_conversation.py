@@ -15,14 +15,13 @@ def main():
     main method
     """
 
-    help(music)
     line = "================================================================================"
     print(line)
     print("Commands for MusicManager")
     print(line)
 
     for m in dir(music.MusicManager):
-        help(m)
+        print(m.__doc__)
 
 
 
