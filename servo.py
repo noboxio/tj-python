@@ -108,13 +108,14 @@ class ServoManager(threading.Thread):
     whatever whenever
     """
 
-    def __init__(self, servo=Servo()):
+    def __init__(self, tj, servo=Servo()):
         """Create a ServoManager type object.
 
         servo -- Servo to contorl
         TODO: make it control multiple servos?
         """
         threading.Thread.__init__(self)
+        self.tj = tj
         self.servo = servo
         self.start()
 

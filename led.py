@@ -151,12 +151,13 @@ class LedManager(threading.Thread):
     whatever whenever
     """
     #not sure if you can set the default like this but we shall see lol
-    def __init__(self, led=NeoPixel()):
+    def __init__(self, tj, led=NeoPixel()):
         """Create an LED Manager type.
 
         led -- the led that is to be controlled by this process
         """
         threading.Thread.__init__(self)
+        self.tj = tj
         self.led = led
         self.commands = list()
         self.start()
