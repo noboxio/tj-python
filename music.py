@@ -29,6 +29,7 @@ class Song:
     """Song is an object that can play sound.
 
     plays the fileLocation sound when asked to.
+    This currently uses the VLC library for python3
     TODO: REWIND, FAST FORWARD, FAST, SLOW
     """
 
@@ -39,7 +40,7 @@ class Song:
         """
         # song is not playing
         self.playing = False
-
+        # load the file into the vlc player
         self._load_file(file_location)
 
     def get_state(self):
