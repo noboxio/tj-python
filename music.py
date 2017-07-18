@@ -44,7 +44,7 @@ class Song:
         self._load_file(file_location)
 
         name = os.path.basename(self.file_location)
-        self.name = name.split(",")
+        self.name = name.split(",")[0]
 
     def get_state(self):
         """Get the current state of the song.
