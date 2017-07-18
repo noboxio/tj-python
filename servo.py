@@ -148,9 +148,3 @@ class ServoManager(threading.Thread):
                     eval("self.servo." + command)
                 except:
                     self._log("there was an exception")
-
-
-    def __clearProcess__(self):
-        """Stop all processes running with regards to the servos."""
-        if self.process is not None:
-            self.process.terminate()
