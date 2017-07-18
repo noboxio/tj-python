@@ -20,6 +20,7 @@ def main():
     print(thick_line)
     print("Commands for MusicManager")
     print(thick_line)
+
     mm = music.MusicManager()
 
     for m in dir(mm):
@@ -27,7 +28,6 @@ def main():
         details = fix_line(details)
         out = "music." + details
         print(out)
-        print(thin_line)
 
     ss = music.Song("./resources/output.wav")
 
@@ -36,7 +36,18 @@ def main():
         details = fix_line(details)
         out = "music." + details
         print(out)
-        print(thin_line)
+
+
+    print(thick_line)
+    print("Commands for LedManager")
+    print(thick_line)
+
+    lm = led.LedManager()
+    for m in dir(lm):
+        details = eval("pydoc.render_doc(lm." + m + ")")
+        details = fix_line(details)
+        out = "led." + details
+        print(out)
 
 
 

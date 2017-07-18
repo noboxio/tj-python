@@ -142,6 +142,9 @@ class NeoPixel:
         """
         self.custom_color_rgb(0, 0, 0)
 
+    def __dir__(self):
+        return(['off', 'custom_color_name', 'custom_color_rgb', 'strobe', 'rainbow'])
+
 
 
 class LedManager(threading.Thread):
@@ -255,3 +258,6 @@ class LedManager(threading.Thread):
         """
         if self.process is not None:
             self.process.terminate()
+
+    def __dir__(self):
+        return(['wait', 'restart', 'empty_commands'])
