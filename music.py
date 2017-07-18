@@ -372,4 +372,4 @@ class MusicManager(threading.Thread):
             else:
                 eval("self.now_playing." + command)
     def __dir__(self):
-        return(['play', 'stop', 'get_playlist'])
+        return([play, stop, get_playlist])
