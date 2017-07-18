@@ -43,6 +43,9 @@ class Song:
         # load the file into the vlc player
         self._load_file(file_location)
 
+        name = os.path.basename(self.file_location)
+        self.name = name.split(",")
+
     def get_state(self):
         """Get the current state of the song.
 
@@ -148,14 +151,14 @@ class Song:
 
         Returns the file location
         """
-        return (self.file_location)
+        return (self.name + " = " + self.file_location)
 
     def __repr__(self):
         """Override the system repr method.
 
         Returns the file location
         """
-        return ("Song object: " + self.file_location)
+        return ("Song object: " + self.name + " = " + self.file_location)
 
 
 class MusicManager(threading.Thread):
@@ -228,6 +231,12 @@ class MusicManager(threading.Thread):
         """
         shuffle(self.playlist)
         self.load_song(self.playlist.pop())
+
+    def play_song(self, song_name):
+        """Play a song based on the song name.
+
+        Search the playlist for the song name and then play it.
+        """
 
     def play(self):
         """Play next song.
