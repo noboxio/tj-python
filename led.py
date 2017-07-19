@@ -222,7 +222,7 @@ class LedManager(threading.Thread):
             try:
                 eval("self." + command)
             except:
-                self._log("there was an exception")
+                self._log("there was an exception manager here")
         else:
             self._log("no matching command found in LedManager")
             if self.led is None:
@@ -231,7 +231,7 @@ class LedManager(threading.Thread):
                 try:
                     eval("self.led." + command)
                 except:
-                    self._log("there was an exception")
+                    self._log("there was an exception here")
 
 
 
