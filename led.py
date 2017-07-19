@@ -228,11 +228,10 @@ class LedManager(threading.Thread):
             if self.led is None:
                 self._log("LED MANAGER: no led is currently active")
             else:
-                #try:
-                print("self.led." + command)
-                eval("self.led." + command)
-                #except:
-                self._log("there was an exception here")
+                try:
+                    eval("self.led." + command)
+                except:
+                    self._log("there was an exception here")
 
 
 
