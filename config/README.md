@@ -5,14 +5,32 @@
 
 
 **THINGS THAT HAVE TO BE DONE**
-1. Run `raspi-config` and then:
-    1. Expand file system
-    2. Set gpu to 256
-    3. Enable camera and other things
-    4. Turn off under scan
+
+1. Configure the Raspberry Pi
+      * Raspberry Icon --> Preferences --> Raspberry Pi Configuration
+          * System:
+            * Underscan: Disabled
+          * Interfaces:
+            * Camera: Enabled
+            * SSH: Enabled
+            * Serial: Enabled
+          * Performance:
+            * GPU Memory: 256
+          * Localisation:
+            * Locale: *click Set Locale...*
+              * Language: en (English)
+              * Country: US (USA)
+            * Timezone: *click Set Timezone...*
+              * Area: US
+              * Location: Central
+            * Keyboard: *click Set Keyboard...*
+              * Country: United States
+              * Variant: English (US)  *scroll up to see it at the top*
+      * Then reboot the pi `sudo reboot` or use the menu
 
 2. Update the dist list: `sudo apt-get update`
 3. Upgrade the apps `sudo apt-get upgrade`
+    * Tell is yes if it asks if you want to continue `Y`
 4. Upgrade the distro `sudo apt-get dist-upgrade`
 
 5. Install vim `sudo apt-get install vim`
@@ -35,6 +53,9 @@
     * `sudo apt-get install build-essential python-dev scons swig`
 
 10. Install the adafruit stuff  
+    * `sudo pip3 install RPi.GPIO`
+
+
     * `git clone https://github.com/jgarff/rpi_ws281x.git`
     * `cd rpi_ws281x`
     * `scons`
@@ -55,5 +76,6 @@
   14. you need to have pip install colour for the color name functions
 
 
-sudo apt-get install python3-dev
+  sudo apt-get install python3-dev
   pip3 install RPi.GPIO
+  pip3 install vlc
