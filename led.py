@@ -154,13 +154,12 @@ class LedManager(threading.Thread):
     whatever whenever
     """
     #not sure if you can set the default like this but we shall see lol
-    def __init__(self, tj=None, led=NeoPixel()):
+    def __init__(self, led=NeoPixel()):
         """Create an LED Manager type.
 
         led -- the led that is to be controlled by this process
         """
         threading.Thread.__init__(self)
-        self.tj = tj
         self.led = led
         self.commands = list()
         self.start()
@@ -222,7 +221,7 @@ class LedManager(threading.Thread):
             try:
                 eval("self." + command)
             except:
-                self._log("there was an exception")
+                self._log("there was an exception manager here")
         else:
             self._log("no matching command found in LedManager")
             if self.led is None:
@@ -231,7 +230,7 @@ class LedManager(threading.Thread):
                 try:
                     eval("self.led." + command)
                 except:
-                    self._log("there was an exception")
+                    self._log("there was an exception here")
 
 
 

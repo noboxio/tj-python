@@ -24,7 +24,7 @@ import RPi.GPIO as GPIO
 import time
 from multiprocessing import Process
 import threading
-
+import re
 
 def map(x, in_min, in_max, out_min, out_max):
     """Method taken from arduino library that maps a min and max to another
@@ -52,6 +52,13 @@ class Servo:
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(26, GPIO.OUT)
         self.pwm = GPIO.PWM(26, 50)
+
+    def _log(self, message):
+        """Print the log message with the object id.
+
+        message -- string that needs to be logged
+        """
+        print("|" + str(self) + "| " + str(message) )
 
     def wave(self, times=5):
         """Wave the arm.
@@ -120,6 +127,13 @@ class ServoManager(threading.Thread):
         self.servo = servo
         self.start()
 
+    def _log(self, message):
+        """Print the log message with the object id.
+
+        message -- string that needs to be logged
+        """
+        print("|" + str(self) + "| " + str(message) )
+
     def set_up(self, up):
         """Set the up value of the servo arm.
 
@@ -151,7 +165,7 @@ class ServoManager(threading.Thread):
                 self._log("there was an exception")
         else:
             self._log("no matching command found in ServoManager")
-            if self.led is None:
+            if self.servo is None:
                 self._log("Servo MANAGER: no servo is currently active")
             else:
                 try:
