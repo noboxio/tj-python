@@ -54,13 +54,13 @@ class TJBot(threading.Thread):
 
         # Create a Servo object and also create a ServoManager object
         # to control the servo
-        self.servo_manager = servo.ServoManager(self)
+        self.servo_manager = servo.ServoManager()
         self.servo_manager.set_up(180)
         self.servo_manager.set_down(0)
 
         # Create a Led object and also create a LedManager object
         # to control the Led
-        self.led_manager = led.LedManager(self)
+        self.led_manager = led.LedManager()
 
         # Create a Music object and also create a MusicManager object
         # to control the music
