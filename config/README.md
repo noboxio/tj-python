@@ -37,25 +37,23 @@
     * Vim config TODO
     * Git config use vim TODO
 
-6. Install screen `sudo apt-get install screen`
+6. REMOVE Install screen `sudo apt-get install screen`
 
 7. Install Python 3 and set as default TODO add code
 8. Install system dependencies they are found on the pyaudio page(Below)
     * `Sudo apt-get install portaudio19-dev`
     * `Sudo apt-get install python-all-dev`
-    * `sudo apt-get install python-pyaudio python3-pyaudio`
+    * `sudo apt-get install python3-pyaudio python-pyaudio`
 
 9. Install system dependencies for the watson-developer-cloud
-    * `sudo apt-get install libssl-dev`
-    * `sudo apt-get install libffi-dev`
+    * `sudo apt-get install libssl-dev libffi-dev build-essential scons swig`
     * `sudo easy_install3 --upgrade watson-developer-cloud`
-        * needs to be changed to install for python3!
-    * `sudo apt-get install build-essential python-dev scons swig`
+        * This one takes a while and seems like it stalls, but just let it run!
 
 10. Install the adafruit stuff  
     * `sudo pip3 install RPi.GPIO`
 
-
+Install this for the LED controls
     * `git clone https://github.com/jgarff/rpi_ws281x.git`
     * `cd rpi_ws281x`
     * `scons`
@@ -70,12 +68,6 @@
 13. Install the python libraries required.
     * sudo easy_install3 websocket-client
     * sudo pip3 install colour
-    WHEN IT GETS TO THE SOCKET PART INSTALL SOCKET CLIENT NOT SOCKET OR SOMETHING LIKE THAT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  TODO: FINISH THIS
 
-
-  14. you need to have pip install colour for the color name functions
-
-
-  sudo apt-get install python3-dev
-  pip3 install RPi.GPIO
-  pip3 install vlc
+  sudo apt-get install vlc
+  sudo pip3 install python-vlc
