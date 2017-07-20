@@ -29,7 +29,6 @@ import websocket
 import audioop
 import math
 from websocket._abnf import ABNF
-import array
 
 
 class StreamingSTT:
@@ -54,7 +53,7 @@ class StreamingSTT:
     FINAL = []
 
     # timeout
-    TIMEOUT = 10
+    TIMEOUT = None
 
     # the actual websocket
     WS = None
@@ -65,7 +64,7 @@ class StreamingSTT:
             self,
             username,
             password,
-            timeout=10,
+            timeout=5,
             chunk=16384,
             format=pyaudio.paInt16,
             rate=44100,
@@ -80,13 +79,11 @@ class StreamingSTT:
         self.THRESHOLD = threshold
         self.SILENCE_LIMIT = silence_limit
 
-        self.p = pyaudio.PyAudio()
-
     # read_audio starts a stream and sends chunks to watson realtime.
     def read_audio(self, ws, timeout):
 
         # get a stream
-        p = self.p
+        p = pyaudio.PyAudio()
         stream = p.open(format=self.FORMAT,
                         channels=self.CHANNELS,
                         rate=self.RATE,
@@ -101,19 +98,19 @@ class StreamingSTT:
 
         # silence_chunks is a counter variable counting number of chunks with
         # silence. Once this value surpasses the silence limit, stop recording.
-        silence_chunks = -10
+        silence_chunks = 0
         limit_chunks = self.SILENCE_LIMIT * self.RATE / self.CHUNK
 
         while True:
 
             if silence_chunks >= limit_chunks:
                 break
-            #data = array()
+
             data = stream.read(self.CHUNK)
             ws.send(data, ABNF.OPCODE_BINARY)
 
             if math.sqrt(abs(audioop.avg(data, 4))) > self.THRESHOLD:
-                silence_chunks = -10
+                silence_chunks = 0
             else:
                 silence_chunks += 1
 
@@ -133,7 +130,7 @@ class StreamingSTT:
 
         # close the websocket
         ws.close()
-        #p.terminate()
+        p.terminate()
 
     # this callback is used when the connection is activated.
     # basically initializing and configuring settings and stuff
