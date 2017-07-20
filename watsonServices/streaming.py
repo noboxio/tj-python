@@ -29,6 +29,7 @@ import websocket
 import audioop
 import math
 from websocket._abnf import ABNF
+import array
 
 
 class StreamingSTT:
@@ -108,7 +109,7 @@ class StreamingSTT:
             if silence_chunks >= limit_chunks:
                 break
             data = array()
-            data.append(stream.read(self.CHUNK))
+            data = stream.read(self.CHUNK)
             ws.send(data, ABNF.OPCODE_BINARY)
 
             if math.sqrt(abs(audioop.avg(data, 4))) > self.THRESHOLD:
