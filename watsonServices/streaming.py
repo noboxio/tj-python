@@ -65,8 +65,8 @@ class StreamingSTT:
             username,
             password,
             timeout=5,
-            chunk=16384,
-            format=pyaudio.paInt16,
+            chunk=4096,
+            formatt=pyaudio.paInt16,
             rate=44100,
             threshold=1000,
             silence_limit=2
@@ -74,7 +74,7 @@ class StreamingSTT:
         self.userpass = ":".join((username, password))
         self.TIMEOUT = timeout
         self.CHUNK = chunk
-        self.FORMAT = format
+        self.FORMATT = formatt
         self.RATE = rate
         self.THRESHOLD = threshold
         self.SILENCE_LIMIT = silence_limit
@@ -84,7 +84,7 @@ class StreamingSTT:
 
         # get a stream
         p = pyaudio.PyAudio()
-        stream = p.open(format=self.FORMAT,
+        stream = p.open(format=self.FORMATT,
                         channels=self.CHANNELS,
                         rate=self.RATE,
                         input=True,
