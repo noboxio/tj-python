@@ -107,8 +107,8 @@ class StreamingSTT:
 
             if silence_chunks >= limit_chunks:
                 break
-
-            data = stream.read(self.CHUNK)
+            data = array()
+            data.append(stream.read(self.CHUNK))
             ws.send(data, ABNF.OPCODE_BINARY)
 
             if math.sqrt(abs(audioop.avg(data, 4))) > self.THRESHOLD:
