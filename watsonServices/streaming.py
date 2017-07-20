@@ -108,7 +108,7 @@ class StreamingSTT:
 
             if silence_chunks >= limit_chunks:
                 break
-            data = array()
+            #data = array()
             data = stream.read(self.CHUNK)
             ws.send(data, ABNF.OPCODE_BINARY)
 
