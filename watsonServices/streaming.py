@@ -65,7 +65,7 @@ class StreamingSTT:
             username,
             password,
             timeout=5,
-            chunk=16384,
+            chunk=8192,
             formatt=pyaudio.paInt16,
             rate=44100,
             threshold=1000,
@@ -78,12 +78,15 @@ class StreamingSTT:
         self.RATE = rate
         self.THRESHOLD = threshold
         self.SILENCE_LIMIT = silence_limit
+        
+
 
     # read_audio starts a stream and sends chunks to watson realtime.
     def read_audio(self, ws, timeout):
 
         # get a stream
         p = pyaudio.PyAudio()
+        
         stream = p.open(format=self.FORMATT,
                         channels=self.CHANNELS,
                         rate=self.RATE,
@@ -102,18 +105,21 @@ class StreamingSTT:
         limit_chunks = self.SILENCE_LIMIT * self.RATE / self.CHUNK
 
         while True:
-
+            #print(str(silence_chunks) + " | " + str(limit_chunks))
             if silence_chunks >= limit_chunks:
                 break
 
-            data = stream.read(self.CHUNK)
-            ws.send(data, ABNF.OPCODE_BINARY)
+            data = stream.read(self.CHUNK, exception_on_overflow=False)
+            try:
+                ws.send(data, ABNF.OPCODE_BINARY)
+            except:
 
-            if math.sqrt(abs(audioop.avg(data, 4))) > self.THRESHOLD:
+
+                break
+            if math.sqrt(abs(audioop.avg(data, 2))) > self.THRESHOLD:
                 silence_chunks = 0
             else:
                 silence_chunks += 1
-
 
         # Disconnect the audio stream
         stream.stop_stream()
@@ -125,11 +131,16 @@ class StreamingSTT:
         # Get the final response from watson (waiting for 1 second to get it
         # back)
         data = {"action": "stop"}
-        ws.send(json.dumps(data).encode('utf8'))
-        time.sleep(1)
 
-        # close the websocket
-        ws.close()
+        try:
+                ws.send(json.dumps(data).encode('utf8'))
+                time.sleep(1)
+                # close the websocket
+                ws.close()
+
+        except:
+                print("thing failed")
+        
         p.terminate()
 
     # this callback is used when the connection is activated.
@@ -173,7 +184,7 @@ class StreamingSTT:
                 print(data['results'][0]['alternatives'][0]['transcript'])
 
     # print those errors
-    def on_error(self, error):
+    def on_error(self, error, idk):
         if __debug__:
             print(error)
 
@@ -234,3 +245,4 @@ if __name__ == "__main__":
         print(x)
         print("\n\n\n\nget_phrase can be called as much as you want.\n\n\n\n")
         s.get_phrase()
+
