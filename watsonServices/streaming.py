@@ -65,7 +65,7 @@ class StreamingSTT:
             username,
             password,
             timeout=5,
-            chunk=4096,
+            chunk=16384,
             formatt=pyaudio.paInt16,
             rate=44100,
             threshold=1000,
