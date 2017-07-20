@@ -53,7 +53,7 @@ class StreamingSTT:
     FINAL = []
 
     # timeout
-    TIMEOUT = None
+    TIMEOUT = 10
 
     # the actual websocket
     WS = None
@@ -64,7 +64,7 @@ class StreamingSTT:
             self,
             username,
             password,
-            timeout=5,
+            timeout=10,
             chunk=16384,
             format=pyaudio.paInt16,
             rate=44100,
@@ -79,11 +79,13 @@ class StreamingSTT:
         self.THRESHOLD = threshold
         self.SILENCE_LIMIT = silence_limit
 
+        self.p = pyaudio.PyAudio()
+
     # read_audio starts a stream and sends chunks to watson realtime.
     def read_audio(self, ws, timeout):
 
         # get a stream
-        p = pyaudio.PyAudio()
+        p = self.p
         stream = p.open(format=self.FORMAT,
                         channels=self.CHANNELS,
                         rate=self.RATE,
@@ -98,7 +100,7 @@ class StreamingSTT:
 
         # silence_chunks is a counter variable counting number of chunks with
         # silence. Once this value surpasses the silence limit, stop recording.
-        silence_chunks = 0
+        silence_chunks = -10
         limit_chunks = self.SILENCE_LIMIT * self.RATE / self.CHUNK
 
         while True:
@@ -110,7 +112,7 @@ class StreamingSTT:
             ws.send(data, ABNF.OPCODE_BINARY)
 
             if math.sqrt(abs(audioop.avg(data, 4))) > self.THRESHOLD:
-                silence_chunks = 0
+                silence_chunks = -10
             else:
                 silence_chunks += 1
 
@@ -130,7 +132,7 @@ class StreamingSTT:
 
         # close the websocket
         ws.close()
-        p.terminate()
+        #p.terminate()
 
     # this callback is used when the connection is activated.
     # basically initializing and configuring settings and stuff

@@ -22,7 +22,9 @@ Date: 6/23/17
 
 import RPi.GPIO as GPIO
 import time
-
+from multiprocessing import Process
+import threading
+import re
 
 def map(x, in_min, in_max, out_min, out_max):
     """Method taken from arduino library that maps a min and max to another
@@ -42,22 +44,31 @@ def map(x, in_min, in_max, out_min, out_max):
 class Servo:
     pwm = None
 
-    def __init__(self):
+    def __init__(self, up_angle=180, down_angle=0):
         """Constructor for a single servo."""
+        self.up_angle = up_angle
+        self.down_angle = down_angle
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(26, GPIO.OUT)
         self.pwm = GPIO.PWM(26, 50)
+
+    def _log(self, message):
+        """Print the log message with the object id.
+
+        message -- string that needs to be logged
+        """
+        print("|" + str(self) + "| " + str(message) )
 
     def wave(self, times=5):
         """Wave the arm.
         A wave is defined as going from the down position to the up position once
 
         times -- the number of times to wave, default = 5
-        """"
+        """
         while (times > 0):
-            self.armUp()
-            self.armDown()
+            self.up()
+            self.down()
             times = times - 1
         self.pwm.stop()
 
@@ -71,27 +82,95 @@ class Servo:
         different servos.
         """
         # degrees MUST BE between 0 and 180
-        self.pwm.start(map(degrees, 0, 180, 1, 15))
-        time.sleep(.5)
-        self.pwm.stop()
+        if degrees > 180 or degrees < 0:
+            print("INVALID ANGLE SPECIFIED.  MUST BE BETWEEN 0 AND 180")
+        else:
+            self.pwm.start(map(degrees, 0, 180, 1, 15))
+            time.sleep(.5)
+            self.pwm.stop()
 
-    def armUp(self):
+    def up(self):
         """Point the arm up, use this to define the up angle
         angle depends on the orientation of the servo
 
         TODO: perhaps make this a constructor variable?
         """
-        self.angle(30)
+        self.angle(self.up_angle)
 
-    def armDown(self):
+    def down(self):
         """Point the arm down, use this to define the up angle
         angle depends on the orientation of the servo
 
         TODO: perhaps make this a constructor variable?
         """
-        self.angle(120)
+        self.angle(self.down_angle)
+    def __dir__(self):
+        return(['wave', 'angle', 'up', 'down'])
 
-# s = servo()
-# s.wave(2)
-# s.armDown()
-# s.armUp()
+
+
+class ServoManager(threading.Thread):
+    """ServoManager is basically a manager for the servo objects.
+
+    it functions as a process so that the servo can be started, stopped or
+    whatever whenever
+    """
+
+    def __init__(self, tj=None, servo=Servo()):
+        """Create a ServoManager type object.
+
+        servo -- Servo to contorl
+        TODO: make it control multiple servos?
+        """
+        threading.Thread.__init__(self)
+        self.tj = tj
+        self.servo = servo
+        self.start()
+
+    def _log(self, message):
+        """Print the log message with the object id.
+
+        message -- string that needs to be logged
+        """
+        print("|" + str(self) + "| " + str(message) )
+
+    def set_up(self, up):
+        """Set the up value of the servo arm.
+
+        up -- the angle in degrees that is Up
+        """
+        self.servo.up = up
+
+    def set_down(self, down):
+        """Set the down value of the servo arm.
+
+        down -- the angle in degrees that is Down
+        """
+        self.servo.down = down
+
+    def execute_command(self, command):
+        """Execute a command in text form"""
+        regex = re.compile(r"^\w+") #selects just the first word
+        command_method = regex.match(command).group()
+        self._log("command_method: " + command_method)
+
+        # check to see if the command is in the manager
+        if command_method in dir(self):
+            #matching command was foudn
+            self._log("matching command found")
+            self._log("self." + command)
+            try:
+                eval("self." + command)
+            except:
+                self._log("there was an exception")
+        else:
+            self._log("no matching command found in ServoManager")
+            if self.servo is None:
+                self._log("Servo MANAGER: no servo is currently active")
+            else:
+                try:
+                    eval("self.servo." + command)
+                except:
+                    self._log("there was an exception")
+    def __dir__(self):
+        return([])
