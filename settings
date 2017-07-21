@@ -1,7 +1,10 @@
+[tj]
+name = ENTER_NAME
+soundsLike = ENTER_SOUNDS_LIKE
+
 [stt]
 username = ENTER_USERNAME
 password = ENTER_PASSWORD
-
 
 [tts]
 username = ENTER_USERNAME
