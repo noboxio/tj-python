@@ -1,3 +1,6 @@
+[DEFAULT]
+none = none
+
 [tj]
 name = ENTER_NAME
 soundslike = ENTER_SOUNDS_LIKE
