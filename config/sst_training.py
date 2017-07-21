@@ -3,7 +3,7 @@ import requests
 import json
 import codecs
 import sys, time
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+#from requests.packages.urllib3.exceptions import InsecureRequestWarning
 import configparser
 
 #requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
