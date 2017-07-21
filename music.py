@@ -227,7 +227,7 @@ class MusicManager(threading.Thread):
         Loads the music from the resources/music folder
         """
         # TODO:change to pull all valid audio files for vlc?
-        files = glob.glob("./resources/music/*.wav")
+        files = glob.glob("./resources/music/*.mp3")
         for f in files:
             self.load_song(Song(f))
 
