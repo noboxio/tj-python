@@ -30,6 +30,7 @@ from multiprocessing import Process
 import sys
 import threading
 import re
+import configparser
 
 
 class TJBot(threading.Thread):
@@ -158,7 +159,10 @@ def main():
 
     main method
     """
-    tj = TJBot("ENTER_NAME_HERE")
+    settings = configparser.ConfigParser()
+    settings.read("settings")
+
+    tj = TJBot(settings.get("tj", "name"))
     tj.start()
 
     console_input(tj)
