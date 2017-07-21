@@ -10,7 +10,7 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 
 settings = configparser.ConfigParser()
-settings.read("settings")
+settings.read("../settings")
 
 
 name = settings.get("tj", "name")
