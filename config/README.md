@@ -1,9 +1,5 @@
 ***INSTRUCTIONS***
 
-
-!TODO: Brian needs to work on this list
-
-
 **THINGS THAT HAVE TO BE DONE**
 
 1. Configure the Raspberry Pi
@@ -29,8 +25,10 @@
       * Then reboot the pi `sudo reboot` or use the menu
 
 2. Update the dist list: `sudo apt-get update`
+
 3. Upgrade the apps `sudo apt-get upgrade`
     * Tell is yes if it asks if you want to continue `Y`
+
 4. Upgrade the distro `sudo apt-get dist-upgrade`
 
 5. Install vim `sudo apt-get install vim`
@@ -39,10 +37,13 @@
 
 6. REMOVE Install screen `sudo apt-get install screen`
 
-7. Install Python 3 and set as default TODO add code
+7. Install Python 3 and set as default
+    * Already default
+
 8. Install system dependencies they are found on the pyaudio page(Below)
-    * `Sudo apt-get install portaudio19-dev`
-    * `Sudo apt-get install python-all-dev`
+    * `sudo apt-get install portaudio19-dev`
+    * `sudo apt-get install python-all-dev`
+    * `sudo apt-get install python3-dev`
     * `sudo apt-get install python3-pyaudio python-pyaudio`
 
 9. Install system dependencies for the watson-developer-cloud
@@ -53,21 +54,23 @@
 10. Install the adafruit stuff  
     * `sudo pip3 install RPi.GPIO`
 
-Install this for the LED controls
+11. Install this for the LED controls
     * `git clone https://github.com/jgarff/rpi_ws281x.git`
     * `cd rpi_ws281x`
     * `scons`
     * `cd python`
     * `sudo python3 setup.py install`
 
-11. you need to copy the asound.conf file to ??? TODO: FINISH THIS
+12. You need to copy the asound.conf file to /etc/
+    * `cp asound.rc /etc/asound.rc`
 
-12. you need to copy the asound file to ~/.asound
+13. You need to copy the asound file to ~/.asound
     * `cp .asoundrc ~/.asoundrc`
 
-13. Install the python libraries required.
-    * sudo easy_install3 websocket-client
-    * sudo pip3 install colour
+14. Install VLC to play the music
+    * `sudo apt-get install vlc`
 
-  sudo apt-get install vlc
-  sudo pip3 install python-vlc
+14. Install the python libraries required.
+    * `sudo easy_install3 websocket-client`
+    * `sudo pip3 install colour`
+    * `sudo pip3 install python-vlc`
