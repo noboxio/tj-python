@@ -37,3 +37,4 @@ sudo pip3 install python-vlc
 echo install other stuff
 sudo pip install requests
 sudo pip install codecs
+sudo pip install configparser
