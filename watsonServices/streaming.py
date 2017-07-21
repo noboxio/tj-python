@@ -65,10 +65,10 @@ class StreamingSTT:
             username,
             password,
             timeout=5,
-            chunk=8192,
+            chunk=512,
             formatt=pyaudio.paInt16,
             rate=44100,
-            threshold=1000,
+            threshold=1500,
             silence_limit=2
     ):
         self.userpass = ":".join((username, password))
@@ -116,7 +116,8 @@ class StreamingSTT:
 
 
                 break
-            if math.sqrt(abs(audioop.avg(data, 2))) > self.THRESHOLD:
+            #print(math.sqrt(abs(audioop.avg(data, 2))) )
+            if math.sqrt(abs(audioop.avg(data, 4))) > self.THRESHOLD:
                 silence_chunks = 0
             else:
                 silence_chunks += 1
