@@ -13,16 +13,30 @@ settings = configparser.ConfigParser()
 settings.read("settings")
 
 
+name = settings.get("tj", "name")
+soundsLike = settings.get("tj", "soundslike")
+
+
+
+
+f = open("corpus-orig.txt",'r')
+filedata = f.read()
+f.close()
+
+newdata = filedata.replace("NAME",name)
+
+f = open("corpus.txt",'w')
+f.write(newdata)
+f.close()
+
 ##########################################################################
 # Add Bluemix credentials here
 # See following instructions for getting your own credentials:
 # https://www.ibm.com/watson/developercloud/doc/common/getting-started-credentials.html
 ##########################################################################
-username = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-password = "ZZZZZZZZZZZZ"
+username = settings.get("stt", "username")
+password = settings.get("stt", "password")
 headers = {'Content-Type' : "application/json"}
-name = settings.get("tj", "name")
-soundsLike = settings.get("tj", "soundslike")
 
 ##########################################################################
 # Step 1: Create a custom model
