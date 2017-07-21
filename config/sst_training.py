@@ -4,8 +4,14 @@ import json
 import codecs
 import sys, time
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
+import configparser
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+
+settings = configparser.ConfigParser()
+settings.read("settings")
+
 
 ##########################################################################
 # Add Bluemix credentials here
@@ -15,8 +21,8 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 username = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 password = "ZZZZZZZZZZZZ"
 headers = {'Content-Type' : "application/json"}
-name = ""
-soundsLike = ""
+name = settings.get("tj", "name")
+soundsLike = settings.get("tj", "soundslike")
 
 ##########################################################################
 # Step 1: Create a custom model
@@ -211,4 +217,3 @@ print "Get models returns: ", r.status_code
 print r.text
 
 sys.exit(0)
-
