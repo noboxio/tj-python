@@ -14,17 +14,11 @@ sudo easy_install3 --upgrade watson-developer-cloud
 echo Installing the RPi GPIO stuff
 sudo pip3 install RPi.GPIO
 
-echo Install the Adafruit Led software
-cd ~/
-git clone https://github.com/jgarff/rpi_ws281x.git
-cd rpi_ws281x
-scons
-cd python
-sudo python3 setup.py install
 
 echo Copying the confil files for asound
 cp asound.rc /etc/asound.rc
 cp .asoundrc ~/.asoundrc
+
 
 echo Install VLC
 sudo apt-get install vlc
@@ -38,3 +32,12 @@ echo install other stuff
 sudo pip install requests
 sudo pip install codecs
 sudo pip install configparser
+
+
+echo Install the Adafruit Led software
+cd ~/
+git clone https://github.com/jgarff/rpi_ws281x.git
+cd rpi_ws281x
+scons
+cd python
+sudo python3 setup.py install
