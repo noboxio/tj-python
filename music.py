@@ -344,7 +344,9 @@ class MusicManager(threading.Thread):
 
         Returns the list of songs in the playlist.
         """
-        return(self.playlist)
+        for i in self.playlist:
+            print(i)
+        #return(self.playlist)
 
     def say_playlist(self):
         if self.tj is not None:
