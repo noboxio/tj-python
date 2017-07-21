@@ -6,7 +6,7 @@ import sys, time
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 import configparser
 
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+#requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 
 settings = configparser.ConfigParser()
