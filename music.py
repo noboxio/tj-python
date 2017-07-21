@@ -155,14 +155,14 @@ class Song:
 
         Returns the file location
         """
-        return (self.name + " = " + self.file_location)
+        return (self.name)
 
     def __repr__(self):
         """Override the system repr method.
 
         Returns the file location
         """
-        return ("Song object: " + self.name + " = " + self.file_location)
+        return (self.name)
 
     def __eq__(self, other):
         # first check to see if the other is a song object or a string
@@ -264,7 +264,7 @@ class MusicManager(threading.Thread):
         # first stop playing if anything is playing
         self.stop()
         try:
-            index = self.playlist.index(str(song_name))
+            index = self.playlist.index(song_name)
             print("index: " + index)
         except ValueError:
             self._log("song not found")
