@@ -264,7 +264,7 @@ class MusicManager(threading.Thread):
         # first stop playing if anything is playing
         self.stop()
         try:
-            index = self.playlist.index(song_name)
+            index = self.playlist.index(str(song_name))
             print("index: " + index)
         except ValueError:
             self._log("song not found")
