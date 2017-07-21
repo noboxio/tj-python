@@ -33,3 +33,7 @@ echo Install the required Python3 Libraries
 sudo easy_install3 websocket-client
 sudo pip3 install colour
 sudo pip3 install python-vlc
+
+echo install other stuff
+sudo pip install requests
+sudo pip install codecs
