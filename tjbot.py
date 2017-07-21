@@ -18,11 +18,8 @@ Author: Brian McGinnis and Patrick McGinnis
 Date: 6/23/17
 """
 
-#import ledProcess
 import led
-#import servoProcess
 import servo
-#import musicProcess
 import music
 import time
 import subprocess
