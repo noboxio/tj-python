@@ -1,12 +1,11 @@
 
 # Differences in this library compared to others
   * We don't use conflicting pins.  We use software PWM for the servo and we use the SPI buss for the LED instead of using the 2 default PWM ports that are used for left and right audio.
-		* We use analog audio to a speaker and use a different microphone than the small micro one everyone uses.  It has significantly better pickup for the cost difference.
+  * We use analog audio to a speaker and use a different microphone than the small micro one everyone uses.  It has significantly better pickup for the cost difference.
 
 
 
-![alt text](https://github.com/noboxio/tj-python/blob/master/config/raspberryPiTJ.svg"Logo Title Text 1")
-
+[logo]: https://github.com/noboxio/tj-python/blob/master/config/raspberryPiTJ.svg "Logo Title Text 2"
 
 
     ***INSTRUCTIONS***
