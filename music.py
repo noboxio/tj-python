@@ -155,14 +155,14 @@ class Song:
 
         Returns the file location
         """
-        return (self.name + " = " + self.file_location)
+        return (self.name)
 
     def __repr__(self):
         """Override the system repr method.
 
         Returns the file location
         """
-        return ("Song object: " + self.name + " = " + self.file_location)
+        return (self.name)
 
     def __eq__(self, other):
         # first check to see if the other is a song object or a string
@@ -227,7 +227,7 @@ class MusicManager(threading.Thread):
         Loads the music from the resources/music folder
         """
         # TODO:change to pull all valid audio files for vlc?
-        files = glob.glob("./resources/music/*.wav")
+        files = glob.glob("./resources/music/*.mp3")
         for f in files:
             self.load_song(Song(f))
 
@@ -263,14 +263,26 @@ class MusicManager(threading.Thread):
         """
         # first stop playing if anything is playing
         self.stop()
-        try:
-            index = self.playlist.index(song_name)
-        except ValueError:
-            self._log("song not found")
+
+        for i in range(0, len(self.playlist)):
+            t = self.playlist[i]
+            if t.name == song_name:
+                t = self.playlist.pop(i)
+                self.load_song(t)
+                break
+
+
+
+
+#        try:
+#            index = self.playlist.index(song_name)
+#            print("index: " + index)
+#        except ValueError:
+#            self._log("song not found")
 
         #pop all of the songs in the list until the desired song is on top
-        for i in range(index):
-            self.load_song(self.playlist.pop())
+#        for i in range(index):
+#            self.load_song(self.playlist.pop())
 
         self.play_once = True
         self.play()
@@ -344,7 +356,9 @@ class MusicManager(threading.Thread):
 
         Returns the list of songs in the playlist.
         """
-        return(self.playlist)
+        for i in self.playlist:
+            print(i)
+        #return(self.playlist)
 
     def say_playlist(self):
         if self.tj is not None:

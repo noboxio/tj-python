@@ -53,7 +53,7 @@ class StreamingSTT:
     FINAL = []
 
     # timeout
-    TIMEOUT = 10
+    TIMEOUT = None
 
     # the actual websocket
     WS = None
@@ -64,29 +64,30 @@ class StreamingSTT:
             self,
             username,
             password,
-            timeout=10,
-            chunk=16384,
-            format=pyaudio.paInt16,
+            timeout=5,
+            chunk=512,
+            formatt=pyaudio.paInt16,
             rate=44100,
-            threshold=1000,
+            threshold=1500,
             silence_limit=2
     ):
         self.userpass = ":".join((username, password))
         self.TIMEOUT = timeout
         self.CHUNK = chunk
-        self.FORMAT = format
+        self.FORMATT = formatt
         self.RATE = rate
         self.THRESHOLD = threshold
         self.SILENCE_LIMIT = silence_limit
+        
 
-        self.p = pyaudio.PyAudio()
 
     # read_audio starts a stream and sends chunks to watson realtime.
     def read_audio(self, ws, timeout):
 
         # get a stream
-        p = self.p
-        stream = p.open(format=self.FORMAT,
+        p = pyaudio.PyAudio()
+        
+        stream = p.open(format=self.FORMATT,
                         channels=self.CHANNELS,
                         rate=self.RATE,
                         input=True,
@@ -100,22 +101,26 @@ class StreamingSTT:
 
         # silence_chunks is a counter variable counting number of chunks with
         # silence. Once this value surpasses the silence limit, stop recording.
-        silence_chunks = -10
+        silence_chunks = 0
         limit_chunks = self.SILENCE_LIMIT * self.RATE / self.CHUNK
 
         while True:
-
+            #print(str(silence_chunks) + " | " + str(limit_chunks))
             if silence_chunks >= limit_chunks:
                 break
 
-            data = stream.read(self.CHUNK)
-            ws.send(data, ABNF.OPCODE_BINARY)
+            data = stream.read(self.CHUNK, exception_on_overflow=False)
+            try:
+                ws.send(data, ABNF.OPCODE_BINARY)
+            except:
 
+
+                break
+            #print(math.sqrt(abs(audioop.avg(data, 2))) )
             if math.sqrt(abs(audioop.avg(data, 4))) > self.THRESHOLD:
-                silence_chunks = -10
+                silence_chunks = 0
             else:
                 silence_chunks += 1
-
 
         # Disconnect the audio stream
         stream.stop_stream()
@@ -127,12 +132,17 @@ class StreamingSTT:
         # Get the final response from watson (waiting for 1 second to get it
         # back)
         data = {"action": "stop"}
-        ws.send(json.dumps(data).encode('utf8'))
-        time.sleep(1)
 
-        # close the websocket
-        ws.close()
-        #p.terminate()
+        try:
+                ws.send(json.dumps(data).encode('utf8'))
+                time.sleep(1)
+                # close the websocket
+                ws.close()
+
+        except:
+                print("thing failed")
+        
+        p.terminate()
 
     # this callback is used when the connection is activated.
     # basically initializing and configuring settings and stuff
@@ -175,7 +185,7 @@ class StreamingSTT:
                 print(data['results'][0]['alternatives'][0]['transcript'])
 
     # print those errors
-    def on_error(self, error):
+    def on_error(self, error, idk):
         if __debug__:
             print(error)
 
@@ -236,3 +246,4 @@ if __name__ == "__main__":
         print(x)
         print("\n\n\n\nget_phrase can be called as much as you want.\n\n\n\n")
         s.get_phrase()
+

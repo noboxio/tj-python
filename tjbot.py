@@ -18,11 +18,8 @@ Author: Brian McGinnis and Patrick McGinnis
 Date: 6/23/17
 """
 
-#import ledProcess
 import led
-#import servoProcess
 import servo
-#import musicProcess
 import music
 import time
 import subprocess
@@ -30,6 +27,7 @@ from multiprocessing import Process
 import sys
 import threading
 import re
+import configparser
 
 
 class TJBot(threading.Thread):
@@ -122,7 +120,7 @@ class TJBot(threading.Thread):
             print("response: " + response + " | command: " + cmd)
             response = response.replace(cmd,'',1)
             cmd = cmd.replace("~",'',2)
-            #TODO execute the command passed.....
+
             if 'music.' in cmd:
                 print("sending command to music")
                 cmd = cmd.replace('music.','',1)
@@ -132,14 +130,11 @@ class TJBot(threading.Thread):
                 print("sending command to led")
                 cmd = cmd.replace('led.','',1)
                 self.led_manager.add_command(cmd)
-
-            if 'arm.' in cmd:
-                cmd = cmd.replace('arm.','',1)
+                
+            if 'servo.' in cmd:
+                cmd = cmd.replace('servo.','',1)
                 self.servo_manager.execute_command(cmd)
 
-            if 'say.' in cmd:
-                cmd = cmd.replace('say.','',1)
-                watsonServices.tts.speak(cmd)
         return(response)
 
 def console_input(tj):
@@ -152,7 +147,6 @@ def console_input(tj):
     while(True):
         try:
             text = input("COMMAND: ")
-            #tjbot.process_response(text)
             tj.process_response(text)
         except:
             print("console_input exception occured")
@@ -162,11 +156,13 @@ def main():
 
     main method
     """
-    tj = TJBot()
+    settings = configparser.ConfigParser()
+    settings.read("settings")
+
+    tj = TJBot(settings.get("tj", "name"))
     tj.start()
 
     console_input(tj)
-
 
 
 if __name__ == "__main__":

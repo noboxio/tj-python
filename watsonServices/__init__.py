@@ -11,25 +11,25 @@ import time
 
 # read in the config file
 #auth = configparser.RawConfigParser(allow_no_value=True)
-auth = configparser.ConfigParser()
-auth.read("./watsonServices/auth")
+settings = configparser.ConfigParser()
+settings.read("settings")
 
 stt = streaming.StreamingSTT(
     # replace with speech to text credentials username
-    auth.get("stt", "username"),
+    settings.get("stt", "username"),
     # replace with speech to text credentials password
-    auth.get("stt", "password"))
+    settings.get("stt", "password"))
 
 tts = textToSpeech.TextToSpeech(
     # replace with text to speech credentials username
-    auth.get("tts", "username"),
+    settings.get("tts", "username"),
     # replace with text to speech credentials password
-    auth.get("tts", "password"))
+    settings.get("tts", "password"))
 
 convo = conversation.Conversation(
     # replace with conversation credentials username
-    auth.get("conversation", "username"),
+    settings.get("conversation", "username"),
     # replace with conversation credentials password
-    auth.get("conversation", "password"),
+    settings.get("conversation", "password"),
     # replace with workspace ID.
-    auth.get("conversation","workspaceid"))
+    settings.get("conversation","workspaceid"))

@@ -1,0 +1,19 @@
+[DEFAULT]
+none = none
+
+[tj]
+name = ENTER_NAME
+soundslike = ENTER_SOUNDS_LIKE
+
+[stt]
+username = ENTER_USERNAME
+password = ENTER_PASSWORD
+
+[tts]
+username = ENTER_USERNAME
+password = ENTER_PASSWORD
+
+[conversation]
+username = ENTER_USERNAME
+password = ENTER_PASSWORD
+workspaceid = ENTER_WORKSPACE_ID
