@@ -8,6 +8,7 @@ import speech_recognition as sr
 
 
 
+
 class speechToText:
 
     def __init__(self, username, password):
@@ -22,7 +23,6 @@ class speechToText:
         with sr.Microphone() as source:
             print("Say something!")
             audio = r.listen(source)
-
 
         # recognize speech using IBM Speech to Text
         IBM_USERNAME = "INSERT IBM SPEECH TO TEXT USERNAME HERE"  # IBM Speech to Text usernames are strings of the form XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
