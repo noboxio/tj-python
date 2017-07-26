@@ -45,7 +45,8 @@
     * `sudo apt-get install portaudio19-dev`
     * `sudo apt-get install python-all-dev`
     * `sudo apt-get install python3-dev`
-    * `sudo apt-get install python3-pyaudio python-pyaudio`
+    * `sudo apt-get install python3-pyaudio python-pyaudio`  !!!THIS DOES NOT WORK ON THE RPi!!!
+    * TODO: Need to add the special code from the non standard dist that makes PyAudio work.   This may not be correct if the new library doesn't require it!
  9. Install system dependencies for the watson-developer-cloud
     * `sudo apt-get install libssl-dev libffi-dev build-essential scons swig`
     * `sudo easy_install3 --upgrade watson-developer-cloud`
@@ -74,7 +75,9 @@ Thinking about adding:
 
 
 
+
 # IBM's TJBot code rewritten in Python.
+*NEEDS TO BE UPDATED*
 
   * Things we want to be able to do in python:  
   * Speech to text, preferably more live than waiting for no sound to process, but whatever  
