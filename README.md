@@ -69,6 +69,8 @@
     * `sudo pip3 install colour`
     * `sudo pip3 install python-vlc`
 
+Thinking about adding:
+`sudo pip3 install SpeechRecognition`
 
 
 
