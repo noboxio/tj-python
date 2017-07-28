@@ -68,7 +68,7 @@ class StreamingSTT:
     ):
         self.userpass = ":".join((username, password))
         if logfile:
-            logging.basicConfig(filename='myapp.log', level=logging.INFO)
+            logging.basicConfig(filename='streaming.log', level=loglevel)
 
     # Set the timeout
     def set_timeout(self, timeout):
