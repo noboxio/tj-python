@@ -68,6 +68,8 @@ class StreamingSTT:
             channels=1,
             rate=48000,
             recsec=5
+            logfile=False
+            loglevel=logging.DEBUG
     ):
         self.userpass = ":".join((username, password))
         self.TIMEOUT = timeout
