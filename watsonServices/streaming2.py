@@ -70,7 +70,7 @@ class StreamingSTT:
         if logfile:
             logging.basicConfig(filename='streaming.log', level=loglevel)
         else:
-            logging.basicConfig(level=logging.INFO)
+            logging.basicConfig(level=loglevel)
 
     # Set the timeout
     def set_timeout(self, timeout):
