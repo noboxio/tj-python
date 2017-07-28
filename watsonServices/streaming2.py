@@ -81,6 +81,9 @@ class StreamingSTT:
     def set_timeout(self, timeout):
         self.TIMEOUT = timeout
 
+    def get_timeout(self):
+        return self.TIMEOUT
+
     # read_audio starts a stream and sends chunks to watson realtime.
     def read_audio(self, ws, timeout):
 
