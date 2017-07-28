@@ -208,8 +208,8 @@ class StreamingSTT:
 
             # are those results final?
             # BUG: if you don't talk, this field won't exist,
-            # and bad things will happen, and scary words will show up in the
-            # terminal.
+            # and bad things will happen, and scary words will
+            # show up in the terminal.
             if "final" in data["results"][0]:
                 self.FINAL.append(data)
 
