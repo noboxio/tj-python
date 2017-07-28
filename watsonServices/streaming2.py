@@ -28,6 +28,7 @@ import pyaudio
 import websocket
 import logging
 import math
+import audioop
 from websocket._abnf import ABNF
 
 
