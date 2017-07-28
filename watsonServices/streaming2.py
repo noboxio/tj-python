@@ -211,8 +211,8 @@ class StreamingSTT:
             # and bad things will happen, and scary things will show up in
             # the terminal.
             if len(data["results"]) != 0:
-            if data["results"][0]["final"]:
-                self.FINAL.append(data)
+                if data["results"][0]["final"]:
+                    self.FINAL.append(data)
 
             logging.debug(data['results'][0]['alternatives'][0]['transcript'])
 
