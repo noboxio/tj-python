@@ -49,7 +49,7 @@ class StreamingSTT:
 
     # The amount of silence allowed after a sound that passes the
     # threshold in seconds.
-    SILENCE_LIMIT = None
+    SILENCE_LIMIT = 2
 
     # timeout
     TIMEOUT = None
