@@ -112,7 +112,7 @@ class StreamingSTT:
     def get_rate(self):
         return self.RATE
 
-    # Set silencec thresholdd
+    # Set silencec threshold
     def set_threshold(self, threshold):
         self.THRESHOLD = threshold
 
