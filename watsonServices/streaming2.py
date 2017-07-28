@@ -88,7 +88,7 @@ class StreamingSTT:
     def get_timeout(self):
         return self.TIMEOUT
 
-    #
+    # Set the chunk size
     def set_chunk(self, chunk):
         self.CHUNK = chunk
 
