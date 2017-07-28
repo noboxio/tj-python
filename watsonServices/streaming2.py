@@ -124,7 +124,7 @@ class StreamingSTT:
     def set_silence_limit(self, silence_limit):
         self.SILENCE_LIMIT = silence_limit
 
-    #
+    # Get the silence limit (in seconds)
     def get_silence_limit(self):
         return SILENCE_LIMIT
 
