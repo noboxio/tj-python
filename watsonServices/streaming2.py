@@ -104,7 +104,8 @@ class StreamingSTT:
     def get_rate(self):
         return self.RATE
 
-    def
+    def set_threshold(self, threshold):
+        self.THRESHOLD = threshold
 
     # read_audio starts a stream and sends chunks to watson real-time.
     def read_audio(self, ws, timeout):
