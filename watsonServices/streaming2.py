@@ -92,7 +92,7 @@ class StreamingSTT:
     def set_chunk(self, chunk):
         self.CHUNK = chunk
 
-    #
+    # Get the chunk size
     def get_chunk(self, chunk):
         return self.CHUNK
 
