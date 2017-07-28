@@ -26,6 +26,7 @@ import threading
 import time
 import pyaudio
 import websocket
+import logging
 from websocket._abnf import ABNF
 
 
