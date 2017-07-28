@@ -120,7 +120,7 @@ class StreamingSTT:
     def get_threshold(self):
         return self.THRESHOLD
 
-    #
+    # Set silence limit (in seconds)
     def set_silence_limit(self, silence_limit):
         self.SILENCE_LIMIT = silence_limit
 
