@@ -78,6 +78,9 @@ class StreamingSTT:
         self.RATE = rate
         self.RECSEC = recsec
 
+    def set_timeout(self, timeout):
+        self.TIMEOUT = timeout
+
     # read_audio starts a stream and sends chunks to watson realtime.
     def read_audio(self, ws, timeout):
 
