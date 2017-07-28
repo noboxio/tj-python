@@ -275,4 +275,4 @@ if __name__ == "__main__":
         x = s.get_phrase()
         print(x)
         print("\n\n\n\nget_phrase can be called as much as you want.\n\n\n\n")
-s.get_phrase()
+        s.get_phrase()
