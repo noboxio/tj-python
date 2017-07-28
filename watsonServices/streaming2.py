@@ -100,7 +100,9 @@ class StreamingSTT:
     def get_rate(self):
         return self.RATE
 
-    # read_audio starts a stream and sends chunks to watson realtime.
+
+
+    # read_audio starts a stream and sends chunks to watson real-time.
     def read_audio(self, ws, timeout):
 
         # get a stream
