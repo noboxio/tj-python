@@ -100,6 +100,7 @@ class StreamingSTT:
     def set_format(self, paformat):
         self.FORMAT = paformat
 
+    #
     def get_format(self):
         return self.FORMAT
 
