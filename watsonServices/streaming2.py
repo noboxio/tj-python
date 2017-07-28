@@ -207,6 +207,8 @@ class StreamingSTT:
         if "results" in data:
 
             # are those results final?
+            # BUG: if you don't talk, this field won't exist,
+            # and bad things will happen.
             if data["results"][0]["final"]:
                 self.FINAL.append(data)
 
