@@ -108,12 +108,28 @@ class StreamingSTT:
         if __debug__:
             print("Starting recording")
 
-        # magic happens here. Read a chunk from the stream, encode it as ABNF,
-        # and put it through the websocket.
-        # TODO: implement auto stop not hard-coded time
-        for i in range(0, int(self.RATE / self.CHUNK * self.RECSEC)):
-            data = stream.read(self.CHUNK)
-            ws.send(data, ABNF.OPCODE_BINARY)
+         # silence_chunks is a counter variable counting number of chunks with
+        # silence. Once this value surpasses the silence limit, stop recording.
+        silence_chunks = 0
+        limit_chunks = self.SILENCE_LIMIT * self.RATE / self.CHUNK
+
+        while True:
+            #print(str(silence_chunks) + " | " + str(limit_chunks))
+            if silence_chunks >= limit_chunks:
+                break
+
+            data = stream.read(self.CHUNK, exception_on_overflow=False)
+            try:
+                ws.send(data, ABNF.OPCODE_BINARY)
+            except:
+
+
+                break
+            #print(math.sqrt(abs(audioop.avg(data, 2))) )
+            if math.sqrt(abs(audioop.avg(data, 4))) > self.THRESHOLD:
+                silence_chunks = 0
+            else:
+                silence_chunks += 1
 
         # Disconnect the audio stream
         stream.stop_stream()
