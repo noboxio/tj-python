@@ -78,7 +78,7 @@ class StreamingSTT:
         self.FORMAT = paformat
         self.RATE = rate
         self.THRESHOLD = threshold
-        
+        self.SILENCE_LIMIT = silence_limit
 
     def set_timeout(self, timeout):
         self.TIMEOUT = timeout
