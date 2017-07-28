@@ -94,6 +94,11 @@ class StreamingSTT:
     def get_format(self):
         return self.FORMAT
 
+    def set_rate(self, rate):
+        self.RATE = rate
+
+    def get_rate(self):
+        return self.RATE
 
     # read_audio starts a stream and sends chunks to watson realtime.
     def read_audio(self, ws, timeout):
