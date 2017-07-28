@@ -45,7 +45,7 @@ class StreamingSTT:
 
     # Threshold: above this point it is considered user speech, below this
     # point it is considered silence.
-    THRESHOLD = None
+    THRESHOLD = 1500
 
     # The amount of silence allowed after a sound that passes the
     # threshold in seconds.
