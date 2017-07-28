@@ -6,3 +6,6 @@ lib/*
 local/*
 share/*
 .DS_Store
+.swp
+.swo
+watsonServices/autocommit.sh
