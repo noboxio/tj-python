@@ -96,7 +96,7 @@ class StreamingSTT:
     def get_chunk(self, chunk):
         return self.CHUNK
 
-    #
+    # Set pyaudio format
     def set_format(self, paformat):
         self.FORMAT = paformat
 
