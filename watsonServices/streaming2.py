@@ -133,10 +133,9 @@ class StreamingSTT:
                         input=True,
                         frames_per_buffer=self.CHUNK)
 
-        if __debug__:
-            print("Starting recording")
+        print("Starting recording")
 
-         # silence_chunks is a counter variable counting number of chunks with
+        # silence_chunks is a counter variable counting number of chunks with
         # silence. Once this value surpasses the silence limit, stop recording.
         silence_chunks = 0
         limit_chunks = self.SILENCE_LIMIT * self.RATE / self.CHUNK
