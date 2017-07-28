@@ -162,8 +162,7 @@ class StreamingSTT:
         stream.stop_stream()
         stream.close()
 
-        if __debug__:
-            print("Done recording")
+        logging.debug("Done recording")
 
         # Get the final response from watson (waiting for 1 second to get it
         # back)
