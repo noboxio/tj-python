@@ -80,9 +80,11 @@ class StreamingSTT:
         self.THRESHOLD = threshold
         self.SILENCE_LIMIT = silence_limit
 
+    #
     def set_timeout(self, timeout):
         self.TIMEOUT = timeout
 
+    #
     def get_timeout(self):
         return self.TIMEOUT
 
