@@ -100,7 +100,7 @@ class StreamingSTT:
     def set_format(self, paformat):
         self.FORMAT = paformat
 
-    #
+    # Get pyaudio format
     def get_format(self):
         return self.FORMAT
 
