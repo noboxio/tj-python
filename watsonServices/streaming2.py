@@ -27,6 +27,7 @@ import time
 import pyaudio
 import websocket
 import logging
+import math
 from websocket._abnf import ABNF
 
 
