@@ -210,8 +210,8 @@ class StreamingSTT:
             # BUG: if you don't talk, this field won't exist,
             # and bad things will happen.
             if "final" in 0 in "results" in data:
-            if data["results"][0]["final"]:
-                self.FINAL.append(data)
+                if data["results"][0]["final"]:
+                    self.FINAL.append(data)
 
             logging.debug(data['results'][0]['alternatives'][0]['transcript'])
 
