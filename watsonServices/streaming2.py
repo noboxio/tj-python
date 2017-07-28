@@ -67,12 +67,6 @@ class StreamingSTT:
             loglevel=logging.DEBUG
     ):
         self.userpass = ":".join((username, password))
-        self.TIMEOUT = timeout
-        self.CHUNK = chunk
-        self.FORMAT = paformat
-        self.RATE = rate
-        self.THRESHOLD = threshold
-        self.SILENCE_LIMIT = silence_limit
 
     # Set the timeout
     def set_timeout(self, timeout):
