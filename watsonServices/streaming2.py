@@ -104,7 +104,7 @@ class StreamingSTT:
     def get_format(self):
         return self.FORMAT
 
-    #
+    # Set frame rate
     def set_rate(self, rate):
         self.RATE = rate
 
