@@ -65,8 +65,7 @@ class StreamingSTT:
             chunk=16384,
             paformat=pyaudio.paInt16,
             rate=48000,
-            recsec=5
-            logfile=False
+            logfile=False,
             loglevel=logging.DEBUG
     ):
         self.userpass = ":".join((username, password))
@@ -74,7 +73,6 @@ class StreamingSTT:
         self.CHUNK = chunk
         self.FORMAT = paformat
         self.RATE = rate
-        self.RECSEC = recsec
 
     def set_timeout(self, timeout):
         self.TIMEOUT = timeout
@@ -100,7 +98,7 @@ class StreamingSTT:
     def get_rate(self):
         return self.RATE
 
-
+    def
 
     # read_audio starts a stream and sends chunks to watson real-time.
     def read_audio(self, ws, timeout):
