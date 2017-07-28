@@ -116,7 +116,7 @@ class StreamingSTT:
     def set_threshold(self, threshold):
         self.THRESHOLD = threshold
 
-    #
+    # Get silence threshold
     def get_threshold(self):
         return self.THRESHOLD
 
