@@ -84,7 +84,7 @@ class StreamingSTT:
     def set_timeout(self, timeout):
         self.TIMEOUT = timeout
 
-    #
+    # Get the timeout
     def get_timeout(self):
         return self.TIMEOUT
 
