@@ -92,9 +92,11 @@ class StreamingSTT:
     def set_chunk(self, chunk):
         self.CHUNK = chunk
 
+    #
     def get_chunk(self, chunk):
         return self.CHUNK
 
+    #
     def set_format(self, paformat):
         self.FORMAT = paformat
 
