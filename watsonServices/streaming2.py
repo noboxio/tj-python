@@ -108,9 +108,11 @@ class StreamingSTT:
     def set_rate(self, rate):
         self.RATE = rate
 
+    #
     def get_rate(self):
         return self.RATE
 
+    #
     def set_threshold(self, threshold):
         self.THRESHOLD = threshold
 
