@@ -60,7 +60,7 @@ class StreamingSTT:
     # Constructor.  Basically all you really need is StreamingSTT(<username>,
     # <password>)
     # Don't worry about setting all of these the first time.
-    # I recomment you use th
+    # I recommend you use the 
     def __init__(
             self,
             username,
