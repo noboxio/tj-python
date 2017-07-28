@@ -116,12 +116,15 @@ class StreamingSTT:
     def set_threshold(self, threshold):
         self.THRESHOLD = threshold
 
+    #
     def get_threshold(self):
         return self.THRESHOLD
 
+    #
     def set_silence_limit(self, silence_limit):
         self.SILENCE_LIMIT = silence_limit
 
+    #
     def get_silence_limit(self):
         return SILENCE_LIMIT
 
