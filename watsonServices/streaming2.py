@@ -40,12 +40,6 @@ class StreamingSTT:
     CHANNELS = 1
     RATE = 48000
 
-    # RECSEC: how long to record speech.
-    # TODO: integrate some speechrecorder.py code over here and get rid of this
-    # variable.  Currently, recording stops after 5 seconds no matter if the
-    # user is still talking or has stopped for a long time.
-    RECSEC = 5
-
     # large array of json data returned by watson.
     FINAL = []
 
