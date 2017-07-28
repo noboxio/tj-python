@@ -43,6 +43,14 @@ class StreamingSTT:
     # large array of json data returned by watson.
     FINAL = []
 
+    # Threshold: above this point it is considered user speech, below this
+    # point it is considered silence.
+    THRESHOLD = None
+
+    # The amount of silence allowed after a sound that passes the
+    # threshold in seconds.
+    SILENCE_LIMIT = None
+
     # timeout
     TIMEOUT = None
 
@@ -59,6 +67,8 @@ class StreamingSTT:
             chunk=16384,
             paformat=pyaudio.paInt16,
             rate=48000,
+            threshold=1500,
+            silence_limit=2,
             logfile=False,
             loglevel=logging.DEBUG
     ):
@@ -67,6 +77,8 @@ class StreamingSTT:
         self.CHUNK = chunk
         self.FORMAT = paformat
         self.RATE = rate
+        self.THRESHOLD = threshold
+        
 
     def set_timeout(self, timeout):
         self.TIMEOUT = timeout
