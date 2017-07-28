@@ -108,7 +108,7 @@ class StreamingSTT:
     def set_rate(self, rate):
         self.RATE = rate
 
-    #
+    # Get frame rate
     def get_rate(self):
         return self.RATE
 
