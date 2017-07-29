@@ -59,9 +59,6 @@ class StreamingSTT:
     # the actual websocket
     WS = None
 
-    # The I-got-a-message-event
-    EVENT = None
-
     # Constructor.  Basically all you really need is StreamingSTT(<username>,
     # <password>)
     def __init__(
@@ -80,7 +77,6 @@ class StreamingSTT:
         self.p = pyaudio.PyAudio()
         if auto_threshold:
             auto_threshold()
-        self.EVENT = threading.Event()
 
     # Set the timeout
     def set_timeout(self, timeout):
@@ -215,12 +211,7 @@ class StreamingSTT:
         # back)
         data = {"action": "stop"}
         ws.send(json.dumps(data).encode('utf8'))
-
-        # According to Python docs:
-        # This method returns the internal flag on exit, so it will always
-        # return True except if a timeout is given and the operation times out.
-        sleep = e.wait(self.TIMEOUT)
-        e.clear()
+        time.sleep(1)
 
         # close the websocket
         ws.close()
@@ -264,7 +255,6 @@ class StreamingSTT:
                 # are those results final?
                 if data["results"][0]["final"]:
                     self.FINAL.append(data)
-                    e.set()
 
                 logging.debug(data['results'][0]['alternatives'][0]['transcript'])
 
