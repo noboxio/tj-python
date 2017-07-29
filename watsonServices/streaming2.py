@@ -183,7 +183,8 @@ class StreamingSTT:
         limit_chunks = self.SILENCE_LIMIT * self.RATE / self.CHUNK
 
         while True:
-            #print(str(silence_chunks) + " | " + str(limit_chunks))
+
+            logging.debug(str(silence_chunks) + " | " + str(limit_chunks))
             if silence_chunks >= limit_chunks:
                 break
 
