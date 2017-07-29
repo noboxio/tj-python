@@ -266,6 +266,9 @@ class StreamingSTT:
             else:
                 logging.warn("No speech recognized.")
 
+        # Unblock read_audio. we are done here.
+        self.FINAL_RECEIVED.set()
+
     # print those errors
     def on_error(self, error, idk):
         logging.error(error)
