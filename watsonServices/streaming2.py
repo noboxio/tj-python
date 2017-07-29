@@ -257,6 +257,9 @@ class StreamingSTT:
 
                 logging.debug(data['results'][0]['alternatives'][0]['transcript'])
 
+            else:
+                logging.warn("No speech recognized.")
+
     # print those errors
     def on_error(self, error):
         logging.error(error)
