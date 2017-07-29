@@ -54,7 +54,7 @@ class StreamingSTT:
     SILENCE_LIMIT = 2
 
     # timeout
-    TIMEOUT = 5
+    TIMEOUT = 10
 
     # the actual websocket
     WS = None
