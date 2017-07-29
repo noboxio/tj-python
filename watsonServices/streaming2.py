@@ -134,7 +134,7 @@ class StreamingSTT:
     #   averaged together.
     #   padding: how far above the average intensity the voice should be.
     # TODO: tweak
-    def auto_threshold(self, samples=50, avgintensities=0.2, padding=100):
+    def auto_threshold(self, samples=50, avgintensities=0.2, padding=10):
         logging.info("Auto-thresholding...")
 
         # start a stream
