@@ -69,6 +69,9 @@ class StreamingSTT:
     # how many minutes to sleep after.
     SLEEP_AFTER = 2
 
+    # the robot name
+    ROBOT_NAME
+
     # Constructor.  Basically all you really need is StreamingSTT(<username>,
     # <password>)
     def __init__(
