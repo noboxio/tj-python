@@ -190,6 +190,7 @@ class StreamingSTT:
                 # back)
                 data = {"action": "stop"}
                 logging.info("Phrase terminated, waiting for response")
+                
                 # BUG(S): LOTS OF ERRORS ON THIS LINE AAAAAAAAAAHHHHHHHHHHHHHHHH
                 ws.send(json.dumps(data).encode('utf8'))
                 time.sleep(1)
