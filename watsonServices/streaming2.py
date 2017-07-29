@@ -143,6 +143,7 @@ class StreamingSTT:
 
     # get sleep-after minutes
     def get_sleep_after(self):
+        return self.SLEEP_AFTER
 
     # automatically calculate threshold.
     # Parameters:
