@@ -67,15 +67,15 @@ class StreamingSTT:
             password,
             logfile=False,
             loglevel=logging.DEBUG
-            autothreshold=False
+            auto_threshold=False
     ):
         self.userpass = ":".join((username, password))
         if logfile:
             logging.basicConfig(filename='streaming.log', level=loglevel)
         else:
             logging.basicConfig(level=loglevel)
-
         self.p = pyaudio.PyAudio()
+        if auto_threshold
 
     # Set the timeout
     def set_timeout(self, timeout):
