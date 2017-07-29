@@ -256,7 +256,7 @@ class StreamingSTT:
                 if data["results"][0]["final"]:
                     self.FINAL.append(data)
 
-            logging.debug(data['results'][0]['alternatives'][0]['transcript'])
+                logging.debug(data['results'][0]['alternatives'][0]['transcript'])
 
     # print those errors
     def on_error(self, error):
