@@ -139,10 +139,10 @@ class StreamingSTT:
 
         # start a stream
         stream = self.p.open(format=self.FORMAT,
-                        channels=self.CHANNELS,
-                        rate=self.RATE,
-                        input=True,
-                        frames_per_buffer=self.CHUNK)
+                             channels=self.CHANNELS,
+                             rate=self.RATE,
+                             input=True,
+                             frames_per_buffer=self.CHUNK)
 
         # Get a number of chunks from the stream as determined by the samples
         # arg, and calculate intensity.
