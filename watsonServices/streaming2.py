@@ -317,7 +317,7 @@ class StreamingSTT:
                                          on_close=self.on_close)
         self.WS.on_open = self.on_open
 
-        self.SLEEP_TIMER = threading.Timer(120, sleep)
+        self.SLEEP_TIMER = threading.Timer(self.SLEEP_AFTER * 60, sleep)
 
         # run the websocket
         self.WS.run_forever(
