@@ -59,6 +59,7 @@ class StreamingSTT:
     # the actual websocket
     WS = None
 
+    # The I-got-a-message-event
     EVENT = None
 
     # Constructor.  Basically all you really need is StreamingSTT(<username>,
