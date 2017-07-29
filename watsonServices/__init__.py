@@ -4,7 +4,7 @@ from .textToSpeech import *
 from .conversation import *
 from .speechToText import *
 
-from .streaming import *
+from .streaming2 import *
 import time
 
 
@@ -14,7 +14,7 @@ import time
 settings = configparser.ConfigParser()
 settings.read("settings")
 
-stt = streaming.StreamingSTT(
+stt = streaming2.StreamingSTT(
     # replace with speech to text credentials username
     settings.get("stt", "username"),
     # replace with speech to text credentials password
