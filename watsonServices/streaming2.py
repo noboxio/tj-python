@@ -67,6 +67,7 @@ class StreamingSTT:
             password,
             logfile=False,
             loglevel=logging.DEBUG
+            autothreshold=False
     ):
         self.userpass = ":".join((username, password))
         if logfile:
