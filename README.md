@@ -4,7 +4,7 @@ A branch devoted to the development of `streaming.py`.
 
 ## To-do list
 - [ ] Stabilize the whole thing
-- [ ] Use logger instead of `if __debug__`
+- [X] Use logger instead of `if __debug__`
 - [ ] Figure out Speaker Diarization
 - [ ] Figure out Customization
 - [ ] Figure out Tone Analysis
