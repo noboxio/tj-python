@@ -210,6 +210,8 @@ class StreamingSTT:
         # Get the final response from watson (waiting for 1 second to get it
         # back)
         data = {"action": "stop"}
+
+        # BUG(S): LOTS OF ERRORS ON THIS LINE AAAAAAAAAAHHHHHHHHHHHHHHHH
         ws.send(json.dumps(data).encode('utf8'))
         time.sleep(1)
 
