@@ -262,6 +262,7 @@ class StreamingSTT:
 
                 # are those results final?
                 if data["results"][0]["final"]:
+                    e.set()
                     self.FINAL.append(data)
 
                 logging.debug(data['results'][0]['alternatives'][0]['transcript'])
