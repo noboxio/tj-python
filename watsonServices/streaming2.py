@@ -80,6 +80,7 @@ class StreamingSTT:
         self.p = pyaudio.PyAudio()
         if auto_threshold:
             auto_threshold()
+        self.EVENT = threading.Event()
 
     # Set the timeout
     def set_timeout(self, timeout):
