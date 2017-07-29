@@ -190,6 +190,9 @@ class StreamingSTT:
                 # back)
                 data = {"action": "stop"}
                 logging.info("Phrase terminated, waiting for response")
+                # BUG(S): LOTS OF ERRORS ON THIS LINE AAAAAAAAAAHHHHHHHHHHHHHHHH
+                ws.send(json.dumps(data).encode('utf8'))
+                time.sleep(1)
 
             data = stream.read(self.CHUNK, exception_on_overflow=False)
             try:
@@ -212,9 +215,7 @@ class StreamingSTT:
 
 
 
-        # BUG(S): LOTS OF ERRORS ON THIS LINE AAAAAAAAAAHHHHHHHHHHHHHHHH
-        ws.send(json.dumps(data).encode('utf8'))
-        time.sleep(1)
+
 
         # close the websocket
         ws.close()
