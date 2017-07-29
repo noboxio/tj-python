@@ -305,7 +305,7 @@ class StreamingSTT:
     def on_close(self, ws):
         logging.info("Websocket closed.")
 
-    def sleep(self):
+    def sleep(self, wake):
         self.IS_SLEEPING = True
 
     # get_phrase should not be confused with read_audio.
