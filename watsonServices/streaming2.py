@@ -197,7 +197,7 @@ class StreamingSTT:
 
                 # BUG(S): LOTS OF ERRORS ON THIS LINE AAAAAAAAAAHHHHHHHHHHHHHHHH
                 ws.send(json.dumps(data).encode('utf8'))
-                time.sleep(1)
+                self.FINAL_RECEIVED.wait()
 
             data = stream.read(self.CHUNK, exception_on_overflow=False)
             try:
