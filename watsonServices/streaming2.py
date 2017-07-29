@@ -163,8 +163,8 @@ class StreamingSTT:
                 silence_chunks += 1
 
         # Disconnect the audio stream
-        #stream.stop_stream()
-        #stream.close()
+        stream.stop_stream()
+        stream.close()
 
         logging.debug("Done recording")
 
