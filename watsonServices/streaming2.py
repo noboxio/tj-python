@@ -74,6 +74,8 @@ class StreamingSTT:
         else:
             logging.basicConfig(level=loglevel)
 
+        self.p = pyaudio.PyAudio()
+
     # Set the timeout
     def set_timeout(self, timeout):
         self.TIMEOUT = timeout
@@ -126,7 +128,9 @@ class StreamingSTT:
     def read_audio(self, ws, timeout):
 
         # get a stream
-        p = pyaudio.PyAudio()
+        #p = pyaudio.PyAudio()
+        p = self.p
+
         stream = p.open(format=self.FORMAT,
                         channels=self.CHANNELS,
                         rate=self.RATE,
@@ -159,8 +163,8 @@ class StreamingSTT:
                 silence_chunks += 1
 
         # Disconnect the audio stream
-        stream.stop_stream()
-        stream.close()
+        #stream.stop_stream()
+        #stream.close()
 
         logging.debug("Done recording")
 
@@ -172,7 +176,7 @@ class StreamingSTT:
 
         # close the websocket
         ws.close()
-        p.terminate()
+        #p.terminate()
 
     # this callback is used when the connection is activated.
     # basically initializing and configuring settings and stuff
