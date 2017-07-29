@@ -215,7 +215,7 @@ class StreamingSTT:
         # back)
         data = {"action": "stop"}
         ws.send(json.dumps(data).encode('utf8'))
-        e.wait(self.TIMEOUT)
+        sleep = e.wait(self.TIMEOUT)
 
         # close the websocket
         ws.close()
