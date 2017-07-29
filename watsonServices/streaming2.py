@@ -70,7 +70,7 @@ class StreamingSTT:
     SLEEP_AFTER = 2
 
     # the robot name
-    ROBOT_NAME
+    ROBOT_NAME = None
 
     # Constructor.  Basically all you really need is StreamingSTT(<username>,
     # <password>)
