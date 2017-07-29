@@ -320,5 +320,5 @@ if __name__ == "__main__":
         x = s.get_phrase()
         print(x)
         print("\n\n\n\nget_phrase can be called as much as you want.\n\n\n\n")
-        s.set_threshold(9000)
+        s.set_threshold(800)
         s.get_phrase()
