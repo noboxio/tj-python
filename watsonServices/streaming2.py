@@ -60,7 +60,7 @@ class StreamingSTT:
     WS = None
 
     # Unblock the read_audio thread once watson final return is recieved
-    
+    FINAL_RECEIVED = None
 
     # Constructor.  Basically all you really need is StreamingSTT(<username>,
     # <password>)
