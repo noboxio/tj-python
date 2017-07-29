@@ -75,6 +75,7 @@ class StreamingSTT:
             self,
             username,
             password,
+            robot_name,
             logfile=False,
             loglevel=logging.DEBUG,
             auto_threshold=False
