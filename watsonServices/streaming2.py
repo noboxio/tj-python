@@ -133,7 +133,7 @@ class StreamingSTT:
     #   averaged. By default, the top 20% of the highest intensities will be
     #   averaged together.
     #   padding: how far above the average intensity the voice should be.
-    # TODO: check to make sure this is actually beneficial to performance.
+    # TODO: tweak
     def auto_threshold(self, samples=50, avgintensities=0.2, padding=100):
         logging.debug("Auto-thresholding...")
 
