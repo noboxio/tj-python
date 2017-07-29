@@ -213,6 +213,11 @@ class MusicManager(threading.Thread):
 
     def run(self):
         """Run method to be run as thread."""
+        # Check to see if the song list is empty, if so then load the music
+        # from the music resources folder
+        if len(self.playlist) <= 0:
+            self.load_music()
+
         while(True):
             time.sleep(1)
             if self.now_playing is not None:

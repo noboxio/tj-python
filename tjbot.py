@@ -64,7 +64,7 @@ class TJBot(threading.Thread):
         # to control the music
         self.music_manager = music.MusicManager(self)
         # load the music that is in the resources/music folder
-        self.music_manager.load_music()
+        #self.music_manager.load_music()
 
         # Create the regex object to pull out the data
         self.regex = re.compile(r"~\S+~") #selects just the first word
@@ -130,7 +130,7 @@ class TJBot(threading.Thread):
                 print("sending command to led")
                 cmd = cmd.replace('led.','',1)
                 self.led_manager.add_command(cmd)
-                
+
             if 'servo.' in cmd:
                 cmd = cmd.replace('servo.','',1)
                 self.servo_manager.execute_command(cmd)
