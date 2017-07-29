@@ -81,6 +81,8 @@ class StreamingSTT:
         if auto_threshold:
             auto_threshold()
 
+        self.FINAL_RECEIVED = threading.Event()
+
     # Set the timeout
     def set_timeout(self, timeout):
         self.TIMEOUT = timeout
