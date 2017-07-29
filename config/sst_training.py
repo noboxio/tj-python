@@ -17,8 +17,6 @@ name = settings.get("tj", "name")
 soundsLike = settings.get("tj", "soundslike")
 
 
-
-
 f = open("corpus-orig.txt",'r')
 filedata = f.read()
 f.close()

@@ -1,60 +1,35 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-"""
+# NOTE: this example requires PyAudio because it uses the Microphone class
+# NOTE: The was taken from the example file inside of the SpeechRecognition git
 
-                  888
-                  888
-                  888
-88888b.   .d88b.  88888b.   .d88b.  888  888
-888 "88b d88""88b 888 "88b d88""88b `Y8bd8P'
-888  888 888  888 888  888 888  888   X88K
-888  888 Y88..88P 888 d88P Y88..88P .d8""8b.     http://nobox.io
-888  888  "Y88P"  88888P"   "Y88P"  888  888     http://github.com/noboxio
+import speech_recognition as sr
 
 
-Author: Brian McGinnis
-Date: June 17 2017
-Rev: 1.0
-"""
-
-import json
-import os.path
-from os.path import join, dirname
-from watson_developer_cloud import SpeechToTextV1
 
 
-class SpeechToText:
-    """SpeechToText is an objct that converts Speech to text using watson."""
+
+class speechToText:
 
     def __init__(self, username, password):
-        """Create SpeechToText object.
+        self.username = username
+        self.password = password
 
-        username -- username for watson sst service
-        password -- password for watson sst service
-        """
-        self.user = username
-        self.pas = password
-        self.speech_to_text = SpeechToTextV1(
-            username=username,
-            password=password,
-            x_watson_learning_opt_out=True)
+        # obtain audio from the microphone
 
-    def transcribe(self):
-        """Transcribe an existing file.
 
-        streams the speech.wav temporary file to watson and gets a string back
-        and then returns the collected json results
-        """
-        if not os.path.exists('resources/speech.wav'):
-            return 'I hear nothing'
-        with open(join(dirname(__file__), 'resources/speech.wav'), 'rb') as audio_file:
-            jsn = json.loads(
-                json.dumps(
-                    self.speech_to_text.recognize(
-                        audio_file,
-                        content_type='audio/wav',
-                        timestamps=True,
-                        word_confidence=True),
-                    indent=2))
-            # print(jsn['results'][0]['alternatives'][0]['transcript'])
-            return jsn['results'][0]['alternatives'][0]['transcript']
+    def listen(self):
+        r = sr.Recognizer()
+        with sr.Microphone() as source:
+            print("Say something!")
+            audio = r.listen(source)
+
+        # recognize speech using IBM Speech to Text
+        IBM_USERNAME = "INSERT IBM SPEECH TO TEXT USERNAME HERE"  # IBM Speech to Text usernames are strings of the form XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+        IBM_PASSWORD = "INSERT IBM SPEECH TO TEXT PASSWORD HERE"  # IBM Speech to Text passwords are mixed-case alphanumeric strings
+        try:
+            print("IBM Speech to Text thinks you said " + r.recognize_ibm(audio, username=IBM_USERNAME, password=IBM_PASSWORD))
+        except sr.UnknownValueError:
+            print("IBM Speech to Text could not understand audio")
+        except sr.RequestError as e:
+            print("Could not request results from IBM Speech to Text service; {0}".format(e))
