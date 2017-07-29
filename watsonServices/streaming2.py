@@ -129,9 +129,8 @@ class StreamingSTT:
 
         # get a stream
         #p = pyaudio.PyAudio()
-        p = self.p
 
-        stream = p.open(format=self.FORMAT,
+        stream = self.p.open(format=self.FORMAT,
                         channels=self.CHANNELS,
                         rate=self.RATE,
                         input=True,
