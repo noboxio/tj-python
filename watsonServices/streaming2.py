@@ -137,6 +137,7 @@ class StreamingSTT:
     def get_silence_limit(self):
         return SILENCE_LIMIT
 
+    # Set sleep minutes
     def set_sleep_after(self, sleep_after):
         self.SLEEP_AFTER = sleep_after
 
