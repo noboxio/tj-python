@@ -248,7 +248,7 @@ class StreamingSTT:
         # are there results?
         if "results" in data:
 
-            # no, seriously
+            # no, seriously?
             if len(data["results"]) != 0:
 
                 # are those results final?
