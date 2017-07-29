@@ -266,7 +266,7 @@ class StreamingSTT:
 
     # inform coder dude that websocket was closed
     def on_close(self, ws):
-        logging.debug("Websocket closed.")
+        logging.info("Websocket closed.")
 
     # get_phrase should not be confused with read_audio.
     # get_phrase should always be called instead of read_audio.
