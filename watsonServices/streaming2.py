@@ -215,6 +215,10 @@ class StreamingSTT:
         # back)
         data = {"action": "stop"}
         ws.send(json.dumps(data).encode('utf8'))
+
+        # According to Python docs:
+        # This method returns the internal flag on exit, so it will always
+        # return True except if a timeout is given and the operation times out.
         sleep = e.wait(self.TIMEOUT)
 
         # close the websocket
