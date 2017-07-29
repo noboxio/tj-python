@@ -166,8 +166,7 @@ class StreamingSTT:
         stream.close()
         p.terminate()
 
-        if __debug__:
-            print("Threshold: ", self.THRESHOLD)
+        logging.debug("Threshold: ", self.THRESHOLD)
 
     # read_audio starts a stream and sends chunks to watson real-time.
     def read_audio(self, ws, timeout):
