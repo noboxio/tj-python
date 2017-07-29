@@ -170,10 +170,10 @@ class StreamingSTT:
         #p = pyaudio.PyAudio()
 
         stream = self.p.open(format=self.FORMAT,
-                        channels=self.CHANNELS,
-                        rate=self.RATE,
-                        input=True,
-                        frames_per_buffer=self.CHUNK)
+                             channels=self.CHANNELS,
+                             rate=self.RATE,
+                             input=True,
+                             frames_per_buffer=self.CHUNK)
 
         logging.debug("Starting recording")
 
