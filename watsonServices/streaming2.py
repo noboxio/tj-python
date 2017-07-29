@@ -186,7 +186,10 @@ class StreamingSTT:
 
             logging.debug(str(silence_chunks) + " | " + str(limit_chunks))
             if silence_chunks >= limit_chunks:
-                break
+                # Get the final response from watson (waiting for 1 second to get it
+                # back)
+                data = {"action": "stop"}
+                logging.info("Phrase terminated, waiting for response")
 
             data = stream.read(self.CHUNK, exception_on_overflow=False)
             try:
@@ -207,9 +210,7 @@ class StreamingSTT:
 
         logging.info("Done recording")
 
-        # Get the final response from watson (waiting for 1 second to get it
-        # back)
-        data = {"action": "stop"}
+
 
         # BUG(S): LOTS OF ERRORS ON THIS LINE AAAAAAAAAAHHHHHHHHHHHHHHHH
         ws.send(json.dumps(data).encode('utf8'))
