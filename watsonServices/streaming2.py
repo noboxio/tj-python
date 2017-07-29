@@ -62,6 +62,8 @@ class StreamingSTT:
     # Unblock the read_audio thread once watson final return is recieved
     FINAL_RECEIVED = None
 
+    # Sleep timer.
+
     # Constructor.  Basically all you really need is StreamingSTT(<username>,
     # <password>)
     def __init__(
