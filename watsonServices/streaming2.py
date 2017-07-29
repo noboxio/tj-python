@@ -63,6 +63,7 @@ class StreamingSTT:
     FINAL_RECEIVED = None
 
     # Sleep timer.
+    SLEEP_TIMER = None
 
     # Constructor.  Basically all you really need is StreamingSTT(<username>,
     # <password>)
