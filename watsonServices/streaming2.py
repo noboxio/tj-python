@@ -286,7 +286,7 @@ class StreamingSTT:
                     if self.IS_SLEEPING:
                         if ROBOT_NAME in data['results'][0]['alternatives'][0]['transcript']:
                             self.sleep(True)
-                            self.FINAL.append(data)
+                    self.FINAL.append(data)
 
                 logging.debug(data['results'][0]['alternatives'][0]['transcript'])
 
