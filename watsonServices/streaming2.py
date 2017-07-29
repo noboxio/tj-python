@@ -308,7 +308,8 @@ class StreamingSTT:
     # wake == True, wake the robot up.
     # wake == False, put robot to sleep mode.
     def sleep(self, wake):
-        self.IS_SLEEPING = True
+        if wake:
+            self.IS_SLEEPING = False
 
     # get_phrase should not be confused with read_audio.
     # get_phrase should always be called instead of read_audio.
