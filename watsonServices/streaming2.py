@@ -135,7 +135,7 @@ class StreamingSTT:
     #   padding: how far above the average intensity the voice should be.
     # TODO: tweak
     def auto_threshold(self, samples=50, avgintensities=0.2, padding=100):
-        logging.debug("Auto-thresholding...")
+        logging.info("Auto-thresholding...")
 
         # start a stream
         stream = self.p.open(format=self.FORMAT,
@@ -161,7 +161,7 @@ class StreamingSTT:
         stream.close()
         p.terminate()
 
-        logging.debug("Threshold: {}".format(self.THRESHOLD))
+        logging.info("Threshold: {}".format(self.THRESHOLD))
 
     # read_audio starts a stream and sends chunks to watson real-time.
     def read_audio(self, ws, timeout):
@@ -175,7 +175,7 @@ class StreamingSTT:
                              input=True,
                              frames_per_buffer=self.CHUNK)
 
-        logging.debug("Starting recording")
+        logging.info("Starting recording")
 
         # silence_chunks is a counter variable counting number of chunks with
         # silence. Once this value surpasses the silence limit, stop recording.
