@@ -248,11 +248,10 @@ class StreamingSTT:
         # are there results?
         if "results" in data:
 
-            # are those results final?
-            # BUG: if you don't talk, this field won't exist in the dict,
-            # and bad things will happen, and scary things will show up in
-            # the terminal.
+            # no, seriously
             if len(data["results"]) != 0:
+
+                # are those results final?
                 if data["results"][0]["final"]:
                     self.FINAL.append(data)
 
