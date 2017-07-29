@@ -279,7 +279,7 @@ class StreamingSTT:
 
                     # Are we sleeping though
                     if self.IS_SLEEPING:
-                        
+                        pass
                     self.FINAL.append(data)
 
                 logging.debug(data['results'][0]['alternatives'][0]['transcript'])
