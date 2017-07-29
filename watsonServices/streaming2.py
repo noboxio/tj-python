@@ -59,6 +59,9 @@ class StreamingSTT:
     # the actual websocket
     WS = None
 
+    # Unblock the read_audio thread once watson final return is recieved
+    
+
     # Constructor.  Basically all you really need is StreamingSTT(<username>,
     # <password>)
     def __init__(
