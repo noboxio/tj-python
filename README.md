@@ -1,4 +1,20 @@
 
+# SteamingHotPie
+A branch devoted to the development of `streaming.py`.
+
+## To-do list
+- [ ] Stabilize the whole thing
+- [ ] Use logger instead of `if __debug__`
+- [ ] Figure out Speaker Diarization
+- [ ] Figure out Customization
+- [ ] Figure out Tone Analysis
+- [ ] Get rid of that `time.sleep` thing
+- [ ] Keep the websocket open and listening the whole time.
+
+Once these are all done this branch will be merged back into master and deleted.
+For now, the master branch will be using the SpeechRecognition package from pypi.
+
+
 # Differences in this library compared to others
   * We don't use conflicting pins.  We use software PWM for the servo and we use the SPI buss for the LED instead of using the 2 default PWM ports that are used for left and right audio.
   * We use analog audio to a speaker and use a different microphone than the small micro one everyone uses.  It has significantly better pickup for the cost difference.
@@ -109,7 +125,6 @@ Thinking about adding:
   Function rainbow(speed) → does stuff with colors  
   Function strobe(speed) → strobes white at the speed  
   Function stop()  
-
 
 ## Music  
   Function playmusic(sound file)  
