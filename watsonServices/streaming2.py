@@ -75,7 +75,8 @@ class StreamingSTT:
         else:
             logging.basicConfig(level=loglevel)
         self.p = pyaudio.PyAudio()
-        if auto_threshold
+        if auto_threshold:
+            auto_threshold()
 
     # Set the timeout
     def set_timeout(self, timeout):
