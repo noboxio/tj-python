@@ -262,7 +262,7 @@ class StreamingSTT:
                 logging.warn("No speech recognized.")
 
     # print those errors
-    def on_error(self, error):
+    def on_error(self, error, idk):
         logging.error(error)
 
     # inform coder dude that websocket was closed
