@@ -137,14 +137,12 @@ class StreamingSTT:
     def auto_threshold(self, samples=50, avgintensities=0.2, padding=100):
         logging.debug("Auto-thresholding...")
 
-        # start a stream.
-        p = pyaudio.PyAudio()
-        stream = p.open(
-            format=self.FORMAT,
-            channels=self.CHANNELS,
-            rate=self.RATE,
-            input=True,
-            frames_per_buffer=self.CHUNK)
+        # start a stream
+        stream = self.p.open(format=self.FORMAT,
+                        channels=self.CHANNELS,
+                        rate=self.RATE,
+                        input=True,
+                        frames_per_buffer=self.CHUNK)
 
         # Get a number of chunks from the stream as determined by the samples
         # arg, and calculate intensity.
