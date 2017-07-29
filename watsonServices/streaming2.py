@@ -276,6 +276,9 @@ class StreamingSTT:
 
                 # are those results final?
                 if data["results"][0]["final"]:
+
+                    # Are we sleeping though
+                    if self.IS_SLEEPING:
                     self.FINAL.append(data)
 
                 logging.debug(data['results'][0]['alternatives'][0]['transcript'])
