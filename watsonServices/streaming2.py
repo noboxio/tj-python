@@ -137,6 +137,9 @@ class StreamingSTT:
     def get_silence_limit(self):
         return SILENCE_LIMIT
 
+    def set_sleep_after(self, sleep_after):
+        self.SLEEP_AFTER = sleep_after
+
     # automatically calculate threshold.
     # Parameters:
     #   samples: number of chunks to read from microphone.
