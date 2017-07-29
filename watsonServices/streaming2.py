@@ -138,10 +138,6 @@ class StreamingSTT:
         logging.debug("Auto-thresholding...")
 
         # start a stream.
-        #
-        # TODO: if we are to wrap these functions in a class, maybe
-        # we should just create one pyaudio stream and open it in the
-        # constructor.
         p = pyaudio.PyAudio()
         stream = p.open(
             format=self.FORMAT,
