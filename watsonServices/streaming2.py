@@ -64,6 +64,8 @@ class StreamingSTT:
 
     # Sleep timer.
     SLEEP_TIMER = None
+    # Current level of sleepiness
+    IS_SLEEPING = False
 
     # Constructor.  Basically all you really need is StreamingSTT(<username>,
     # <password>)
