@@ -59,6 +59,8 @@ class StreamingSTT:
     # the actual websocket
     WS = None
 
+    EVENT = None
+
     # Constructor.  Basically all you really need is StreamingSTT(<username>,
     # <password>)
     def __init__(
