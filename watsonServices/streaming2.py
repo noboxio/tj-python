@@ -354,12 +354,12 @@ class StreamingSTT:
 
 if __name__ == "__main__":
 
-    if len(sys.argv) < 3:
-        print("Usage: " + sys.argv[0] + " <username> <password> [<timeout>]")
+    if len(sys.argv) < 4:
+        print("Usage: " + sys.argv[0] + " <username> <password> <robot name> [<timeout>]")
         sys.exit()
 
-    elif len(sys.argv) > 3:
-        StreamingSTT(sys.argv[1], sys.argv[2], sys.argv[3]).get_phrase()
+    elif len(sys.argv) > 4:
+        StreamingSTT(sys.argv[1], sys.argv[2], sys.argv[3], sys.ar).get_phrase()
 
     else:
         s = StreamingSTT(sys.argv[1], sys.argv[2])
