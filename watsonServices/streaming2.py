@@ -359,7 +359,7 @@ if __name__ == "__main__":
         sys.exit()
 
     elif len(sys.argv) > 4:
-        StreamingSTT(sys.argv[1], sys.argv[2], sys.argv[3], sys.ar).get_phrase()
+        StreamingSTT(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]).get_phrase()
 
     else:
         s = StreamingSTT(sys.argv[1], sys.argv[2])
