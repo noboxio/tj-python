@@ -251,7 +251,6 @@ class StreamingSTT:
         if wake:
             logging.info("Exiting sleep state.")
             self.IS_SLEEPING = False
-
         else:
             self.IS_SLEEPING = True
 
