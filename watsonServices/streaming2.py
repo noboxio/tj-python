@@ -244,6 +244,15 @@ class StreamingSTT:
         ws.close()
         #p.terminate()
 
+    # sleep controller for the robot.
+    # wake == True, wake the robot up.
+    # wake == False, put robot to sleep mode.
+    def sleep(self, wake):
+        if wake:
+            self.IS_SLEEPING = False
+        else:
+            self.IS_SLEEPING = True
+
     # this callback is used when the connection is activated.
     # basically initializing and configuring settings and stuff
     def on_open(self, ws):
@@ -304,14 +313,7 @@ class StreamingSTT:
     def on_close(self, ws):
         logging.info("Websocket closed.")
 
-    # sleep controller for the robot.
-    # wake == True, wake the robot up.
-    # wake == False, put robot to sleep mode.
-    def sleep(self, wake):
-        if wake:
-            self.IS_SLEEPING = False
-        else:
-            self.IS_SLEEPING = True
+
 
     # get_phrase should not be confused with read_audio.
     # get_phrase should always be called instead of read_audio.
