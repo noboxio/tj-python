@@ -252,7 +252,7 @@ class StreamingSTT:
             logging.info("Exiting sleep state.")
             self.IS_SLEEPING = False
         else:
-            
+            logging.info()
             self.IS_SLEEPING = True
 
     # this callback is used when the connection is activated.
