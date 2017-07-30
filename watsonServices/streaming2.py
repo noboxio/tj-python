@@ -249,8 +249,9 @@ class StreamingSTT:
     # wake == False, put robot to sleep mode.
     def sleep(self, wake):
         if wake:
-            self.IS_SLEEPING = False
             logging.info("Exiting sleep state.")
+            self.IS_SLEEPING = False
+
         else:
             self.IS_SLEEPING = True
 
