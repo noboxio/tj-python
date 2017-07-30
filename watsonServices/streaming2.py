@@ -225,7 +225,7 @@ class StreamingSTT:
             try:
                 ws.send(data, ABNF.OPCODE_BINARY)
             except:
-                
+                continue
             #print(math.sqrt(abs(audioop.avg(data, 2))) )
             if math.sqrt(abs(audioop.avg(data, 4))) > self.THRESHOLD:
                 silence_chunks = 0
