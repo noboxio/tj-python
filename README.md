@@ -31,6 +31,8 @@ the second line s.get_phrase:
 6. Cleans up the pyaudio, stream, and the websocket
 7. Returns the transcribed text.
 
+Then,it is `print`ed out to the terminal.
+
 ***
 ___
 ***
