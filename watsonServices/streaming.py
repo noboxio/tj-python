@@ -78,7 +78,7 @@ class StreamingSTT:
         self.RATE = rate
         self.THRESHOLD = threshold
         self.SILENCE_LIMIT = silence_limit
-        
+
 
 
     # read_audio starts a stream and sends chunks to watson realtime.
@@ -86,7 +86,7 @@ class StreamingSTT:
 
         # get a stream
         p = pyaudio.PyAudio()
-        
+
         stream = p.open(format=self.FORMATT,
                         channels=self.CHANNELS,
                         rate=self.RATE,
@@ -141,7 +141,7 @@ class StreamingSTT:
 
         except:
                 print("thing failed")
-        
+
         p.terminate()
 
     # this callback is used when the connection is activated.
@@ -246,4 +246,3 @@ if __name__ == "__main__":
         print(x)
         print("\n\n\n\nget_phrase can be called as much as you want.\n\n\n\n")
         s.get_phrase()
-
