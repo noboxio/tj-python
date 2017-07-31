@@ -20,9 +20,14 @@ The current syntax of using streaming.py is as follows:
 s = streaming.StreamingSTT("username", "password")
 print(s.get_phrase())
 ```
+<br>
+Where on the first line a new instance of StreamingSTT is initialized.
+Because of the especially lengthy constructor, you can have up to nine
+arguments, which looks very unclean.
+<br>
+`s=streaming.StreamingSTT("username","password",timeout=5,chunk=512,formatt=pyaudio.paInt16,rate=44100,threshold=1500,silence_limit=2)`
 
-Where on the first line a new instance of StreamingSTT is initialized, and on
-the second line s.get_phrase:
+On the second line s.get_phrase:
 1. Creates a websocket
 2. Starts a websocket
 3. Creates a new pyaudio instance
@@ -32,6 +37,9 @@ the second line s.get_phrase:
 7. Returns the transcribed text.
 
 Then,it is `print`ed out to the terminal.
+
+Clearly this is very inefficient, as each time get_phrase is called, all of
+those steps are performed.  This is very slow especially on the Raspberry Pi.
 
 ***
 ___
