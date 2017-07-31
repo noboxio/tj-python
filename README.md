@@ -44,6 +44,7 @@ Then,it is `print`ed out to the terminal.
 Clearly this is very inefficient, as each time get_phrase is called, all of
 those steps are performed.  This is very slow especially on the Raspberry Pi.
 
+`streaming2.py` (eventually to replace `streaming.py`) is a major rewrite of `streaming.py` with many improvements to syntax and functionality.
 ___
 [Begin main repository README]
 ___
