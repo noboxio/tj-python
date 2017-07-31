@@ -9,7 +9,7 @@ For now, the master branch will be using the SpeechRecognition package from pypi
 The current syntax of using streaming.py is as follows:
 
 ```python
-s = streaming.StreamingSTT("username", "password")
+s = streaming.StreamingSTT("username", "password", threshold=1500, rate=48000)
 print(s.get_phrase())
 ```
 
@@ -44,6 +44,22 @@ the sleeping state.  See the [to-do list](#to-do-list) for extra changes.
 
 Here is what the new syntax is expected to look like (not final):
 
+```python
+
+# callbacks
+def on_sleep():
+    # do something with LED
+    pass
+
+def on_wake():
+    # do something with LED
+    pass
+
+
+s = streaming.StreamingSTT("username", "password")
+s.set_threshold(1500)
+s.set_rate(48000)
+```
 
 ### To-do list
 - [ ] Stabilize the whole thing
