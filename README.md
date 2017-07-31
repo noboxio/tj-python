@@ -20,13 +20,10 @@ The current syntax of using streaming.py is as follows:
 s = streaming.StreamingSTT("username", "password")
 print(s.get_phrase())
 ```
-<br>
 Where on the first line a new instance of StreamingSTT is initialized.
 Because of the especially lengthy constructor, you can have up to nine
 arguments, which looks very unclean.
-<br>
-`s=streaming.StreamingSTT("username","password",timeout=5,chunk=512,formatt=pyaudio.paInt16,rate=44100,threshold=1500,silence_limit=2)`
-<br>
+```s=streaming.StreamingSTT("username","password",timeout=5,chunk=512,formatt=pyaudio.paInt16,rate=44100,threshold=1500,silence_limit=2)```
 
 On the second line s.get_phrase:
 1. Creates a websocket
