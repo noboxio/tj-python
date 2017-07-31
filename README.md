@@ -45,8 +45,13 @@ the sleeping state.  See the [to-do list](#to-do-list) for extra changes.
 Here is what the new syntax is expected to look like (not final):
 
 ```python
+# create & configure a new instance of StreamingSTT
+s = streaming.StreamingSTT("username", "password")
+s.set_threshold(1500)
+s.set_rate(48000)
 
-# callbacks
+# define callbacks
+
 def on_sleep():
     # do something with LED
     pass
@@ -55,11 +60,32 @@ def on_wake():
     # do something with LED
     pass
 
+def userspeech(x):
+    if "goodbye" in x:
+        s.clean_up()
+    # plug string x into conversation.py or something
+    pass
 
-s = streaming.StreamingSTT("username", "password")
-s.set_threshold(1500)
-s.set_rate(48000)
+# add callbacks to the StreamingSTT instance, initialize other things
+# like pyaudio
+s.init(
+    on_sleep = on_sleep,
+    on_wake = on_wake,
+    on_phrase = userspeech
+)
+
+# Start the websocket and stream. Start listening.
+s.run_forever()
 ```
+
+Based on this example code, a few changes are evident:
+- The long constructor has been broken down into more verbose, easy-to-read getters and setters.
+- Instead of returning a single value from a function like `get_phrase` in `streaming.py`, multiple values can be "returned" at different times through callbacks.
+- The syntax is a bit more sophisticated, but it is more flexible and can be easily hooked up with other classes like `conversation` and `textToSpeech`.
+
+There are also more changes (in the [to-do list](#to-do-list)) that are not
+going to be visible in the syntax but will improve accuracy or efficiency of
+the STT.
 
 ### To-do list
 - [ ] Stabilize the whole thing
