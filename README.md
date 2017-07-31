@@ -21,6 +21,16 @@ s = streaming.StreamingSTT("username", "password")
 print(s.get_phrase())
 ```
 
+Where on the first line a new instance of StreamingSTT is initialized, and on
+the second line s.get_phrase:
+1. Creates a websocket
+2. Starts a websocket
+3. Creates a new pyaudio instance
+4. Starts a stream
+5. Reads a single phrase
+6. Cleans up the pyaudio, stream, and the websocket
+7. Returns the transcribed text.
+
 ***
 ___
 ***
