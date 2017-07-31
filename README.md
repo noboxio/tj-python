@@ -49,7 +49,7 @@ those steps are performed.  This is very slow especially on the Raspberry Pi.
 The new syntax will be based off callbacks.  The websocket and stream will
 remain open, and all phrases spoken by the user will be returned through a
 callback.  There will also be callbacks for when the robot enters/exits
-the sleeping state.  See the [to-do list](#To-do list) for extra changes.
+the sleeping state.  See the [to-do list](#to-do-list) for extra changes.
 ___
 [Begin main repository README]
 ___
