@@ -17,7 +17,8 @@ For now, the master branch will be using the SpeechRecognition package from pypi
 ## 7/31/17 Updates
 The current syntax of using streaming.py is as follows:
 ```python
-
+s = streaming.StreamingSTT("username", "password")
+print(s.get_phrase())
 ```
 
 ***
