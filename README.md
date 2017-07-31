@@ -2,15 +2,6 @@
 # SteamingHotPie
 A branch devoted to the development of `streaming.py`.
 
-## To-do list
-- [ ] Stabilize the whole thing
-- [X] Use logger instead of `if __debug__`
-- [ ] Figure out Speaker Diarization
-- [ ] Figure out Customization
-- [ ] Figure out Tone Analysis
-- [ ] Get rid of that `time.sleep` thing
-- [ ] Keep the websocket open and listening the whole time.
-
 Once these are all done this branch will be merged back into master and deleted.
 For now, the master branch will be using the SpeechRecognition package from pypi.
 
@@ -50,6 +41,20 @@ The new syntax will be based off callbacks.  The websocket and stream will
 remain open, and all phrases spoken by the user will be returned through a
 callback.  There will also be callbacks for when the robot enters/exits
 the sleeping state.  See the [to-do list](#to-do-list) for extra changes.
+
+Here is what the new syntax is expected to look like (not final):
+
+
+### To-do list
+- [ ] Stabilize the whole thing
+- [X] Use logger instead of `if __debug__`
+- [ ] Figure out Speaker Diarization
+- [ ] Figure out Customization
+- [ ] Figure out Tone Analysis
+- [ ] Get rid of that `time.sleep` thing
+- [ ] Keep the websocket open and listening the whole time.
+
+
 ___
 [Begin main repository README]
 ___
