@@ -59,26 +59,12 @@ class StreamingSTT:
     # the actual websocket
     WS = None
 
-    # Unblock the read_audio thread once watson final return is recieved
-    FINAL_RECEIVED = None
-
-    # Sleep timer.
-    SLEEP_TIMER = None
-    # Current level of sleepiness
-    IS_SLEEPING = False
-    # how many minutes to sleep after.
-    SLEEP_AFTER = 2
-
-    # the robot name
-    ROBOT_NAME = None
-
     # Constructor.  Basically all you really need is StreamingSTT(<username>,
     # <password>)
     def __init__(
             self,
             username,
             password,
-            robot_name,
             logfile=False,
             loglevel=logging.DEBUG,
             auto_threshold=False
@@ -91,8 +77,6 @@ class StreamingSTT:
         self.p = pyaudio.PyAudio()
         if auto_threshold:
             auto_threshold()
-        self.FINAL_RECEIVED = threading.Event()
-        self.ROBOT_NAME = robot_name
 
     # Set the timeout
     def set_timeout(self, timeout):
@@ -142,14 +126,6 @@ class StreamingSTT:
     def get_silence_limit(self):
         return SILENCE_LIMIT
 
-    # Set sleep-after minutes
-    def set_sleep_after(self, sleep_after):
-        self.SLEEP_AFTER = sleep_after
-
-    # get sleep-after minutes
-    def get_sleep_after(self):
-        return self.SLEEP_AFTER
-
     # automatically calculate threshold.
     # Parameters:
     #   samples: number of chunks to read from microphone.
@@ -158,7 +134,7 @@ class StreamingSTT:
     #   averaged together.
     #   padding: how far above the average intensity the voice should be.
     # TODO: tweak
-    def auto_threshold(self, samples=50, avgintensities=0.2, padding=10):
+    def auto_threshold(self, samples=50, avgintensities=0.2, padding=100):
         logging.info("Auto-thresholding...")
 
         # start a stream
@@ -210,22 +186,15 @@ class StreamingSTT:
 
             logging.debug(str(silence_chunks) + " | " + str(limit_chunks))
             if silence_chunks >= limit_chunks:
-                # Get the final response from watson (waiting for 1 second to get it
-                # back)
-                data = {"action": "stop"}
-                logging.info("Phrase terminated, waiting for response")
-
-                # BUG(S): LOTS OF ERRORS ON THIS LINE AAAAAAAAAAHHHHHHHHHHHHHHHH
-                ws.send(json.dumps(data).encode('utf8'))
-                self.FINAL_RECEIVED.wait(self.TIMEOUT)
-                silence_chunks = 0
-                self.FINAL_RECEIVED.clear()
+                break
 
             data = stream.read(self.CHUNK, exception_on_overflow=False)
             try:
                 ws.send(data, ABNF.OPCODE_BINARY)
             except:
-                continue
+
+
+                break
             #print(math.sqrt(abs(audioop.avg(data, 2))) )
             if math.sqrt(abs(audioop.avg(data, 4))) > self.THRESHOLD:
                 silence_chunks = 0
@@ -238,20 +207,17 @@ class StreamingSTT:
 
         logging.info("Done recording")
 
+        # Get the final response from watson (waiting for 1 second to get it
+        # back)
+        data = {"action": "stop"}
+
+        # BUG(S): LOTS OF ERRORS ON THIS LINE AAAAAAAAAAHHHHHHHHH
+        ws.send(json.dumps(data).encode('utf8'))
+        time.sleep(1)
+
         # close the websocket
         ws.close()
         #p.terminate()
-
-    # sleep controller for the robot.
-    # wake == True, wake the robot up.
-    # wake == False, put robot to sleep mode.
-    def sleep(self, wake):
-        if wake:
-            logging.info("Exiting sleep state.")
-            self.IS_SLEEPING = False
-        else:
-            logging.info("Entering sleep state.")
-            self.IS_SLEEPING = True
 
     # this callback is used when the connection is activated.
     # basically initializing and configuring settings and stuff
@@ -290,20 +256,12 @@ class StreamingSTT:
 
                 # are those results final?
                 if data["results"][0]["final"]:
-
-                    # Are we sleeping though
-                    if self.IS_SLEEPING:
-                        if ROBOT_NAME in data['results'][0]['alternatives'][0]['transcript']:
-                            self.sleep(True)
                     self.FINAL.append(data)
 
                 logging.debug(data['results'][0]['alternatives'][0]['transcript'])
 
             else:
                 logging.warn("No speech recognized.")
-
-        # Unblock read_audio. we are done here.
-        self.FINAL_RECEIVED.set()
 
     # print those errors
     def on_error(self, error, idk):
@@ -336,8 +294,6 @@ class StreamingSTT:
                                          on_close=self.on_close)
         self.WS.on_open = self.on_open
 
-        self.SLEEP_TIMER = threading.Timer(self.SLEEP_AFTER*60, self.sleep, False)
-
         # run the websocket
         self.WS.run_forever(
             sslopt={
@@ -354,15 +310,15 @@ class StreamingSTT:
 
 if __name__ == "__main__":
 
-    if len(sys.argv) < 4:
-        print("Usage: " + sys.argv[0] + " <username> <password> <robot name> [<timeout>]")
+    if len(sys.argv) < 3:
+        print("Usage: " + sys.argv[0] + " <username> <password> [<timeout>]")
         sys.exit()
 
-    elif len(sys.argv) > 4:
-        StreamingSTT(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]).get_phrase()
+    elif len(sys.argv) > 3:
+        StreamingSTT(sys.argv[1], sys.argv[2], sys.argv[3]).get_phrase()
 
     else:
-        s = StreamingSTT(sys.argv[1], sys.argv[2], sys.argv[3])
+        s = StreamingSTT(sys.argv[1], sys.argv[2])
         x = s.get_phrase()
         print(x)
         print("\n\n\n\nget_phrase can be called as much as you want.\n\n\n\n")
