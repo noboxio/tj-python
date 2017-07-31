@@ -15,9 +15,12 @@ Once these are all done this branch will be merged back into master and deleted.
 For now, the master branch will be using the SpeechRecognition package from pypi.
 
 ## 7/31/17 Updates
+The current syntax of using streaming.py is as follows:
 
 
+***
 ___
+***
 
 
 # Differences in this library compared to others
