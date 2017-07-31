@@ -45,6 +45,11 @@ Clearly this is very inefficient, as each time get_phrase is called, all of
 those steps are performed.  This is very slow especially on the Raspberry Pi.
 
 `streaming2.py` (eventually to replace `streaming.py`) is a major rewrite of `streaming.py` with many improvements to syntax and functionality.
+
+The new syntax will be based off callbacks.  The websocket and stream will
+remain open, and all phrases spoken by the user will be returned through a
+callback.  There will also be callbacks for when the robot enters/exits
+the sleeping state.
 ___
 [Begin main repository README]
 ___
