@@ -26,6 +26,7 @@ Because of the especially lengthy constructor, you can have up to nine
 arguments, which looks very unclean.
 <br>
 `s=streaming.StreamingSTT("username","password",timeout=5,chunk=512,formatt=pyaudio.paInt16,rate=44100,threshold=1500,silence_limit=2)`
+<br>
 
 On the second line s.get_phrase:
 1. Creates a websocket
