@@ -14,6 +14,11 @@ A branch devoted to the development of `streaming.py`.
 Once these are all done this branch will be merged back into master and deleted.
 For now, the master branch will be using the SpeechRecognition package from pypi.
 
+## 7/31/17 Updates
+
+
+___
+
 
 # Differences in this library compared to others
   * We don't use conflicting pins.  We use software PWM for the servo and we use the SPI buss for the LED instead of using the 2 default PWM ports that are used for left and right audio.
