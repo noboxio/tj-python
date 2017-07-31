@@ -44,9 +44,9 @@ Then,it is `print`ed out to the terminal.
 Clearly this is very inefficient, as each time get_phrase is called, all of
 those steps are performed.  This is very slow especially on the Raspberry Pi.
 
-***
 ___
-***
+[Begin main repository README]
+___
 
 
 # Differences in this library compared to others
