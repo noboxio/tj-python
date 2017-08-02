@@ -17,3 +17,6 @@ streaming.py: Continuous, streaming Speech-To-Text using websockets.
 Author: Brandon Gong
 Date: 7/31/17
 """
+
+def init(username, password):
+    pass
