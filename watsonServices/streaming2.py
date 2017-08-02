@@ -18,5 +18,6 @@ Author: Brandon Gong
 Date: 7/31/17
 """
 
+# TODO: If not using classes anymore this will replace constructor
 def init(username, password):
     pass
