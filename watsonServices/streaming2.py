@@ -18,5 +18,12 @@ Author: Brandon Gong
 Date: 7/31/17
 """
 
+# PATRICK: Consider splitting the below method into two separate methods:
+# The __init__ constructor, maybe taking only a username and a password as
+# params, which does nothing but create a new instance, and a separate
+# init() method, which creates the pyaudio instance and initializes a
+# websocket and stuff.
+# Or you can do all that in the constructor as well.  I don't really have
+# strong feelings about this.
 def init(username, password):
     pass
