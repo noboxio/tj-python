@@ -288,7 +288,7 @@ if __name__ == "__main__":
         StreamingSTT(sys.argv[1], sys.argv[2], sys.argv[3]).get_phrase()
 
     else:
-        s = StreamingSTT(sys.argv[1], sys.argv[2])
+        s = StreamingSTT(sys.argv[1], sys.argv[2], auto_threshold=True)
         x = s.get_phrase()
         print(x)
         print("\n\n\n\nget_phrase can be called as much as you want.\n\n\n\n")
