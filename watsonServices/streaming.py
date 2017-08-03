@@ -35,7 +35,7 @@ class StreamingSTT:
 
     # Mic config.
     CHUNK = None
-    FORMAT = None
+    FORMATT = None
     # It is necessary to keep CHANNELS at 1. Streaming STT does not handle the
     # extra data well and returns unwanted hums.
     CHANNELS = 1
@@ -102,7 +102,7 @@ class StreamingSTT:
         # constructor.
         p = pyaudio.PyAudio()
         stream = p.open(
-            format=self.FORMAT,
+            format=self.FORMATT,
             channels=self.CHANNELS,
             rate=self.RATE,
             input=True,
