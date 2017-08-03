@@ -62,7 +62,8 @@ class StreamingSTT:
             username,
             password,
             logfile=False,
-            loglevel=logging.DEBUG
+            loglevel=logging.DEBUG,
+            auto_threshold=False
     ):
         self.userpass = ":".join((username, password))
         if logfile:
@@ -71,6 +72,9 @@ class StreamingSTT:
             logging.basicConfig(level=loglevel)
 
         self.p = pyaudio.PyAudio()
+
+        if auto_threshold:
+            self.auto_threshold()
 
     # Set the timeout
     def set_timeout(self, timeout):
@@ -128,17 +132,9 @@ class StreamingSTT:
     #   averaged together.
     #   padding: how far above the average intensity the voice should be.
     # TODO: check to make sure this is actually beneficial to performance.
-    def auto_threshold(self, samples=50, avgintensities=0.2, padding=100):
-        if __debug__:
-            print("Auto-thresholding...")
-
-        # start a stream.
-        #
-        # TODO: if we are to wrap these functions in a class, maybe
-        # we should just create one pyaudio stream and open it in the
-        # constructor.
-        p = pyaudio.PyAudio()
-        stream = p.open(
+    def auto_threshold(self, samples=50, avgintensities=0.2, padding=10):
+        logging.debug("Auto-thresholding...")
+        stream = self.p.open(
             format=self.FORMAT,
             channels=self.CHANNELS,
             rate=self.RATE,
@@ -160,7 +156,6 @@ class StreamingSTT:
 
         # clean up
         stream.close()
-        p.terminate()
 
         logging.debug("Threshold: {}".format(self.THRESHOLD))
 
@@ -314,7 +309,7 @@ if __name__ == "__main__":
         StreamingSTT(sys.argv[1], sys.argv[2], sys.argv[3]).get_phrase()
 
     else:
-        s = StreamingSTT(sys.argv[1], sys.argv[2])
+        s = StreamingSTT(sys.argv[1], sys.argv[2], auto_threshold=True)
         x = s.get_phrase()
         print(x)
         print("\n\n\n\nget_phrase can be called as much as you want.\n\n\n\n")
