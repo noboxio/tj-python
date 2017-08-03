@@ -70,6 +70,7 @@ class StreamingSTT:
             rate=44100,
             threshold=1500,
             silence_limit=2
+            auto_threshold=False
     ):
         self.userpass = ":".join((username, password))
         self.TIMEOUT = timeout
@@ -78,6 +79,8 @@ class StreamingSTT:
         self.RATE = rate
         self.THRESHOLD = threshold
         self.SILENCE_LIMIT = silence_limit
+        if auto_threshold:
+            self.auto_threshold()
 
 
         # automatically calculate threshold.
@@ -88,7 +91,7 @@ class StreamingSTT:
         #   averaged together.
         #   padding: how far above the average intensity the voice should be.
         # TODO: check to make sure this is actually beneficial to performance.
-        def autoThreshold(self, samples=50, avgintensities=0.2, padding=100):
+        def auto_threshold(self, samples=50, avgintensities=0.2, padding=100):
             if __debug__:
                 print("Auto-thresholding...")
 
