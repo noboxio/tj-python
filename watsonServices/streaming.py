@@ -83,50 +83,50 @@ class StreamingSTT:
             self.auto_threshold()
 
 
-        # automatically calculate threshold.
-        # Parameters:
-        #   samples: number of chunks to read from microphone.
-        #   avgintensities: the top x% of the highest intensites read to be
-        #   averaged. By default, the top 20% of the highest intensities will be
-        #   averaged together.
-        #   padding: how far above the average intensity the voice should be.
-        # TODO: check to make sure this is actually beneficial to performance.
-        def auto_threshold(self, samples=50, avgintensities=0.2, padding=100):
-            if __debug__:
-                print("Auto-thresholding...")
+    # automatically calculate threshold.
+    # Parameters:
+    #   samples: number of chunks to read from microphone.
+    #   avgintensities: the top x% of the highest intensites read to be
+    #   averaged. By default, the top 20% of the highest intensities will be
+    #   averaged together.
+    #   padding: how far above the average intensity the voice should be.
+    # TODO: check to make sure this is actually beneficial to performance.
+    def auto_threshold(self, samples=50, avgintensities=0.2, padding=100):
+        if __debug__:
+            print("Auto-thresholding...")
 
-            # start a stream.
-            #
-            # TODO: if we are to wrap these functions in a class, maybe
-            # we should just create one pyaudio stream and open it in the
-            # constructor.
-            p = pyaudio.PyAudio()
-            stream = p.open(
-                format=self.FORMAT,
-                channels=self.CHANNELS,
-                rate=self.RATE,
-                input=True,
-                frames_per_buffer=self.CHUNK)
+        # start a stream.
+        #
+        # TODO: if we are to wrap these functions in a class, maybe
+        # we should just create one pyaudio stream and open it in the
+        # constructor.
+        p = pyaudio.PyAudio()
+        stream = p.open(
+            format=self.FORMAT,
+            channels=self.CHANNELS,
+            rate=self.RATE,
+            input=True,
+            frames_per_buffer=self.CHUNK)
 
-            # Get a number of chunks from the stream as determined by the samples
-            # arg, and calculate intensity.
-            # intensities = [math.sqrt(abs(audioop.avg(stream.read(CHUNK), 4)))
-            #               for x in range(samples)]
-            intensities = [math.sqrt(abs(audioop.avg(stream.read(self.CHUNK), 4)))]
+        # Get a number of chunks from the stream as determined by the samples
+        # arg, and calculate intensity.
+        # intensities = [math.sqrt(abs(audioop.avg(stream.read(CHUNK), 4)))
+        #               for x in range(samples)]
+        intensities = [math.sqrt(abs(audioop.avg(stream.read(self.CHUNK), 4)))]
 
-            # sort the list from greatest to least.
-            intensities = sorted(intensities, reverse=True)
+        # sort the list from greatest to least.
+        intensities = sorted(intensities, reverse=True)
 
-            # get the first avgintensities percent values from the list.
-            self.THRESHOLD = sum(intensities[:int(samples * avgintensities)]) / int(
-                samples * avgintensities) + padding
+        # get the first avgintensities percent values from the list.
+        self.THRESHOLD = sum(intensities[:int(samples * avgintensities)]) / int(
+            samples * avgintensities) + padding
 
-            # clean up
-            stream.close()
-            p.terminate()
+        # clean up
+        stream.close()
+        p.terminate()
 
-            if __debug__:
-                print("Threshold: ", self.THRESHOLD)
+        if __debug__:
+            print("Threshold: ", self.THRESHOLD)
 
     # read_audio starts a stream and sends chunks to watson realtime.
     def read_audio(self, ws, timeout):
