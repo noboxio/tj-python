@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 """
-
                   888
                   888
                   888
@@ -10,12 +9,9 @@
 888  888 888  888 888  888 888  888   X88K
 888  888 Y88..88P 888 d88P Y88..88P .d8""8b.     http://nobox.io
 888  888  "Y88P"  88888P"   "Y88P"  888  888     http://github.com/noboxio
-
-
-streaming.py: Continuous, streaming Speech-To-Text using websockets.
-
+streaming2.py: rewrite of streaming.py
 Author: Brandon Gong
-Date: 6/23/17
+Date: 7/28/17
 """
 
 import sys
@@ -26,34 +22,35 @@ import threading
 import time
 import pyaudio
 import websocket
-import audioop
+import logging
 import math
+import audioop
 from websocket._abnf import ABNF
 
 
 class StreamingSTT:
 
     # Mic config.
-    CHUNK = None
-    FORMATT = None
+    CHUNK = 16384
+    FORMAT = pyaudio.paInt16
     # It is necessary to keep CHANNELS at 1. Streaming STT does not handle the
     # extra data well and returns unwanted hums.
     CHANNELS = 1
-    RATE = None
-
-    # Threshold: above this point it is considered user speech, below this
-    # point it is considered silence.
-    THRESHOLD = None
-
-    # The amount of silence allowed after a sound that passes the
-    # threshold in seconds.
-    SILENCE_LIMIT = None
+    RATE = 48000
 
     # large array of json data returned by watson.
     FINAL = []
 
+    # Threshold: above this point it is considered user speech, below this
+    # point it is considered silence.
+    THRESHOLD = 1500
+
+    # The amount of silence allowed after a sound that passes the
+    # threshold in seconds.
+    SILENCE_LIMIT = 2
+
     # timeout
-    TIMEOUT = None
+    TIMEOUT = 10
 
     # the actual websocket
     WS = None
@@ -64,87 +61,78 @@ class StreamingSTT:
             self,
             username,
             password,
-            timeout=5,
-            chunk=512,
-            formatt=pyaudio.paInt16,
-            rate=44100,
-            threshold=1500,
-            silence_limit=2,
-            auto_threshold=False
+            logfile=False,
+            loglevel=logging.DEBUG
     ):
         self.userpass = ":".join((username, password))
+        if logfile:
+            logging.basicConfig(filename='streaming.log', level=loglevel)
+        else:
+            logging.basicConfig(level=loglevel)
+
+        self.p = pyaudio.PyAudio()
+
+    # Set the timeout
+    def set_timeout(self, timeout):
         self.TIMEOUT = timeout
+
+    # Get the timeout
+    def get_timeout(self):
+        return self.TIMEOUT
+
+    # Set the chunk size
+    def set_chunk(self, chunk):
         self.CHUNK = chunk
-        self.FORMATT = formatt
+
+    # Get the chunk size
+    def get_chunk(self, chunk):
+        return self.CHUNK
+
+    # Set pyaudio format
+    def set_format(self, paformat):
+        self.FORMAT = paformat
+
+    # Get pyaudio format
+    def get_format(self):
+        return self.FORMAT
+
+    # Set frame rate
+    def set_rate(self, rate):
         self.RATE = rate
+
+    # Get frame rate
+    def get_rate(self):
+        return self.RATE
+
+    # Set silence threshold
+    def set_threshold(self, threshold):
         self.THRESHOLD = threshold
+
+    # Get silence threshold
+    def get_threshold(self):
+        return self.THRESHOLD
+
+    # Set silence limit (in seconds)
+    def set_silence_limit(self, silence_limit):
         self.SILENCE_LIMIT = silence_limit
-        if auto_threshold:
-            self.auto_threshold()
 
+    # Get the silence limit (in seconds)
+    def get_silence_limit(self):
+        return SILENCE_LIMIT
 
-    # automatically calculate threshold.
-    # Parameters:
-    #   samples: number of chunks to read from microphone.
-    #   avgintensities: the top x% of the highest intensites read to be
-    #   averaged. By default, the top 20% of the highest intensities will be
-    #   averaged together.
-    #   padding: how far above the average intensity the voice should be.
-    # TODO: check to make sure this is actually beneficial to performance.
-    def auto_threshold(self, samples=50, avgintensities=0.2, padding=10):
-        if __debug__:
-            print("Auto-thresholding...")
-
-        # start a stream.
-        #
-        # TODO: if we are to wrap these functions in a class, maybe
-        # we should just create one pyaudio stream and open it in the
-        # constructor.
-        p = pyaudio.PyAudio()
-        stream = p.open(
-            format=self.FORMATT,
-            channels=self.CHANNELS,
-            rate=self.RATE,
-            input=True,
-            frames_per_buffer=self.CHUNK)
-
-        # Get a number of chunks from the stream as determined by the samples
-        # arg, and calculate intensity.
-        # intensities = [math.sqrt(abs(audioop.avg(stream.read(CHUNK), 4)))
-        #               for x in range(samples)]
-        intensities = [math.sqrt(abs(audioop.avg(stream.read(self.CHUNK), 4)))]
-
-        # sort the list from greatest to least.
-        intensities = sorted(intensities, reverse=True)
-
-        # get the first avgintensities percent values from the list.
-        self.THRESHOLD = sum(intensities[:int(samples * avgintensities)]) / int(
-            samples * avgintensities) + padding
-
-        # clean up
-        stream.close()
-        p.terminate()
-
-        if __debug__:
-            print("Threshold: ", self.THRESHOLD)
-
-    # read_audio starts a stream and sends chunks to watson realtime.
+    # read_audio starts a stream and sends chunks to watson real-time.
     def read_audio(self, ws, timeout):
 
         # get a stream
-        p = pyaudio.PyAudio()
+        #p = pyaudio.PyAudio()
 
-        stream = p.open(format=self.FORMATT,
+        stream = self.p.open(format=self.FORMAT,
                         channels=self.CHANNELS,
                         rate=self.RATE,
                         input=True,
                         frames_per_buffer=self.CHUNK)
 
-        if __debug__:
-            print("Starting recording")
-
-        # magic happens here. Read a chunk from the stream, encode it as ABNF,
-        # and put it through the websocket.
+        logging.debug("Starting recording")
 
         # silence_chunks is a counter variable counting number of chunks with
         # silence. Once this value surpasses the silence limit, stop recording.
@@ -173,23 +161,17 @@ class StreamingSTT:
         stream.stop_stream()
         stream.close()
 
-        if __debug__:
-            print("Done recording")
+        logging.debug("Done recording")
 
         # Get the final response from watson (waiting for 1 second to get it
         # back)
         data = {"action": "stop"}
+        ws.send(json.dumps(data).encode('utf8'))
+        time.sleep(1)
 
-        try:
-                ws.send(json.dumps(data).encode('utf8'))
-                time.sleep(1)
-                # close the websocket
-                ws.close()
-
-        except:
-                print("thing failed")
-
-        p.terminate()
+        # close the websocket
+        ws.close()
+        #p.terminate()
 
     # this callback is used when the connection is activated.
     # basically initializing and configuring settings and stuff
@@ -224,22 +206,22 @@ class StreamingSTT:
         if "results" in data:
 
             # are those results final?
-            if data["results"][0]["final"]:
-                self.FINAL.append(data)
+            # BUG: if you don't talk, this field won't exist in the dict,
+            # and bad things will happen, and scary things will show up in
+            # the terminal.
+            if len(data["results"]) != 0:
+                if data["results"][0]["final"]:
+                    self.FINAL.append(data)
 
-            if __debug__:
-                # printing the many alternatives of what the user said
-                print(data['results'][0]['alternatives'][0]['transcript'])
+            logging.debug(data['results'][0]['alternatives'][0]['transcript'])
 
     # print those errors
-    def on_error(self, error, idk):
-        if __debug__:
-            print(error)
+    def on_error(self, error):
+        logging.error(error)
 
     # inform coder dude that websocket was closed
     def on_close(self, ws):
-        if __debug__:
-            print("Websocket closed.")
+        logging.debug("Websocket closed.")
 
     # get_phrase should not be confused with read_audio.
     # get_phrase should always be called instead of read_audio.
@@ -288,7 +270,7 @@ if __name__ == "__main__":
         StreamingSTT(sys.argv[1], sys.argv[2], sys.argv[3]).get_phrase()
 
     else:
-        s = StreamingSTT(sys.argv[1], sys.argv[2], auto_threshold=True)
+        s = StreamingSTT(sys.argv[1], sys.argv[2])
         x = s.get_phrase()
         print(x)
         print("\n\n\n\nget_phrase can be called as much as you want.\n\n\n\n")
