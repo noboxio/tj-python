@@ -69,7 +69,7 @@ class StreamingSTT:
             formatt=pyaudio.paInt16,
             rate=44100,
             threshold=1500,
-            silence_limit=2
+            silence_limit=2,
             auto_threshold=False
     ):
         self.userpass = ":".join((username, password))
