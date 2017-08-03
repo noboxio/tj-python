@@ -132,7 +132,7 @@ class StreamingSTT:
     #   averaged together.
     #   padding: how far above the average intensity the voice should be.
     # TODO: check to make sure this is actually beneficial to performance.
-    def auto_threshold(self, samples=50, avgintensities=0.2, padding=10):
+    def auto_threshold(self, samples=10, avgintensities=0.2, padding=10):
         logging.debug("Auto-thresholding...")
         stream = self.p.open(
             format=self.FORMAT,
@@ -143,9 +143,9 @@ class StreamingSTT:
 
         # Get a number of chunks from the stream as determined by the samples
         # arg, and calculate intensity.
-        # intensities = [math.sqrt(abs(audioop.avg(stream.read(CHUNK), 4)))
-        #               for x in range(samples)]
-        intensities = [math.sqrt(abs(audioop.avg(stream.read(self.CHUNK), 4)))]
+        intensities = [math.sqrt(abs(audioop.avg(stream.read(self.CHUNK), 4)))
+                      for x in range(samples)]
+        #intensities = [math.sqrt(abs(audioop.avg(stream.read(self.CHUNK), 4)))]
 
         # sort the list from greatest to least.
         intensities = sorted(intensities, reverse=True)
