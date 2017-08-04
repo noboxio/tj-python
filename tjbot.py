@@ -133,7 +133,7 @@ class TJBot(threading.Thread):
 
             if 'servo.' in cmd:
                 cmd = cmd.replace('servo.','',1)
-                self.servo_manager.execute_command(cmd)
+                self.servo_manager.add_command(cmd)
 
         return(response)
 
