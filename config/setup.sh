@@ -1,4 +1,14 @@
 
+
+echo Update apt-get lists and upgrade existing
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+
+echo Install vim and screen
+sudo apt-get install vim screen
+
+
 echo Installing Port Audio Stuff.
 sudo apt-get install portaudio19-dev
 sudo apt-get install python-all-dev
