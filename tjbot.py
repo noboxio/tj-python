@@ -76,14 +76,14 @@ class TJBot(threading.Thread):
         """
         # Simple led commands to make the LED go RED --> GREEN --> BLUE to
         # basically show that the TJ Bot is booting
-        self.led_manager.add_command("custom_color_name('red')")
+        """self.led_manager.add_command("custom_color_name('red')")
         self.led_manager.add_command("wait(1)")
         self.led_manager.add_command("custom_color_name('green')")
         self.led_manager.add_command("wait(1)")
         self.led_manager.add_command("custom_color_name('blue')")
         self.led_manager.add_command("wait(1)")
         self.led_manager.add_command("rainbow(iterations=2)")
-
+"""
         # Make TJ bot wave 3 times
         self.servo_manager.add_command("wave(3)")
 
