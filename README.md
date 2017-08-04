@@ -63,7 +63,7 @@ __Then you can run the script located in config/setup.sh or you can execute the 
  9. Install system dependencies for the watson-developer-cloud
     * `sudo apt-get install libssl-dev libffi-dev build-essential scons swig`
     * `sudo easy_install3 --upgrade watson-developer-cloud`
-      * This one takes a while and seems like it stalls, but just let it run!
+    * This one takes a while and seems like it stalls, but just let it run!
  10. Install the adafruit stuff  
     * `sudo pip3 install RPi.GPIO`
  11. Install this for the LED controls
