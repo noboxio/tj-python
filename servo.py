@@ -87,16 +87,16 @@ class Servo:
             print("INVALID ANGLE SPECIFIED.  MUST BE BETWEEN 0 AND 180")
         else:
             #TODO: Need to figure out how to stop the servo after moving.
-            #GPIO.setmode(GPIO.BOARD)
-            #GPIO.setup(26, GPIO.OUT)
-            #self.pwm = GPIO.PWM(26, 50)
-            #self.pwm.start(map(degrees, 0, 180, 2.5, 12.5))
-            #self.pwm.ChangeDutyCycle(map(degrees, 0, 180, 2.5, 12.5))
-            #time.sleep(.5)
-            for i in range(45):
-                print("SERVO IS DISABLED RIGHT NOW!")
-            #self.pwm.stop()
-            #GPIO.cleanup()
+            GPIO.setmode(GPIO.BOARD)
+            GPIO.setup(26, GPIO.OUT)
+            self.pwm = GPIO.PWM(26, 50)
+            self.pwm.start(map(degrees, 0, 180, 2.5, 12.5))
+            self.pwm.ChangeDutyCycle(map(degrees, 0, 180, 2.5, 12.5))
+            time.sleep(.5)
+            #for i in range(45):
+            #    print("SERVO IS DISABLED RIGHT NOW!")
+            self.pwm.stop()
+            GPIO.cleanup()
 
     def up(self):
         """Point the arm up, use this to define the up angle
@@ -159,6 +159,7 @@ class ServoManager(threading.Thread):
             if self.commands:
                 cmd = self.commands.pop(0)
                 self.execute_command(cmd)
+                time.wait(.75)
 
     def set_up(self, up_angle):
         """Set the up value of the servo arm.
