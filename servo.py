@@ -176,6 +176,6 @@ class ServoManager(threading.Thread):
                 try:
                     eval("self.servo." + command)
                 except:
-                    self._log("there was an exception")
+                    self._log("there was an exception self.servo." + command)
     def __dir__(self):
         return([])
