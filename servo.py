@@ -45,7 +45,7 @@ def map(x, in_min, in_max, out_min, out_max):
 class Servo:
     pwm = None
 
-    def __init__(self, up_angle=180, down_angle=0):
+    def __init__(self, up_angle=0, down_angle=180):
         """Constructor for a single servo."""
         self.up_angle = up_angle
         self.down_angle = down_angle
