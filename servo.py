@@ -82,13 +82,11 @@ class Servo:
         different servos.
         """
         # degrees MUST BE between 0 and 180
-        #if degrees > 180 or degrees < 0:
-        if False:
+        if degrees > 180 or degrees < 0:
             print("INVALID ANGLE SPECIFIED.  MUST BE BETWEEN 0 AND 180")
         else:
-            self.pwm.start(degrees)
-            #self.pwm.start(map(degrees, 0, 180, 1, 15))
-            time.sleep(3)
+            self.pwm.start(map(degrees, 0, 180, 2.5, 12.5))
+            time.sleep(.25)
             self.pwm.stop()
 
     def up(self):
