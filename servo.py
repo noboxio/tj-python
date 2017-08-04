@@ -86,7 +86,7 @@ class Servo:
         if degrees > 180 or degrees < 0:
             print("INVALID ANGLE SPECIFIED.  MUST BE BETWEEN 0 AND 180")
         else:
-
+            GPIO.setmode(GPIO.BOARD)
             GPIO.setup(26, GPIO.OUT)
             self.pwm = GPIO.PWM(26, 50)
             self.pwm.start(map(degrees, 0, 180, 2.5, 12.5))
