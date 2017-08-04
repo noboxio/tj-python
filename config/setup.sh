@@ -16,7 +16,7 @@ sudo pip3 install RPi.GPIO
 
 
 echo Copying the confil files for asound
-cp asound.rc /etc/asound.rc
+cp asound.conf /etc/asound.conf
 cp .asoundrc ~/.asoundrc
 
 
@@ -40,4 +40,10 @@ git clone https://github.com/jgarff/rpi_ws281x.git
 cd rpi_ws281x
 scons
 cd python
+sudo python3 setup.py install
+
+
+cd ~/
+git clone http://people.csail.mit.edu/hubert/git/pyaudio.git
+cd pyaudio
 sudo python3 setup.py install
