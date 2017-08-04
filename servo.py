@@ -92,7 +92,7 @@ class Servo:
             self.pwm = GPIO.PWM(26, 50)
             self.pwm.start(map(degrees, 0, 180, 2.5, 12.5))
             self.pwm.ChangeDutyCycle(map(degrees, 0, 180, 2.5, 12.5))
-            time.sleep(.5)
+            time.sleep(1)
             #for i in range(45):
             #    print("SERVO IS DISABLED RIGHT NOW!")
             self.pwm.stop()
