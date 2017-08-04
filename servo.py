@@ -83,7 +83,7 @@ class Servo:
         """
         # degrees MUST BE between 0 and 180
         #if degrees > 180 or degrees < 0:
-        if True:
+        if False:
             print("INVALID ANGLE SPECIFIED.  MUST BE BETWEEN 0 AND 180")
         else:
             self.pwm.start(degrees)
