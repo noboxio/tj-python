@@ -88,6 +88,7 @@ class Servo:
         else:
             #TODO: Need to figure out how to stop the servo after moving.
             GPIO.setmode(GPIO.BOARD)
+            GPIO.cleanup()
             GPIO.setup(26, GPIO.OUT)
             self.pwm = GPIO.PWM(26, 50)
             self.pwm.start(map(degrees, 0, 180, 2.5, 12.5))
