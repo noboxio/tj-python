@@ -42,7 +42,7 @@
 
 
 
-**Then you can run the script located in config/setup.sh or you can execute the commands manually below.**
+#Then you can run the script located in config/setup.sh or you can execute the commands manually below.
 
    1. Update the dist list: `sudo apt-get update`
    1. Upgrade the apps `sudo apt-get upgrade`
