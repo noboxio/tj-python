@@ -196,7 +196,7 @@ class ServoManager(threading.Thread):
                 self._log("Servo MANAGER: no servo is currently active")
             else:
                 try:
-                    eval("self.s." + command)
+                    exec("self.s." + command)
                 except:
                     self._log("there was an exception self.s." + command)
     def __dir__(self):
