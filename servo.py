@@ -188,7 +188,7 @@ class ServoManager(threading.Thread):
                 self._log("there was an exception")
         else:
             self._log("no matching command found in ServoManager")
-            if self.servo is None:
+            if self.s is None:
                 self._log("Servo MANAGER: no servo is currently active")
             else:
                 try:
