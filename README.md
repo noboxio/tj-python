@@ -44,40 +44,40 @@
 
 __Then you can run the script located in config/setup.sh or you can execute the commands manually below.__
 
-   2. Update the dist list: `sudo apt-get update`
-   3. Upgrade the apps `sudo apt-get upgrade`
+   1. Update the dist list: `sudo apt-get update`
+   1. Upgrade the apps `sudo apt-get upgrade`
       * Tell is yes if it asks if you want to continue `Y`
-   4. Upgrade the distro `sudo apt-get dist-upgrade`
-   5. Install vim `sudo apt-get install vim`
+   1. Upgrade the distro `sudo apt-get dist-upgrade`
+   1. Install vim `sudo apt-get install vim`
       * Vim config TODO
       * Git config use vim TODO
-   6. REMOVE Install screen `sudo apt-get install screen`
-   7. Install Python 3 and set as default
+   1. REMOVE Install screen `sudo apt-get install screen`
+   1. Install Python 3 and set as default
       * Already default
-   8. Install system dependencies they are found on the pyaudio page(Below)
+   1. Install system dependencies they are found on the pyaudio page(Below)
       * `sudo apt-get install portaudio19-dev`
       * `sudo apt-get install python-all-dev`
       * `sudo apt-get install python3-dev`
       * `sudo apt-get install python3-pyaudio python-pyaudio`  !!!THIS DOES NOT WORK ON THE RPi!!!
       * TODO: Need to add the special code from the non standard dist that makes PyAudio work.   This may not be correct if the new library doesn't require it!
-   9. Install system dependencies for the watson-developer-cloud
+   1. Install system dependencies for the watson-developer-cloud
       * `sudo apt-get install libssl-dev libffi-dev build-essential scons swig`
       * `sudo easy_install3 --upgrade watson-developer-cloud`
-  10. Install the adafruit stuff  
+   1. Install the adafruit stuff  
       * `sudo pip3 install RPi.GPIO`
-  11. Install this for the LED controls
+   1. Install this for the LED controls
       * `git clone https://github.com/jgarff/rpi_ws281x.git`
       * `cd rpi_ws281x`
       * `scons`
       * `cd python`
       * `sudo python3 setup.py install`
-  12. You need to copy the asound.conf file to /etc/
+   1. You need to copy the asound.conf file to /etc/
       * `sudo cp asound.conf /etc/asound.conf`
-  13. You need to copy the asound file to ~/.asound
+   1. You need to copy the asound file to ~/.asound
       * `cp .asoundrc ~/.asoundrc`
-  14. Install VLC to play the music
+   1. Install VLC to play the music
       * `sudo apt-get install vlc`
-  15. Install the python libraries required.
+   1. Install the python libraries required.
       * `sudo easy_install3 websocket-client`
       * `sudo pip3 install colour`
       * `sudo pip3 install python-vlc`
