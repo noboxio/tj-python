@@ -49,11 +49,11 @@ class Servo:
         """Constructor for a single servo."""
         self.up_angle = up_angle
         self.down_angle = down_angle
-        GPIO.setwarnings(False)
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(26, GPIO.OUT)
-        self.pwm = GPIO.PWM(26, 50)
-        self.pwm.start(2.5)
+        #GPIO.setwarnings(False)
+        #GPIO.setmode(GPIO.BOARD)
+        #GPIO.setup(26, GPIO.OUT)
+        #self.pwm = GPIO.PWM(26, 50)
+        #self.pwm.start(2.5)
 
     def _log(self, message):
         """Print the log message with the object id.
