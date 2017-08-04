@@ -49,7 +49,7 @@ class Servo:
         """Constructor for a single servo."""
         self.up_angle = up_angle
         self.down_angle = down_angle
-        #GPIO.setwarnings(False)
+        GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(26, GPIO.OUT)
         self.pwm = GPIO.PWM(26, 50)
