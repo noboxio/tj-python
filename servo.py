@@ -26,6 +26,8 @@ from multiprocessing import Process
 import threading
 import re
 
+GPIO.cleanup()
+
 def map(x, in_min, in_max, out_min, out_max):
     """Method taken from arduino library that maps a min and max to another
     min and max linearly.
