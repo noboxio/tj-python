@@ -31,7 +31,7 @@
               * Variant: English (US)  *scroll up to see it at the top*
       * Then reboot the pi `sudo reboot` or use the menu
 
- 2. *Then you can run the script located in config/setup.sh or you can execute the commands manually below.*
+ 2. __Then you can run the script located in config/setup.sh or you can execute the commands manually below.__
 
  2. Update the dist list: `sudo apt-get update`
  3. Upgrade the apps `sudo apt-get upgrade`
