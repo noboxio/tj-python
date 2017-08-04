@@ -17,6 +17,7 @@ sudo apt-get -y install python3-pyaudio python-pyaudio
 
 echo Installing stuff for the watson cloud connectors.
 echo This one takes a while and seems like it stalls, but just let it run!
+read  -n 1 -p "Press any key to continue....  BUT REMEMBER IT MAY TAKE A WHILE TO RUN!" mainmenuinput
 sudo apt-get  -y install libssl-dev libffi-dev build-essential scons swig
 sudo easy_install3 --upgrade watson-developer-cloud
 
