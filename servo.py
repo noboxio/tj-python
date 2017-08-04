@@ -139,19 +139,19 @@ class ServoManager(threading.Thread):
         """
         print("|" + str(self) + "| " + str(message) )
 
-    def set_up(self, up):
+    def set_up(self, up_angle):
         """Set the up value of the servo arm.
 
         up -- the angle in degrees that is Up
         """
-        self.servo.up = up
+        self.servo.up_angle = up_angle
 
-    def set_down(self, down):
+    def set_down(self, down_angle):
         """Set the down value of the servo arm.
 
         down -- the angle in degrees that is Down
         """
-        self.servo.down = down
+        self.servo.down_angle = down_angle
 
     def execute_command(self, command):
         """Execute a command in text form"""
@@ -173,7 +173,6 @@ class ServoManager(threading.Thread):
             if self.servo is None:
                 self._log("Servo MANAGER: no servo is currently active")
             else:
-                eval("self.servo." + command)
                 try:
                     eval("self.servo." + command)
                 except:
