@@ -60,24 +60,24 @@ __Then you can run the script located in config/setup.sh or you can execute the 
       * `sudo apt-get install python3-dev`
       * `sudo apt-get install python3-pyaudio python-pyaudio`  !!!THIS DOES NOT WORK ON THE RPi!!!
       * TODO: Need to add the special code from the non standard dist that makes PyAudio work.   This may not be correct if the new library doesn't require it!
-    9. Install system dependencies for the watson-developer-cloud
+   9. Install system dependencies for the watson-developer-cloud
       * `sudo apt-get install libssl-dev libffi-dev build-essential scons swig`
       * `sudo easy_install3 --upgrade watson-developer-cloud`
-    10. Install the adafruit stuff  
+  10. Install the adafruit stuff  
       * `sudo pip3 install RPi.GPIO`
-    11. Install this for the LED controls
+  11. Install this for the LED controls
       * `git clone https://github.com/jgarff/rpi_ws281x.git`
       * `cd rpi_ws281x`
       * `scons`
       * `cd python`
       * `sudo python3 setup.py install`
-   12. You need to copy the asound.conf file to /etc/
+  12. You need to copy the asound.conf file to /etc/
       * `sudo cp asound.conf /etc/asound.conf`
-   13. You need to copy the asound file to ~/.asound
+  13. You need to copy the asound file to ~/.asound
       * `cp .asoundrc ~/.asoundrc`
-   14. Install VLC to play the music
+  14. Install VLC to play the music
       * `sudo apt-get install vlc`
-   15. Install the python libraries required.
+  15. Install the python libraries required.
       * `sudo easy_install3 websocket-client`
       * `sudo pip3 install colour`
       * `sudo pip3 install python-vlc`
