@@ -1,4 +1,3 @@
-
 # SteamingHotPie
 A branch devoted to the development of `streaming.py`.
 
