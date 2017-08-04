@@ -200,7 +200,6 @@ class MusicManager(threading.Thread):
         self.playlist = list()
         self.now_playing = None
 
-        self.start()
         self.last_song = None
         self.play_once = False
 

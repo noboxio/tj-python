@@ -162,7 +162,6 @@ class LedManager(threading.Thread):
         threading.Thread.__init__(self)
         self.led = led
         self.commands = list()
-        self.start()
 
     def _log(self, message):
         """Print the log message with the object id.

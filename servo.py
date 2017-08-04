@@ -131,7 +131,6 @@ class ServoManager(threading.Thread):
         self.tj = tj
         self.s = s
         self.commands = list()
-        self.start()
 
     def _log(self, message):
         """Print the log message with the object id.
