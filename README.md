@@ -9,7 +9,7 @@
 
 **THINGS THAT HAVE TO BE PERFORMED ON A NEW PI**
  1. Download the newest Raspbian image from: https://www.raspberrypi.org/downloads/raspbian/
- * We currently use RASPBIAN JESSIE WITH DESKTOP 2017-07-05
+    * We currently use RASPBIAN JESSIE WITH DESKTOP 2017-07-05
  2. Load the downloaded .img file onto your SD card.  Raspberry Pi recommends that you use Etcher.  See their Installing Operating Systems Images page: https://www.raspberrypi.org/documentation/installation/installing-images/README.md
 
  1. Configure the Raspberry Pi
@@ -63,7 +63,7 @@ __Then you can run the script located in config/setup.sh or you can execute the 
  9. Install system dependencies for the watson-developer-cloud
     * `sudo apt-get install libssl-dev libffi-dev build-essential scons swig`
     * `sudo easy_install3 --upgrade watson-developer-cloud`
-        * This one takes a while and seems like it stalls, but just let it run!
+      * This one takes a while and seems like it stalls, but just let it run!
  10. Install the adafruit stuff  
     * `sudo pip3 install RPi.GPIO`
  11. Install this for the LED controls
