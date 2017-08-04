@@ -61,8 +61,8 @@ __Then you can run the script located in config/setup.sh or you can execute the 
       * `sudo apt-get install python3-pyaudio python-pyaudio`  !!!THIS DOES NOT WORK ON THE RPi!!!
       * TODO: Need to add the special code from the non standard dist that makes PyAudio work.   This may not be correct if the new library doesn't require it!
     9. Install system dependencies for the watson-developer-cloud
-      * `sudo apt-get install libssl-dev libffi-dev build-essential scons swig`
-      * `sudo easy_install3 --upgrade watson-developer-cloud`
+    * `sudo apt-get install libssl-dev libffi-dev build-essential scons swig`
+    * `sudo easy_install3 --upgrade watson-developer-cloud`
     10. Install the adafruit stuff  
       * `sudo pip3 install RPi.GPIO`
     11. Install this for the LED controls
