@@ -6,9 +6,12 @@
 
 [wiring-diagram]: https://cdn.rawgit.com/noboxio/tj-python/4d967c93/config/raspberryPiTJ.svg "Wiring Diagram"
 
-***INSTRUCTIONS***
 
-**THINGS THAT HAVE TO BE DONE**
+**THINGS THAT HAVE TO BE PERFORMED ON A NEW PI**
+1. Download the newest Raspbian image from: https://www.raspberrypi.org/downloads/raspbian/
+ * We currently use RASPBIAN JESSIE WITH DESKTOP 2017-07-05
+2. Load the downloaded .img file onto your SD card.  Raspberry Pi recommends that you use Etcher.  See their Installing Operating Systems Images page: https://www.raspberrypi.org/documentation/installation/installing-images/README.md
+
 1. Configure the Raspberry Pi
       * Raspberry Icon --> Preferences --> Raspberry Pi Configuration
           * System:
@@ -31,7 +34,8 @@
               * Variant: English (US)  *scroll up to see it at the top*
       * Then reboot the pi `sudo reboot` or use the menu
 
- 2. __Then you can run the script located in config/setup.sh or you can execute the commands manually below.__
+
+__Then you can run the script located in config/setup.sh or you can execute the commands manually below.__
 
  2. Update the dist list: `sudo apt-get update`
  3. Upgrade the apps `sudo apt-get upgrade`
@@ -79,7 +83,9 @@ Thinking about adding:
 
 
 # IBM's TJBot code rewritten in Python.
-*NEEDS TO BE UPDATED*
+*__NEEDS TO BE UPDATED__*
+
+*__This is initial infromation that somewhat applies to the code in this repository but it is not up to date at this time.__*
 
   * Things we want to be able to do in python:  
   * Speech to text, preferably more live than waiting for no sound to process, but whatever  
