@@ -1,23 +1,23 @@
 
 
 echo Update apt-get lists and upgrade existing
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get dist-upgrade
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y dist-upgrade
 
 echo Install vim and screen
-sudo apt-get install vim screen
+sudo apt-get -y install vim screen
 
 
 echo Installing Port Audio Stuff.
-sudo apt-get install portaudio19-dev
-sudo apt-get install python-all-dev
-sudo apt-get install python3-dev
-sudo apt-get install python3-pyaudio python-pyaudio
+sudo apt-get -y install portaudio19-dev
+sudo apt-get -y install python-all-dev
+sudo apt-get -y install python3-dev
+sudo apt-get -y install python3-pyaudio python-pyaudio
 
 echo Installing stuff for the watson cloud connectors.
 echo This one takes a while and seems like it stalls, but just let it run!
-sudo apt-get install libssl-dev libffi-dev build-essential scons swig
+sudo apt-get  -y install libssl-dev libffi-dev build-essential scons swig
 sudo easy_install3 --upgrade watson-developer-cloud
 
 
@@ -31,7 +31,7 @@ cp .asoundrc ~/.asoundrc
 
 
 echo Install VLC
-sudo apt-get install vlc
+sudo apt-get -y install vlc
 
 echo Install the required Python3 Libraries
 sudo easy_install3 websocket-client
