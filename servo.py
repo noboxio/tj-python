@@ -90,7 +90,7 @@ class Servo:
             self.pwm.ChangeDutyCycle(map(degrees, 0, 180, 2.5, 12.5))
             print("MAP " + str(degrees) + " : " + str(map(degrees, 0, 180, 2.5, 12.5)))
             time.sleep(1)
-            #self.pwm.stop()
+            self.pwm.stop()
 
     def up(self):
         """Point the arm up, use this to define the up angle
