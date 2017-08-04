@@ -8,11 +8,11 @@
 
 
 **THINGS THAT HAVE TO BE PERFORMED ON A NEW PI**
-1. Download the newest Raspbian image from: https://www.raspberrypi.org/downloads/raspbian/
+ 1. Download the newest Raspbian image from: https://www.raspberrypi.org/downloads/raspbian/
  * We currently use RASPBIAN JESSIE WITH DESKTOP 2017-07-05
-2. Load the downloaded .img file onto your SD card.  Raspberry Pi recommends that you use Etcher.  See their Installing Operating Systems Images page: https://www.raspberrypi.org/documentation/installation/installing-images/README.md
+ 2. Load the downloaded .img file onto your SD card.  Raspberry Pi recommends that you use Etcher.  See their Installing Operating Systems Images page: https://www.raspberrypi.org/documentation/installation/installing-images/README.md
 
-1. Configure the Raspberry Pi
+ 1. Configure the Raspberry Pi
       * Raspberry Icon --> Preferences --> Raspberry Pi Configuration
           * System:
             * Underscan: Disabled
@@ -33,6 +33,13 @@
               * Country: United States
               * Variant: English (US)  *scroll up to see it at the top*
       * Then reboot the pi `sudo reboot` or use the menu
+ 2. Set the default audio to be analog audio.  `sudo raspi-config`
+    * Pick option `7 Advanced Options`
+    * Pick option `A4 Audio`
+    * Pick option `1 Force 3.5mm ('headphone') jack`
+    * Press the Enter Key
+    * Use the Left and Right arrow keys to select `<Finish>` and press the Enter Keyboard
+
 
 
 __Then you can run the script located in config/setup.sh or you can execute the commands manually below.__
