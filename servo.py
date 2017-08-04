@@ -173,6 +173,7 @@ class ServoManager(threading.Thread):
             if self.servo is None:
                 self._log("Servo MANAGER: no servo is currently active")
             else:
+                eval("self.servo." + command)
                 try:
                     eval("self.servo." + command)
                 except:
