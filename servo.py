@@ -130,6 +130,7 @@ class ServoManager(threading.Thread):
         threading.Thread.__init__(self)
         self.tj = tj
         self.servo = servo
+        self.commands = list()
         self.start()
 
     def _log(self, message):
@@ -138,6 +139,23 @@ class ServoManager(threading.Thread):
         message -- string that needs to be logged
         """
         print("|" + str(self) + "| " + str(message) )
+
+    def add_command(self, command):
+        """Add a command to the commands list.
+
+        Append the command to the commands list.
+
+        command -- the text command to appent to the commands list.
+        """
+        self.commands.append(command)
+
+
+    def run(self):
+        """ run as thread"""
+        while(True):
+            if self.commands:
+                cmd = self.commands.pop(0)
+                self.execute_command(cmd)
 
     def set_up(self, up_angle):
         """Set the up value of the servo arm.
