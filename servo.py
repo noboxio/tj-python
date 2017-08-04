@@ -121,15 +121,15 @@ class ServoManager(threading.Thread):
     whatever whenever
     """
 
-    def __init__(self, tj=None, servo=Servo()):
+    def __init__(self, tj=None, s=Servo()):
         """Create a ServoManager type object.
 
-        servo -- Servo to contorl
+        s -- Servo to contorl
         TODO: make it control multiple servos?
         """
         threading.Thread.__init__(self)
         self.tj = tj
-        self.servo = servo
+        self.s = s
         self.commands = list()
         self.start()
 
@@ -162,14 +162,14 @@ class ServoManager(threading.Thread):
 
         up -- the angle in degrees that is Up
         """
-        self.servo.up_angle = up_angle
+        self.s.up_angle = up_angle
 
     def set_down(self, down_angle):
         """Set the down value of the servo arm.
 
         down -- the angle in degrees that is Down
         """
-        self.servo.down_angle = down_angle
+        self.s.down_angle = down_angle
 
     def execute_command(self, command):
         """Execute a command in text form"""
@@ -192,8 +192,8 @@ class ServoManager(threading.Thread):
                 self._log("Servo MANAGER: no servo is currently active")
             else:
                 try:
-                    eval("self.servo." + command)
+                    eval("self.s." + command)
                 except:
-                    self._log("there was an exception self.servo." + command)
+                    self._log("there was an exception self.s." + command)
     def __dir__(self):
         return([])
