@@ -86,7 +86,8 @@ class Servo:
             print("INVALID ANGLE SPECIFIED.  MUST BE BETWEEN 0 AND 180")
         else:
             self.pwm.start(map(degrees, 0, 180, 2.5, 12.5))
-            time.sleep(.25)
+            print("MAP " + degrees + " : " + map(degrees, 0, 180, 2.5, 12.5))
+            time.sleep(.5)
             self.pwm.stop()
 
     def up(self):
