@@ -160,7 +160,6 @@ class ServoManager(threading.Thread):
             if self.commands:
                 cmd = self.commands.pop(0)
                 self.execute_command(cmd)
-                time.sleep(.75)
 
     def set_up(self, up_angle):
         """Set the up value of the servo arm.
