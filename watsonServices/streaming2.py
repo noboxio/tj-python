@@ -29,3 +29,5 @@ Date: 7/31/17
 #   - on_error: when error occurs
 #   - on_cleanup_begin: when cleanup is started
 #   - on_cleanup_complete: when cleanup is complete
+
+class SpeechToText(object):
