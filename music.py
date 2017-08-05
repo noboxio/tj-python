@@ -276,18 +276,6 @@ class MusicManager(threading.Thread):
                 break
 
 
-
-
-#        try:
-#            index = self.playlist.index(song_name)
-#            print("index: " + index)
-#        except ValueError:
-#            self._log("song not found")
-
-        #pop all of the songs in the list until the desired song is on top
-#        for i in range(index):
-#            self.load_song(self.playlist.pop())
-
         self.play_once = True
         self.play()
 
