@@ -21,15 +21,6 @@ Date: 7/31/17
 # TODO:
 # planned callbacks:
 #   - on_init: when initialization is complete
-#   - on_sleep: 
-
-# PATRICK: Consider splitting the below method into two separate methods:
-#    - The __init__ constructor, maybe taking only a username and a password as
-#      params, which does nothing but create a new instance,
-#    - and a separate init() method, maybe taking the callback functions as
-#      parameters, which creates the pyaudio instance and
-#      initializes a websocket and stuff.
-# Or you can do all that in the constructor as well.  I don't really have
-# strong feelings about this.
-def init(username, password):
-    pass
+#   - on_sleep: when robot enters sleep state
+#   - on_wake: when robot exits sleep state
+#   - 
