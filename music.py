@@ -272,7 +272,8 @@ class MusicManager(threading.Thread):
             t = self.playlist[i]
             if t.name == song_name:
                 t = self.playlist.pop(i)
-                self.load_song(t)
+                self.playlist.insert(0, t)
+                #self.load_song(t)
                 break
 
 
