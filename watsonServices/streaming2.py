@@ -20,7 +20,11 @@ Date: 7/31/17
 
 # TODO:
 # planned callbacks:
-#   - on_init: when initialization is complete
+#   - on_init_begin: when initialization is started
+#   - on_init_complete: when initialization is complete
 #   - on_sleep: when robot enters sleep state
 #   - on_wake: when robot exits sleep state
-#   - 
+#   - on_phrase: when a full phrase is processed
+#   - on_error: when error occurs
+#   - on_cleanup_begin: when cleanup is started
+#   - on_cleanup_complete: when cleanup is complete
