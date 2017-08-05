@@ -223,7 +223,10 @@ class MusicManager(threading.Thread):
                 state = self.now_playing.get_state()
                 if str(state) == "State.Ended":
                     self._log("song finished")
-                    self.next()
+                    if self.play_once:
+                        self.stop()
+                    else:
+                        self.next()
 
     def load_music(self):
         """Load the songs that are in the resources/music folder.
