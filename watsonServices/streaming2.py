@@ -25,6 +25,7 @@ Date: 7/31/17
 #   - on_sleep: when robot enters sleep state
 #   - on_wake: when robot exits sleep state
 #   - on_phrase: when a full phrase is processed
+#   - on_info: for logging purposes, general information.
 #   - on_error: when error occurs
 #   - on_cleanup_begin: when cleanup is started
 #   - on_cleanup_complete: when cleanup is complete
