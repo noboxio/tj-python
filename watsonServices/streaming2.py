@@ -18,6 +18,11 @@ Author: Brandon Gong
 Date: 7/31/17
 """
 
+# TODO:
+# planned callbacks:
+#   - on_init: when initialization is complete
+#   - on_sleep: 
+
 # PATRICK: Consider splitting the below method into two separate methods:
 #    - The __init__ constructor, maybe taking only a username and a password as
 #      params, which does nothing but create a new instance,

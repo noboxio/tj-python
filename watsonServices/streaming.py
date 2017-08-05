@@ -130,11 +130,11 @@ class StreamingSTT:
     # Parameters:
     #   samples: number of chunks to read from microphone.
     #   avgintensities: the top x% of the highest intensites read to be
-    #   averaged. By default, the top 20% of the highest intensities will be
+    #   averaged. By default, the top 10% of the highest intensities will be
     #   averaged together.
     #   padding: how far above the average intensity the voice should be.
     # TODO: check to make sure this is actually beneficial to performance.
-    def auto_threshold(self, samples=10, avgintensities=0.2, padding=10):
+    def auto_threshold(self, samples=10, avgintensities=0.1, padding=10):
         logging.debug("Auto-thresholding...")
         stream = self.p.open(
             format=self.FORMAT,
