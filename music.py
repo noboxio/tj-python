@@ -273,10 +273,7 @@ class MusicManager(threading.Thread):
             if t.name == song_name:
                 t = self.playlist.pop(i)
                 self.playlist.insert(0, t)
-                #self.load_song(t)
                 break
-                print(t.name + " - " + song_name)
-
 
         self.play_once = True
         self.play()
