@@ -275,6 +275,7 @@ class MusicManager(threading.Thread):
                 self.playlist.insert(0, t)
                 #self.load_song(t)
                 break
+                print(t.name + " - " + song_name)
 
 
         self.play_once = True
