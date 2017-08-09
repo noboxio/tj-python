@@ -31,3 +31,6 @@ Date: 7/31/17
 #   - on_cleanup_complete: when cleanup is complete
 
 class SpeechToText(object):
+
+    def __init__(username, password):
+        self.userpass = ":".join((username, password))
