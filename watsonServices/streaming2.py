@@ -32,5 +32,20 @@ Date: 7/31/17
 
 class SpeechToText(object):
 
+    def _do_nothing(): pass
+
     def __init__(username, password):
         self.userpass = ":".join((username, password))
+        self.on_init_begin_callback = _do_nothing
+        self.on_init_complete_callback = _do_nothing
+        self.on_sleep_callback = _do_nothing
+        self.on_wake_callback = _do_nothing
+        self.on_phrase_callback = _do_nothing
+        self.on_info_callback = lambda info : print(info)
+        self.on_error_callback = lambda error : print(error, file=sys.stderr)
+        self.on_cleanup_begin_callback = _do_nothing
+        self.on_cleanup_complete_callback = _do_nothing
+
+    def on_init_begin(function):
+
+        self.on_init_begin_callback = function
