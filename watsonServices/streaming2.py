@@ -18,34 +18,138 @@ Author: Brandon Gong
 Date: 7/31/17
 """
 
-# TODO:
-# planned callbacks:
-#   - on_init_begin(): when initialization is started
-#   - on_init_complete(): when initialization is complete
-#   - on_sleep(): when robot enters sleep state
-#   - on_wake(): when robot exits sleep state
-#   - on_phrase(phrase): when a full phrase is processed
-#   - on_info(info): for logging purposes, general information.
-#   - on_error(error): when error occurs
-#   - on_cleanup_begin(): when cleanup is started
-#   - on_cleanup_complete(): when cleanup is complete
+import pyaudio
+import threading
 
 class SpeechToText(object):
 
+    _chunk = 16384
+    _format = pyaudio.paInt16
+    _channels = 1
+    _rate = 48000
+    _final_phrase = []
+    _threshold = 1500
+    _silence_limit = 2
+    _sleep_after = 300
+
     def _do_nothing(): pass
+    def _verify_function(self, function):
+        if isinstance(function, (types.FunctionType, types.LambdaType)):
+            return function
+        elif function is None:
+            return self._do_nothing
+        else:
+            self._on_error_callback("Invalid parameter to be set as callback")
+            return self._do_nothing
 
     def __init__(username, password):
-        self.userpass = ":".join((username, password))
-        self.on_init_begin_callback = _do_nothing
-        self.on_init_complete_callback = _do_nothing
-        self.on_sleep_callback = _do_nothing
-        self.on_wake_callback = _do_nothing
-        self.on_phrase_callback = _do_nothing
-        self.on_info_callback = lambda info : print(info)
-        self.on_error_callback = lambda error : print(error, file=sys.stderr)
-        self.on_cleanup_begin_callback = _do_nothing
-        self.on_cleanup_complete_callback = _do_nothing
+        self.credentials = ":".join((username, password))
+        self._on_init_begin_callback = self._do_nothing
+        self._on_init_complete_callback = self._do_nothing
+        self._on_sleep_callback = self._do_nothing
+        self._on_wake_callback = self._do_nothing
+        self._on_phrase_callback = self._do_nothing
+        self._on_info_callback = lambda info : print(info)
+        self._on_error_callback = lambda error : print(error, file=sys.stderr)
+        self._on_cleanup_begin_callback = self._do_nothing
+        self._on_cleanup_complete_callback = self._do_nothing
 
-    def on_init_begin(function):
+    def set_on_init_begin(function):
+        self._on_init_begin_callback = _verify_function(function)
 
-        self.on_init_begin_callback = function
+    def set_on_init_complete(function):
+        self._on_init_complete_callback = _verify_function(function)
+
+    def set_on_sleep(function):
+        self._on_sleep_callback = _verify_function(function)
+
+    def set_on_wake(function):
+        self._on_wake_callback = _verify_function(function)
+
+    def set_on_phrase(function):
+        self._on_phrase_callback = _verify_function(function)
+
+    def set_on_info(function):
+        self._on_info_callback = _verify_function(function)
+
+    def set_on_error(function):
+        self._on_error_callback = _verify_function(function)
+
+    def set_on_cleanup_begin(function):
+        self._on_cleanup_begin_callback = _verify_function(function)
+
+    def set_on_cleanup_complete(function):
+        self._on_cleanup_complete_callback = _verify_function(function)
+
+    def set_chunk(self, chunk):
+        self._chunk = chunk
+
+    def get_chunk(self):
+        return self._chunk
+
+    def set_format(self, paformat):
+        self._format = paformat
+
+    def get_format(self):
+        return self._format
+
+    def set_rate(self, rate):
+        self._rate = rate
+
+    def get_rate(self):
+        return self._rate
+
+    def set_threshold(self, threshold):
+        self._threshold = threshold
+
+    def get_threshold(self):
+        return self._threshold
+
+    def set_silence_limit(self, silence_limit):
+        self._silence_limit = silence_limit
+
+    def get_silence_limit(self):
+        return self._silence_limit
+
+    def set_sleep_after(self, sleep_after):
+        self._sleep_after = sleep_after
+
+    def get_sleep_after(self):
+        return self._sleep_after
+
+    def _auto_threshold(self, samples=10, avgintensities=0.1, padding=0):
+        threading.Thread(target=self._on_info_callback,
+                         args=("Starting auto_threshold")).start()
+        stream = self._pa.open(
+            format=self._format,
+            channels=self._channels,
+            rate=self._format,
+            input=True,
+            frames_per_buffer=self._chunk)
+        intensities = [math.sqrt(abs(audioop.avg(stream.read(self._chunk), 4)))
+                      for x in range(samples)]
+        intensities = sorted(intensities, reverse=True)
+        self._threshold = sum(intensities[:int(samples * avgintensities)]) / int(samples * avgintensities) + padding
+        stream.close()
+        threading.Thread(target=self._on_info_callback,
+                         args=("Threshold: {}".format(self._threshold))).start()
+
+
+    # TODO: Change auto_threshold to true by default once it is stabilized
+    def init(auto_threshold=False):
+        threading.Thread(target=self._on_init_begin_callback).start()
+        self._pa = pyaudio.PyAudio()
+        self._sleep_timer = threading.Timer(self._sleep_after, sleephandler)
+        if auto_threshold: self._auto_threshold()
+        headers = {}
+        headers["Authorization"] = "Basic " + base64.b64encode(
+            self.userpass.encode()).decode()
+        url = ("wss://stream.watsonplatform.net//speech-to-text/api/v1/recognize"
+               "?model=en-US_BroadbandModel")
+        self._ws = websocket.WebSocketApp(url,
+                                         header=headers,
+                                         on_message=self.on_message,
+                                         on_error=self.on_error,
+                                         on_close=self.on_close)
+        self._ws.on_open = self.on_open
+        threading.Thread(target=self._on_init_complete_callback).start()
