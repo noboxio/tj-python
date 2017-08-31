@@ -134,6 +134,36 @@ class SpeechToText(object):
         threading.Thread(target=self._on_info_callback,
                          args=("Threshold: {}".format(self._threshold))).start()
 
+    def on_open(self, ws):
+        # dump this config dictionary out to JSON
+        data = {
+            "action": "start",
+            "content-type": "audio/l16;rate=%d" % self.RATE,
+            "continuous": True,
+            "interim_results": True,
+            "word_confidence": True,
+            "timestamps": True,
+            "max_alternatives": 3
+        }
+
+        # Send the dictionary through the socket.
+        ws.send(json.dumps(data).encode('utf8'))
+
+        # start a thread to read audio.
+        threading.Thread(target=self.read_audio,
+                         args=(ws, self.TIMEOUT)).start()
+
+    def on_message(self, egg, msg):
+        data = json.loads(msg)
+        if "results" in data:
+            if len(data["results"]) != 0:
+                if data["results"][0]["final"]:
+                    self.FINAL.append(data)
+
+            logging.debug(data['results'][0]['alternatives'][0]['transcript'])
+
+    def on_error(self, error, egg):
+        threading.Thread(target=self._on_error_callback, args=error).start()
 
     # TODO: Change auto_threshold to true by default once it is stabilized
     def init(auto_threshold=False):
@@ -153,3 +183,13 @@ class SpeechToText(object):
                                          on_close=self.on_close)
         self._ws.on_open = self.on_open
         threading.Thread(target=self._on_init_complete_callback).start()
+
+    def run_forever():
+        self._sleep_timer.start()
+        self._ws.run_forever(
+            sslopt={
+                "cert_reqs": ssl.CERT_NONE,
+                "check_hostname": False,
+                "ssl_version": ssl.PROTOCOL_TLSv1
+            }
+        )
